@@ -1,0 +1,7 @@
+#gowingit - Shell to move to Windows/..GitHub from $HOME directory.
+#	7/12/20.	17:00
+# Notes. run with 'script gowingit' or '. gowingit' to preserve directory change.
+cd /media/ubuntu/Windows/Users/Bill/Documents/GitHub
+echo -e "Moved to [Windows] GitHub\nUse cd /<project-name> to move to git project."
+read -p "Press Enter to continue..."
+

@@ -1,0 +1,41 @@
+#!/bin/bash
+#PFSTASH - emulate incremental Cyber PFDUMP using predetermined directory names.
+#  7/15/20.  11:00
+if [ $1 == $2 ] ; then
+ echo  -e "No Project specified (e.g. OpenOffice-Basics)\nPFSTASH abandoned."
+ exit 1
+fi
+echo -e "PFSTASH Initiated..\nSource = /media/ubuntu/USB20FD/StagingArea-In/PNY-StagingArea-In"
+echo -e "Destination = /media/ubuntu/USB20FD/git-Projects"
+read -p "Proceed with PFSTASH? (y/n)"
+if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
+  echo "PFSTASH proceeding..."
+else
+  echo "PFSTASH Abandoned at user request."
+  exit 0
+fi
+# verify both paths exist
+PFSTASH_SOURCE='/media/ubuntu/USB20FD/StagingArea-In/PNY-StagingArea-In'
+PFSTASH_DEST='/media/ubuntu/USB20FD/git-Projects'
+if  cd $PFSTASH_SOURCE/$1 ; then
+ echo
+else
+ echo -e "Source path '"$PFSTASH_SOURCE/$1"' not found.\nRun PFDUMP on main project."
+ echo "PFSTASH Abandoned."
+ exit 1
+fi
+if cd $PFSTASH_DEST ; then
+ echo
+else
+  echo  -e"Destination path '"$PFSTASH_DEST"' not found.\nPFSTASH Abandoned."
+  exit 1
+fi
+# proceed with PFSTASH
+echo "Stubbed.. copy -r -u -t would execute here.."
+#copy -r -u -v -t $PFSTASH_DEST $PFSTASH_SOURCE/$1
+echo  -e "PFSTASH complete.\nNow safe to remove $1 from\n $PFSTASH_SOURCE "
+exit 0
+
+
+
+

@@ -1,0 +1,6 @@
+#gogit - Shell to move to GitHub from $HOME directory.
+#	7/12/20.	09:00
+cd Documents/GitHub
+echo -e "Moved to GitHub/rUse cd /<project-name> to move to git project."
+read -p "Press Enter to continue..."
+

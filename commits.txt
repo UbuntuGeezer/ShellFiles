@@ -1,0 +1,19 @@
+commit a6ae370bfca943c669dfd9b5ca65261e8a4c8adb
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Tue Jul 14 22:26:17 2020 -0400
+
+    Shell files for ubuntu non-persistent added
+
+commit 7691b9af3b44050b4432205871b8b990eea7ffbb
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Mon May 4 11:06:21 2020 -0400
+
+    Added test.sh shell file
+
+commit 5c89aa42fca80640e095a980f3d9e7882085b0fe
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sat May 2 23:07:12 2020 -0400
+
+    Create README.md
+    
+    Add README.md to set up project on github

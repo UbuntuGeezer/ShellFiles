@@ -1,0 +1,38 @@
+#Notes on starting Ubuntu (non-persistent)	7/11/20.
+# copy Startup.sh from /media/ubuntu/Users/Bill/Documents to $USER/Documents
+# use chmod +x Startup.sh, then ./Startup.sh to connect to the universal-repository
+# and set the timezone correctly to America/New_York
+#
+# until figure out where LibreCalc stores MyMacros, need to Import BadAss and Standard
+# Module1/DayName from
+# OpenOffice.org Calc /media/ubunut/Users/Bill/Appdata/Roaming/OpenOffice/4/basic
+# subdirectories in order for the AlphaCleanAccounting2020test_.ods and others to work. 
+# Also need to install JRE for Calc extended functions like "Customize". Easiest seems
+# to be to install the entire JDK using InstallJDK.sh stored on ../Bill../ubuntu/Documents
+#
+# git needs to be installed. There is a shell file on Windows../Bill../ubuntu/Documents
+# Installgit.sh that can be run from the Terminal to install git.
+# .gitconfig needs to be copied to the $HOME path, and also to each project path that
+# is cloned from GitHub git clone https://git@github.com/UbuntuGeezer/<project>.git
+# then also need to get ssh set up so can assign origin to
+# ssh://git@github.com/UbuntuGeezer/<project>.git (it does not appear to be enough to
+# just copy the .ssh subdirectory from Windows; appears to be operating-system dependent
+# on personal key assignment..(see .ssh notes below)
+# Also, for convenience, edit .bashrc on the $HOME directory and have some git command aliases
+# defined.. alias ga="git add" | alias got='git'
+#
+# .ssh folder on the $HOME path needs to be set up to enable ssh data communictions. Also
+# ssh-agent needs to be running. The terminal command exec ssa-agent bash allows the ssa-agent
+# to be run from the Terminal for processing ssh requests to a host. ssh and gpa protocols
+# are defined for each user on the server. GitHub/<user>/Settings has methods to add ssh
+# public keys for different machines/operating systems. The ssh-rsa.pub file contains the
+# encryption key for public access. It has been set up on GitHub by copying the file content
+# to the clipboard, then entering it in the GitHub settings as an additional key for access.
+# the ssh file passwords are set to a Hebrew word. 
+#
+# Zoom needs to be reinstalled. .deb file is on Windows../Bill../ubuntu/Downloads and
+# InstallZoom.sh is on ../ubuntu/Documents. Easiest is to copy both to $HOME/Downloads
+# and add with chmod then run InstallZoom.sh
+#
+
+

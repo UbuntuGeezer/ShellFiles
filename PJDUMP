@@ -1,0 +1,122 @@
+#!/bin/bash
+#PJDUMP - emulate incremental Cyber PFDUMP of <project-name> using predetermined directory names.
+#  7/17/20.  13:30 PJLOAD NEEDS TO BE REWRITTEN TO BRING PROJECT BACK TO
+#            /Windows/../StagingArea-In
+#                   FROM ../USB20FD/git-Projects ($BACKUP_PATH)
+# Usage. bash PJDUMP <backup-path> <project-name>
+#         <backup-path> = path for backup (e.g. ../USB20FD/git-Projects)
+#         <project-name> = git project name (e.g. Libraries-Project)
+# Because of the volatility of ubuntu non-persistent, and the risk of unexpected crashes
+# git projects should only be modified on the Windows hard-drive. This stands the best chance
+# of not losing local changes.
+# If the local project on the /Windows/ hard drive is corrupted, this backup will provide two
+#  options: # 1) delete the Project on the /Windows hard drive and use PJLOAD to do a full
+# reload, then PJDESTAGE to clone it back from the StagingArea-In, or 2) use
+# "git clone origin <project-name>" to re-clone from the last push to GitHub.
+#
+# 7/17/20. Notes. A new bash shell is expected to be resident on each primary
+# <project-name> path, named BU-Ignores.sh. This bash script will be invoked
+# by PJDUMP to backup files that are ignored by git during cloning or commit
+# operations. These files are spec'd in each project's .gitignore file by
+# patterns (e.g. *.odt). Each BU-Ignores script is programmed to take those
+# files and move them to the backup <project-name> for preservation. These
+# are typically untracked files, not integrated with the project itself,
+# but used during project development and testing. The environment variable
+# BACKUP_PATH is set by PJDUMP and exported for use by other bash scripts.
+#
+# 7/16/20. Notes. To eliminate using StagingAreas, it is simpler to go to the target
+# device's /git-Projects/subdirectory and rename the <project-name> subdirectory by
+# appending an '_' to the <project-name> subdirectory. This frees the <project-name>
+# subdirectory to receive a clone of the project by just using "git clone". The user
+# have to ensure that any files spec'd in .gitignore are copied to the dump area
+# separately from the "git clone".
+if [ -z $1 ] ; then
+  echo -e "No backup path specified (e.g. /media/ubuntu/USB20FD/git-Projects)\nPJDUMP Abandoned."
+  exit 1
+fi
+if [ -z $2 ] ; then
+  echo -e "No Project specified (e.g. OpenOffice-Basics)\nPJDUMP Abandoned."
+  exit 1
+fi
+# check for existing backup; if exists, as permission to recycle it; if yes,
+# rm the existing backup and rename the <project-name> directory by appending
+# a '_' to the <project-name>
+echo -e "PJDUMP Initiated..\nSource = $WINGIT_PATH/$2 "
+echo -e "Destination = $1 "
+PJDUMP_SOURCE=$WINGIT_PATH/$2
+PJDUMP_DEST=$1
+# verify both paths exist
+if  cd $PJDUMP_SOURCE ; then
+ echo
+else
+ echo -e "Source path '"$PJDUMP_SOURCE"' not found.\nPJDUMP Abandoned."
+ exit 1
+fi
+echo $PFD
+if cd $PJDUMP_DEST ; then
+ echo
+else
+  echo  -e"Destination path '"$PFDUMP_DEST"' not found.\nPJDUMP Abandoned."
+  exit 1
+fi
+TEMP_PATH=$HOME/temp
+export BACKUP_PATH=$1    # set backup path from 1st parameter
+# check for existing backup
+if cd $PJDUMP_DEST/$2 ; then
+  echo -e "\nFile list of $PJDUMP_DEST/$2 ..." >>$TEMP_PATH/scratch.txt
+  ls  >>$TEMP_PATH/scratch.txt
+else
+  echo -e "Destination path $PJDUMP_DEST not found.\nPJDUMP Abandoned."
+  exit 1
+fi;
+
+# if backup exists, as permission to delete and replace with current
+if [ $? = 0 ]; then
+  echo -e "Backup of $2 exists..."
+  read -p "OK to recycle and proceed? (y/n)"
+  if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
+    pushd ./
+    echo -e "\nLooking for $BACKUP_PATH/$2_ " >>$TEMP_PATH/scratch.txt
+    if ls ../$2_ ; then
+      cd ..
+      rm -r -f $2_           # remove oldest backup
+      popd
+    fi
+  fi    # ok to recycle backup conditional
+fi
+# move current to <project-name>_
+cd ..
+echo -e "ready to preserve $2 on $2_..\nCurrent path = $PWD "
+read -p "Press Enter to continue..."
+mv $2 $2_
+echo "Current backup preserved in $2_ "
+read -p "New backup area vacant. Proceed with PJDUMP (y/n)? "
+
+if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
+  echo "PJDUMP proceeding..."
+else
+  echo "PJDUMP Abandoned at user request."
+  exit 0
+fi
+# proceed with PJDUMP
+read -t1 -p " PJDUMP intiating file copy..."
+git clone $PJDUMP_SOURCE $2
+# see if user wants to backup .gitignore files
+# note. PWD = $BACKUP_PATH; need to move PJDUMP_SOURCE to
+# execute BU-Ignores.sh
+if [ $? = 0 ]; then
+  echo -e "Backup clone complete..."
+  read -p "Do you wish to backup .gitignore files? (y/n)"
+  if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
+#    bash ./BU-Ignores.sh $1
+     cd $PJDUMP_SOURCE
+     bash BU-Ignores.sh $1
+  fi    # ok to recycle backup conditional
+fi
+rm $TEMP_PATH/scratch.txt
+echo -e "\n PJDUMP complete."
+exit 0
+
+
+
+

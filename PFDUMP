@@ -1,0 +1,79 @@
+#!/bin/bash
+#PFDUMP - emulate incremental Cyber PFDUMP using predetermined directory names.
+#  7/16/20.  08:30 NEEDS TO BE REWRITTEN TO BRING PROJECT BACK TO /Windows/../StagingArea-In
+#                   FROM ../USB20FD/git-Projects
+# Because of the volatility of ubuntu non-persistent, and the risk of unexpected crashes
+# git Projects should only be modified on the Windows hard-drive. This stands the best chance
+# of not losing local changes.
+# If the local project on the /Windows/ hard drive is corrupted, this will provide two#  options: # 1) delete the Project on the /Windows hard drive and use PFLOAD to do a full
+# reload, then PFDESTAGE to clone it back from the StagingArea-In, or 2) use
+# "git clone origin <project-name>" to re-clone from the last push to GitHub.
+#
+# 7/16/20. Notes. To eliminate using StagingAreas, it is simpler to go to the target
+# device's /git-Projects/subdirectory and rename the <project-name> subdirectory by
+# appending an '_' to the <project-name> subdirectory. This frees the <project-name>
+# subdirectory to receive a clone of the project by just using "git clone". The user
+# have to ensure that any files spec'd in .gitignore are copied to the dump area
+# separately from the "git clone".
+if [ $1 == $2 ] ; then
+  echo -e "No Project specified (e.g. OpenOffice-Basics)\nPFDUMP Abandoned."
+  exit 1
+fi
+# check for existing backup; if exists, as permission to recycle it; if yes,
+# rm the existing backup and rename the <project-name> directory by appending
+# a '_' to the <project-name>
+echo -e "PFDUMP Initiated..\nSource = $WINGIT_PATH/$1 "
+echo -e "Destination = /media/ubuntu/USB20FD/git-Projects"
+PFDUMP_SOURCE=$WINGIT_PATH/$1
+PFDUMP_DEST=/media/ubuntu/USB20FD/git-Projects
+# verify both paths exist
+if  cd $PFDUMP_SOURCE ; then
+ echo
+else
+ echo -e "Source path '"$PFDUMP_SOURCE"' not found.\nPFDUMP Abandoned."
+ exit 1
+fi
+echo $PFD
+if cd $PFDUMP_DEST ; then
+ echo
+else
+  echo  -e"Destination path '"$PFDUMP_DEST"' not found.\nPFDUMP Abandoned."
+  exit 1
+fi
+# check for existing backup
+if cd $PFDUMP_DEST ; then
+  ls $1_ >scratch.txt
+else
+  echo -e "Destination path $PFDUMP_DEST not found.\nPFDUMP Abandoned."
+  exit 1
+fi;
+
+# if backup exists, as permission to delete and replace with current
+if [ $? = 0 ]; then
+  echo -e "Backup exists..."
+  read -p "OK to recycle and proceed? (y/n)"
+  if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
+    rm -r -f $1_
+  fi    # ok to recycle backup conditional
+fi
+# move current to <project-name>_
+mv -t $1 $1_
+read -p "Proceed with PFDUMP (y/n)? "
+
+if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
+  echo "PFDUMP proceeding..."
+else
+  echo "PFDUMP Abandoned at user request."
+  exit 0
+fi
+# proceed with PFDUMP
+read -t1 -p " PFDUMP intiating file copy..."
+#cp -r -u -v -t $PFDUMP_DEST $PFDUMP_SOURCE   #
+git clone PFDUMP_SOURCE $1
+rm scratch.txt
+echo -e "\n PFDUMP complete."
+exit 0
+
+
+
+
