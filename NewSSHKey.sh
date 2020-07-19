@@ -14,14 +14,14 @@ echo "  NewSSHKey initiated." >> $system_log #
 echo "" > $TEMP_PATH/scratch #
 #pgrep -l ssh-agent >> $TEMP_PATH/scratch #
 pgrep -l ssh-agent
-if [ $? -eq 0 ] ; then
-echo " ssh-agent running..."
-echo "Inserted echo to see if redirect comes back.."
-date +%T >> $system_log #
-echo "  NewSSHKey (test) complete." >> $system_log #else
-else
+#if [ $? -eq 0 ] ; then
+#echo " ssh-agent running..."
+#echo "Inserted echo to see if redirect comes back.."
+#date +%T >> $system_log #
+#echo "  NewSSHKey (test) complete." >> $system_log #else
+#else
   exec ssh-agent bash
   date +%T >> $system_log #
   echo "  ssh-agent started." >> $system_log #
-fi
+#fi
 
