@@ -1,8 +1,31 @@
-#Notes on starting Ubuntu (non-persistent)	7/11/20.
+#Notes on starting Ubuntu (non-persistent)	7/19/20.
 # copy Startup.sh from /media/ubuntu/Users/Bill/Documents to $USER/Documents
 # use chmod +x Startup.sh, then ./Startup.sh to connect to the universal-repository
 # and set the timezone correctly to America/New_York
-#
+# Feature. 7/18/20. Add SYSEDIT bash (#!/bin/bash) to the startup sequence to
+# emulate a SYSEDIT on the old CDC systems. This bash shell should do the following:
+#	* initialize the System Log ($HOME/SystemLog.txt) with startup message
+#	* create the ~/temp directory for scratch file use
+#	* set the system time to the correct timezone
+# 	* run KillTPad.sh to kill the HP touchpad
+#       * add the universe repository
+#	* install git
+#	* install Geany
+#	* install JDK (Java-Development Kit)
+#	* copy the following
+#	   from /media/ubuntu/Windows/Users/Bill/Documents/ubuntu/Documents
+#	  * copy .bashrc to $HOME
+#	  * copy .ssh subdirectory to $HOME
+#	  * copy .gitconfig to $HOME
+#	* change all permissions on all files in .ssh subdirectory to "none"
+#	* install Zoom
+#	* prompt user to use LibreCalc to Import BadAss and Standard/Module1/DayName
+#	   and load customized keyboard Alpha.cfg
+#       * enable ssa-agent for bash
+# Any bash shells written to accomplish the above tasks should record their activity
+# in the SystemLog.txt file on $HOME. Log entries will consist of timestamp followed
+# by the activity log entry. The first SYSEDIT startup bash should also record the
+# log entry date ]\n "System startup."
 # until figure out where LibreCalc stores MyMacros, need to Import BadAss and Standard
 # Module1/DayName from
 # OpenOffice.org Calc /media/ubunut/Users/Bill/Appdata/Roaming/OpenOffice/4/basic
@@ -21,14 +44,20 @@
 # Also, for convenience, edit .bashrc on the $HOME directory and have some git command aliases
 # defined.. alias ga="git add" | alias got='git'
 #
-# .ssh folder on the $HOME path needs to be set up to enable ssh data communictions. Also
+# .ssh folder on the $HOME path needs to be set up to enable ssh data communications. Also
 # ssh-agent needs to be running. The terminal command exec ssa-agent bash allows the ssa-agent
 # to be run from the Terminal for processing ssh requests to a host. ssh and gpa protocols
 # are defined for each user on the server. GitHub/<user>/Settings has methods to add ssh
 # public keys for different machines/operating systems. The ssh-rsa.pub file contains the
 # encryption key for public access. It has been set up on GitHub by copying the file content
 # to the clipboard, then entering it in the GitHub settings as an additional key for access.
-# the ssh file passwords are set to a Hebrew word. 
+# the ssh file passwords are set to a Hebrew word.
+# On system restart, a new session of ssh-agent needs to be started and the .ssh key(s) added.
+# use the following bash commands: exec ssh-agent bash, followed by ssh-add ~/.ssh/id_rsa
+#  If, for some reason, ssh access to GitHub is refused, either the permissions are wrong on 
+# the key files (need to be set to 600 which only allows read/write for owner) or something
+# is amiss due to a system restart with non-persistent ubuntu. If resetting the permissions
+# does not cure the problem, it is simple enough to generate new key pairs. 
 #
 # Zoom needs to be reinstalled. .deb file is on Windows../Bill../ubuntu/Downloads and
 # InstallZoom.sh is on ../ubuntu/Documents. Easiest is to copy both to $HOME/Downloads
