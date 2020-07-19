@@ -1,6 +1,6 @@
 #!/bin/bash
 #PJDUMP - emulate incremental Cyber PFDUMP of <project-name> using predetermined directory names.
-#  7/17/20.  13:30 PJLOAD NEEDS TO BE REWRITTEN TO BRING PROJECT BACK TO
+#  7/19/20.  14:15 PJLOAD NEEDS TO BE REWRITTEN TO BRING PROJECT BACK TO
 #            /Windows/../StagingArea-In
 #                   FROM ../USB20FD/git-Projects ($BACKUP_PATH)
 # Usage. bash PJDUMP <backup-path> <project-name>
@@ -30,7 +30,7 @@
 # subdirectory to receive a clone of the project by just using "git clone". The user
 # have to ensure that any files spec'd in .gitignore are copied to the dump area
 # separately from the "git clone".
-if [ -z TEMP_PATH ]
+if [ -z TEMP_PATH ]; then
   TEMP_PATH=$HOME/temp #
 fi
 if [ -z $1 ] ; then
@@ -48,7 +48,7 @@ touch $TEMP_PATH/scratch.txt
 # rm the existing backup and rename the <project-name> directory by appending
 # a '_' to the <project-name>
 date +%T >> $system_log
-echo -e "  PJDUMP Initiated..\nSource = $WINGIT_PATH/$2 " >> $system_log
+echo -e "  PJDUMP Initiated..\n  Source = $WINGIT_PATH/$2 " >> $system_log
 echo -e "  Destination = $1 "  >> $system_log
 echo -e "PJDUMP Initiated..\nSource = $WINGIT_PATH/$2 "
 echo -e "Destination = $1 "
@@ -68,7 +68,7 @@ if cd $PJDUMP_DEST ; then
  echo >> $TEMP_PATH/scratch.txt
 else
   date +%T >> $system_log
-  echo  -e "  Destination path '"$PFDUMP_DEST"' not found.\nPJDUMP Abandoned." >> $system_log
+  echo  -e "  Destination path '"$PFDUMP_DEST"' not found.\n  PJDUMP Abandoned." >> $system_log
   echo  -e "Destination path '"$PFDUMP_DEST"' not found.\nPJDUMP Abandoned."
   exit 1
 fi
@@ -76,20 +76,23 @@ export BACKUP_PATH=$1    # set backup path from 1st parameter
 # check for existing backup
 if cd $PJDUMP_DEST/$2 ; then
   echo -e "\nFile list of $PJDUMP_DEST/$2 ..." >>$TEMP_PATH/scratch.txt
+  bu_exists="IT EXISTS"
   ls  >>$TEMP_PATH/scratch.txt
 else
   date +%T >> $system_log
-  echo  -e "  Destination path '"$PFDUMP_DEST/$2"' not found.\nPJDUMP Abandoned." >> $system_log
-  echo -e "Destination path $PJDUMP_DEST/$2ot found.\nPJDUMP Abandoned."
-  exit 1
+  echo  -e "  Destination path '"$PFDUMP_DEST/$2 "'not found." >> $system_log
+  echo "  PJDUMP will create when dumping via git clone." >> $system_log
+  echo -e "Destination path $PJDUMP_DEST/$2 not found."
+  echo "PJDUMP will create when dumping via git clone."
 fi;
 
 # if backup exists, as permission to delete and replace with current
-if [ $? -eq 0 ]; then
+#if [ $? -eq 0 ]; then
+  if [ -n $bu_exists ]; then
   echo -e "Backup of $2 exists..."
   read -p "OK to recycle and proceed? (y/n)"
   if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
-    pushd ./
+#    pushd ./
     echo -e "\nLooking for $BACKUP_PATH/$2_ " >>$TEMP_PATH/scratch.txt
     if ls ../$2_ ; then
       cd ..
@@ -100,13 +103,12 @@ if [ $? -eq 0 ]; then
       read -p "Press Enter to continue..."
       mv $2 $2_
       date +%T >> $system_log
-      echo "  Current backup preserved in $BACKUP_PATH/$2_ "
+      echo "  Current backup preserved in $BACKUP_PATH/$2_ " >>$system_log
       echo "Current backup preserved in $2_ "
-      popd
+#      popd
     fi
   fi    # ok to recycle backup conditional
 fi
-
 read -p "New backup area vacant. Proceed with PJDUMP (y/n)? "
 
 if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
@@ -118,14 +120,14 @@ fi
 # proceed with PJDUMP
 read -t1 -p " PJDUMP intiating file copy..."
 date +%T >> $system_log
-echo "  git clone $PJDUMP_SOURCE $2 "
+echo "  git clone $PJDUMP_SOURCE $2 " >> $system_log
 git clone $PJDUMP_SOURCE $2
 # see if user wants to backup .gitignore files
 # note. PWD = $BACKUP_PATH; need to move PJDUMP_SOURCE to
 # execute BU-Ignores.sh
-if [ $?-eq 0 ]; then
+if [ $? -eq 0 ]; then
   date +%T >> $system_log
-  echo -e "  Backup clone complete..."
+  echo -e "  Backup clone complete..."  >> $system_log
   echo -e "Backup clone complete..."
   read -p "Do you wish to backup .gitignore files? (y/n)"
   if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
@@ -141,7 +143,4 @@ date +%T >> $system_log
 echo -e "  PJDUMP complete."
 echo -e "\n PJDUMP complete."
 exit 0
-
-
-
 
