@@ -34,7 +34,7 @@ echo "TEMP_FILES = '$TEMP_FILES'"
 
 error_counter=0		# set error counter to 0
 IFS="&"			# set & as the word delimiter for read.
-if [ ${#1} = 0 ]; then
+if [ -z $1 ]; then
   echo -e "Backup path must be specified...\nBU-Ignores abandoned."
   exit 1
 fi
@@ -42,6 +42,8 @@ pushd ./   >> $TEMP_FILES/scratchfile
 if cd $1/$MY_PROJ ; then
  popd      >> $TEMP_FILES/scratchfile
 else
+ date +%T >> $system_log #
+ echo -e "  BU-Ignores:Backup path not found...\n  BU-Ignores abandoned." >> $system_log #
  echo -e "Backup path not found...\nBU-Ignores abandoned."
  exit 1
 fi
@@ -60,16 +62,19 @@ while read -e; do
   then			# skip comment
    echo >> $HOME/temp/scratchfile
   else
-   filespec=${REPLY:0:len1}
+   filespec=${REPLY:0:len}
 #   cp -r -u -v ./$filespec $1     >> $TEMP_FILES/scratchfile
-   cp  -r -u  ./$filespec $1/$MY_PROJ    
+   echo " cp -r -u ./$filespec $1/$MY_PROJ"
+   cp  -r -u  ./$filespec $1/$MY_PROJ #   
    # check for error and increment error counter
-   error_code=${?}
-   if [ $error_code = "0" ]; then  
+#   error_code=${?}
+   if [ $? -eq 0 ]; then  
      echo " " >> $TEMP_FILES/scratchfile
    else
      error_counter=$((error_counter+1))
-     echo -e "  Error  $error_code processing $REPLY \n" >> $TEMP_FILES/scratchfile
+     date +%T >> $system_log #
+     echo -e "  BU-Ignores:Error  $error_code processing $REPLY " >> $system_log #
+     echo -e "  BU-Ignores:Error  $error_code processing $REPLY "
    fi
 
 fi     # end is comment line conditional

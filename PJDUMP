@@ -76,10 +76,11 @@ export BACKUP_PATH=$1    # set backup path from 1st parameter
 # check for existing backup
 if cd $PJDUMP_DEST/$2 ; then
   echo -e "\nFile list of $PJDUMP_DEST/$2 ..." >>$TEMP_PATH/scratch.txt
-  bu_exists=""
+  bu_ainthere=""
   ls  >>$TEMP_PATH/scratch.txt
+  cd ..   # move back to base destination
 else
-  bu_exists="Aint Here"
+  bu_ainthere="Aint Here"
   date +%T >> $system_log #
   echo  -e "  Destination path '"$PFDUMP_DEST/$2 "'not found." >> $system_log #
   echo "  PJDUMP will create when dumping via git clone." >> $system_log #
@@ -89,31 +90,28 @@ fi;
 
 # if backup exists, as permission to delete and replace with current
 #if [ $? -eq 0 ]; then
-  if [ -z $bu_exists ]; then
+if [ -z $bu_ainthere ]; then
   echo -e "Backup of $2 exists..."
   read -p "OK to recycle and proceed? (y/n)"
   if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
-#    pushd ./
     echo -e "\nLooking for $BACKUP_PATH/$2_ " >>$TEMP_PATH/scratch.txt
-    if ls ../$2_ ; then
-      cd ..
-      rm -r -f $2_           # remove oldest backup
-      # move current to <project-name>_
-      #cd ..
-      echo -e "ready to preserve $2 on $2_..\nCurrent path = $PWD "
-      read -p "Press Enter to continue..."
-      mv $2 $2_
-      date +%T >> $system_log #
-      echo "  Current backup preserved in $BACKUP_PATH/$2_ " >>$system_log #
-      echo "Current backup preserved in $2_ "
-#      popd
-    fi
+    if ls ./$2_ >> $TEMP_PATH/scratch.txt ; then
+      rm -r -f ./$2_           # remove oldest backup
+    fi # end secondary backup exists conditional
+    # move current to <project-name>_
+    echo -e "ready to preserve $2 on $2_..\nCurrent path = $PWD "
+    read -p "Press Enter to continue..."
+    mv $2 $2_
+    date +%T >> $system_log #
+    echo "  Current backup preserved in $BACKUP_PATH/$2_ " >>$system_log #
+    echo "Current backup preserved in $2_ "
   else
     date +%T >> $system_log #
     echo "  User canceled overwrite of existing backup." >> $system_log #
     exit 1
   fi    # ok to recycle backup conditional
-fi
+fi  # end no primary backup present conditional
+
 read -p "New backup area vacant. Proceed with PJDUMP (y/n)? "
 
 if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
@@ -140,7 +138,7 @@ if [ $? -eq 0 ]; then
      date +%T >> $system_log #
      echo "  processing .gitignores to backup." >> $system_log #
      cd $PJDUMP_SOURCE
-     bash BU-Ignores.sh $1
+     bash BU-Ignores.sh $BACKUP_PATH
   fi    # ok to recycle backup conditional
 fi
 rm $TEMP_PATH/scratch.txt
