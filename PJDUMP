@@ -30,6 +30,9 @@
 # subdirectory to receive a clone of the project by just using "git clone". The user
 # have to ensure that any files spec'd in .gitignore are copied to the dump area
 # separately from the "git clone".
+if [ -z TEMP_PATH ]
+  TEMP_PATH=$HOME/temp #
+fi
 if [ -z $1 ] ; then
   echo -e "No backup path specified (e.g. /media/ubuntu/USB20FD/git-Projects)\nPJDUMP Abandoned."
   exit 1
@@ -38,40 +41,51 @@ if [ -z $2 ] ; then
   echo -e "No Project specified (e.g. OpenOffice-Basics)\nPJDUMP Abandoned."
   exit 1
 fi
+# initialize $TEMP_PATH/scratch file
+#echo "" > $TEMP_PATH/scratch
+touch $TEMP_PATH/scratch.txt
 # check for existing backup; if exists, as permission to recycle it; if yes,
 # rm the existing backup and rename the <project-name> directory by appending
 # a '_' to the <project-name>
+date +%T >> $system_log
+echo -e "  PJDUMP Initiated..\nSource = $WINGIT_PATH/$2 " >> $system_log
+echo -e "  Destination = $1 "  >> $system_log
 echo -e "PJDUMP Initiated..\nSource = $WINGIT_PATH/$2 "
 echo -e "Destination = $1 "
-PJDUMP_SOURCE=$WINGIT_PATH/$2
-PJDUMP_DEST=$1
+PJDUMP_SOURCE=$WINGIT_PATH/$2 #
+PJDUMP_DEST=$1                #
 # verify both paths exist
 if  cd $PJDUMP_SOURCE ; then
- echo
+ echo >> $TEMP_PATH/scratch.txt
 else
+ date +%T >> $system_log
+ echo -e "  Source path '"$PJDUMP_SOURCE"' not found.\nPJDUMP Abandoned."
  echo -e "Source path '"$PJDUMP_SOURCE"' not found.\nPJDUMP Abandoned."
  exit 1
 fi
 echo $PFD
 if cd $PJDUMP_DEST ; then
- echo
+ echo >> $TEMP_PATH/scratch.txt
 else
-  echo  -e"Destination path '"$PFDUMP_DEST"' not found.\nPJDUMP Abandoned."
+  date +%T >> $system_log
+  echo  -e "  Destination path '"$PFDUMP_DEST"' not found.\nPJDUMP Abandoned." >> $system_log
+  echo  -e "Destination path '"$PFDUMP_DEST"' not found.\nPJDUMP Abandoned."
   exit 1
 fi
-TEMP_PATH=$HOME/temp
 export BACKUP_PATH=$1    # set backup path from 1st parameter
 # check for existing backup
 if cd $PJDUMP_DEST/$2 ; then
   echo -e "\nFile list of $PJDUMP_DEST/$2 ..." >>$TEMP_PATH/scratch.txt
   ls  >>$TEMP_PATH/scratch.txt
 else
-  echo -e "Destination path $PJDUMP_DEST not found.\nPJDUMP Abandoned."
+  date +%T >> $system_log
+  echo  -e "  Destination path '"$PFDUMP_DEST/$2"' not found.\nPJDUMP Abandoned." >> $system_log
+  echo -e "Destination path $PJDUMP_DEST/$2ot found.\nPJDUMP Abandoned."
   exit 1
 fi;
 
 # if backup exists, as permission to delete and replace with current
-if [ $? = 0 ]; then
+if [ $? -eq 0 ]; then
   echo -e "Backup of $2 exists..."
   read -p "OK to recycle and proceed? (y/n)"
   if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
@@ -80,16 +94,19 @@ if [ $? = 0 ]; then
     if ls ../$2_ ; then
       cd ..
       rm -r -f $2_           # remove oldest backup
+      # move current to <project-name>_
+      #cd ..
+      echo -e "ready to preserve $2 on $2_..\nCurrent path = $PWD "
+      read -p "Press Enter to continue..."
+      mv $2 $2_
+      date +%T >> $system_log
+      echo "  Current backup preserved in $BACKUP_PATH/$2_ "
+      echo "Current backup preserved in $2_ "
       popd
     fi
   fi    # ok to recycle backup conditional
 fi
-# move current to <project-name>_
-cd ..
-echo -e "ready to preserve $2 on $2_..\nCurrent path = $PWD "
-read -p "Press Enter to continue..."
-mv $2 $2_
-echo "Current backup preserved in $2_ "
+
 read -p "New backup area vacant. Proceed with PJDUMP (y/n)? "
 
 if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
@@ -100,20 +117,28 @@ else
 fi
 # proceed with PJDUMP
 read -t1 -p " PJDUMP intiating file copy..."
+date +%T >> $system_log
+echo "  git clone $PJDUMP_SOURCE $2 "
 git clone $PJDUMP_SOURCE $2
 # see if user wants to backup .gitignore files
 # note. PWD = $BACKUP_PATH; need to move PJDUMP_SOURCE to
 # execute BU-Ignores.sh
-if [ $? = 0 ]; then
+if [ $?-eq 0 ]; then
+  date +%T >> $system_log
+  echo -e "  Backup clone complete..."
   echo -e "Backup clone complete..."
   read -p "Do you wish to backup .gitignore files? (y/n)"
   if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
 #    bash ./BU-Ignores.sh $1
+     date +%T >> $system_log
+     echo "  processing .gitignores to backup." >> $system_log
      cd $PJDUMP_SOURCE
      bash BU-Ignores.sh $1
   fi    # ok to recycle backup conditional
 fi
 rm $TEMP_PATH/scratch.txt
+date +%T >> $system_log
+echo -e "  PJDUMP complete."
 echo -e "\n PJDUMP complete."
 exit 0
 
