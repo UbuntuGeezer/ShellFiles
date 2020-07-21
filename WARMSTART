@@ -1,24 +1,9 @@
-# Usage.   bash COLDSTART
-# Exit. System time set to Eastern time
-#x	Initialize System Log file
-#x	System log message issued with date/time stamp 
-#x	Configuration files copied to $HOME
-#x	System startup procedures copied to $HOME/sysstart
-#x	System bash procedures copied to ~/sysprocs
-#	Terminal restart advised to pick up configuration files
-#	Run COLDSTART_1
-# 	  Touchpad disabled	
-#x        Universe repository connected
-#x	  Special bash files with command aliases copied to $HOME
-#	  Install git
-#	  Install Geany
-#x	  Install Zoom
-#	  Install Java JDK
-#	  Install FlowBlade
-# QUICKSTART - abbreviated system startup only installing Zoom.
-#	7/20/20.	wmk.	16:30
-# Usage. bash QUICKSTART
-# Exit.  key initializations performed; bare bones ubuntu runnning
+#!/bin/bash
+# WARMSTART - abbreviated system startup following QUICKSTART.
+#	7/21/20.	wmk.	16:15
+# Usage. bash WARMSTART
+# Entry. QUICKSTART already run
+#       key initializations performed; bare bones ubuntu runnning
 #	System time set to Eastern time
 #	Initialize System Log file
 #	System log message issued with date/time stamp 
@@ -29,11 +14,26 @@
 #	Special bash files with command aliases copied to ~/sysprocs
 #       Zoom app installed and available
 # WARMSTART - complete startup where QUICKSTART left off.
+# Exit.
 #	Touchpad disabled
 #	Install git
 #	Install Geany
 #	Install Java JDK/JDR
 #	Install FlowBlade
-#	SYSEDIT LibreCalc to include BadAss, XRay and Standard/Module1 with DayName
+#       Install testdisk
+#	[SYSEDIT LibreCalc to include BadAss, XRay and Standard/Module1 with DayName]
+date +%T >> $system_log
+echo "  WARMSTART initiated..."  >> $system_log #
+echo "  WARMSTART initiated..."
+KillTPad
+Installgit
+InstallGeany
+InstallJDK
+InstallFlowBlade
+Installtestdisk
+date +%T >> $system_log
+echo "  WARMSTART complete."  >> $system_log #
+echo "  WARMSTART complete."
+
 
 
