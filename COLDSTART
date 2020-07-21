@@ -1,0 +1,91 @@
+#!/bin/bash
+# COLDSTART - bash shell to be run after hard reset of system.
+#	7/21/20.	wmk.	14:45
+# Usage.   bash COLDSTART
+# Exit. System time set to Eastern time
+#	Initialize System Log file
+#	System log message issued with date/time stamp 
+#	Configuration files copied to $HOME
+#	System startup procedures copied to $HOME/startup
+#	System bash procedures copied to ~/sysprocs
+#	Terminal restart advised to pick up configuration files
+#	Run COLDSTART_1
+# 	  Touchpad disabled	
+#         Universe repository connected
+#	  Special bash files with command aliases copied to $HOME
+#	  Install git
+#	  Install Geany
+#	  Install Zoom
+#	  Install Java JDK
+#	  Install FlowBlade
+# Modification History.
+# --------------------
+# 7/20/20.	wmk.	original script
+# 7/21/20.	wmk.	swapped out terminal_ for term_
+timedatectl set-timezone America/New_York #
+if [ -z $system_log ]; then
+  system_log=$HOME/SystemLog.txt
+else
+  echo "system_log environment var already set."
+fi  # end system_log defined conditional
+touch $system_log #
+date >> $system_log #
+echo "  System COLDSTART initiated." >> $system_log #
+echo "  System COLDSTART initiated."
+# copy configuration files to $HOME
+date +%T >> $system_log #
+echo "  Copying configuration files..." >> $system_log #
+echo "  Copying configuration files..."
+cd $HOME
+startup_src=/media/ubuntu/Windows/Users/Bill/ubuntu/sysstart
+cp $startup_src/.bashrc ./
+cp $startup_src/.gitconfig ./
+cp $startup_src/term_ ./
+cp $startup_src/termx_ ./
+# copy startup shells to $HOME/sysstart
+cd $HOME
+if  cd ./sysstart ; then
+ date +%T >> $system_log #
+ echo "  ~/sysstart already in place" >> $system_log #
+ echo "  ~/sysstart already in place"
+ cd ..
+else
+ mkdir sysstart
+ date +%T >> $system_log #
+ echo "  Creating ~/sysstart.." >> $system_log
+ echo "  Creating ~/sysstart.."
+ cp $startup_src/COLDSTART ./sysstart
+ cp $startup_src/COLDSTART_1 ./sysstart
+ cp $startup_src/QUICKSTART ./sysstart
+ cp $startup_src/WARMSTART ./sysstart
+fi  # end $HOME/sysstart exists conditional
+# copy sysprocs shells to $HOME/sysprocs
+if cd ./sysprocs ; then
+ date +%T >> $system_log #
+ echo "  ~/sysprocs already in place" >> $system_log #
+ echo "  ~/sysprocs already in place"
+ cd ..
+else
+ mkdir sysprocs
+ date +%T >> $system_log #
+ echo "  Creating ~/sysprocs.." >> $system_log #
+ echo "  Creating ~/sysprocs.."
+sysproc_src=/media/ubuntu/Windows/Users/Bill/ubuntu/sysprocs
+ cp $sysproc_src/KillTPad.sh ./sysprocs
+ cp $sysproc_src/EnblTPad.sh ./sysprocs
+ cp $sysproc_src/Installgit.sh ./sysprocs
+ cp $sysproc_src/InstallGeany.sh ./sysprocs
+ cp $sysproc_src/InstallJRE.sh ./sysprocs
+ cp $sysproc_src/PJDUMP ./sysprocs
+ cp $sysproc_src/PF-Utilities-README.txt ./sysprocs
+ cp $sysproc_src/InstallZoom.sh ./sysprocs
+ cp $sysproc_src/InstallFlowBlade.sh ./sysprocs
+ cp $sysproc_src/SYSEDIT ./sysprocs
+fi  # end $HOME/sysprocs exists conditional
+ date +%T >> $system_log #
+ echo "  COLDSTART complete." >> $system_log #
+ echo "  COLDSTART complete."
+# advise terminal restart and run COLDSTART_1
+echo "Exit Terminal then restart Terminal to run COLDSTART_1"
+exit 0
+

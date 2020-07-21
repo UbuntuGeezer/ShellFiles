@@ -1,0 +1,20 @@
+#!/bin/bash
+# term_ - standard terminal starup bash script.
+#	7/19/20.	wmk.	19:30
+# Usage. bash terminal_ (executed from anywhere)
+# Entry. alias terminal_='bash $HOME/terminal_' defined in $HOME/.bashrc
+#
+# By entering the "terminal_" command, the user makes a $system_log entry
+# with the time stamp of when the bash session was started. If a parameter
+# is included, it will be a quoted literal that will also be recorded in
+# the $system_log.
+date +%T >> $system_log #
+echo "  Terminal app started." >> $system_log #
+if [ -z $1 ]; then
+  echo "Terminal app started."
+else
+  echo "  $1 " >> $system_log #
+  echo -e "$1 \nMessage recorded in System Log."
+fi
+echo "Reminder: set BACKUP_PATH pointing to flash drive"
+exit 0

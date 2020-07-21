@@ -1,0 +1,46 @@
+#!/bin/bash
+# COLDSTART_1 - bash shell to be run after COLDSTART has completed.
+#	7/20/20.	wmk.	16:00
+# Usage.   bash COLDSTART_1
+# Entry. System time set to Eastern time
+#	Initialize System Log file
+#	System log message issued with date/time stamp 
+#	Configuration files copied to $HOME
+#	System startup procedures copied to $HOME/startup
+#	System bash procedures copied to $HOME/sysprocs
+#	Terminal restart advised to pick up configuration files
+# Exit. (run COLDSTART_1)
+# 	  Touchpad disabled	
+#         Universe repository connected
+#	  [Special bash files with command aliases copied to $HOME\sysprocs]
+#	  Install git
+#	  Install Geany
+#	  Install Zoom
+#	  Install Java JRE/JDK
+#	  Install FlowBlade
+if [ -z $system_log ]; then
+  system_log=$HOME/SystemLog.txt
+else
+  echo "system_log environment var already set."
+fi  # end system_log defined conditional
+date >> $system_log #
+echo "  System COLDSTART_1 initiated." >> $system_log #
+echo "  System COLDSTART_1 initiated."
+# connect universe repository
+date +%T >> $system_log #
+echo "  Connecting universe repository..." >> $system_log #
+echo "  Connecting universe repository..."
+sudo apt update
+sudo add-apt-repository universe
+# install packages for standard system operations using sysprocs
+# and aliases defined in ~/.bashrc
+Installgit
+InstallGeany
+InstallZoom
+InstallJRE
+InstallFlowBlade
+date +%T >> $system_log #
+echo "  COLDSTART_1 Complete." >> $system_log #
+echo "  COLDSTART_1 Complete."
+exit 0
+

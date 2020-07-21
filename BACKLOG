@@ -1,0 +1,38 @@
+#!/bin/bash
+# BACKLOG - Backup SystemLog.txt file to $WINUBUNTU_PATH
+#	7/19/20.	wmk.	19:00
+# Usage. bash BACKLOG [-n] executed from $HOME/Documents
+#
+#	-n - optional parameter (anything non-null); if present
+#            indicates to backup the log file and start a new one
+#
+# Entry. $HOME contains the SystemLog.txt file that is a running
+# log of system commands and events.
+#        $system_log = /home/ubuntu/SystemLog.txt
+#
+if [ -z $1 ]; then
+  cp $system_log $WINUBUNTU_PATH #
+  if [ $? -eq 0 ]; then
+    date +%T >> $system_log #
+    echo "  System log backed up to $WINUBUNTU_PATH " >> $system_log #
+    echo "System log backed up to $WINUBUNTU_PATH "
+  else
+    date +%T >> $system_log #
+    echo "  System log backup FAILED." >> $system_log #
+    echo "System log backup FAILED."
+  fi
+else
+  mv $WINUBUNTU_PATH/SystemLog.txt $WINUBUNTU_PATH/SystemLog~.txt
+  cp $system_log $WINUBUNTU_PATH #
+  if [ $? -eq 0 ]; then
+    rm $system_log #
+    date > $system_log #
+    echo "  System log backed up and restarted." >> $system_log #
+    echo "System log backed up and restarted."
+  else
+    date +%T >> $system_log #
+    echo "  System log backup FAILED." >> $system_log #
+    echo "System log backup FAILED."
+  fi
+fi
+

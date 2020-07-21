@@ -1,0 +1,110 @@
+#!/bin/bash
+# SYSEDIT - Perform update to running system configuration and associated files.
+#	7/21/20.	wmk. 08:15
+# Usage.  bash SYSEDIT <option>
+#
+#   <option> = SYSEDIT option; to be defined, but can be .bashrc or .gitconfig update,
+#              LibreCalc update to mention a few...
+#	SYSEDIT - update SYSEDIT bash shell on ~/sysprocs
+#
+#	LibreOffice - copy BadAss, XRay libraries to LibreOffice../user/basic area
+#	LibreCalc	and copy Standard/Module1.xba to ../user/basic/Standard
+#			depends on CALC_LIB_PATH set correctly in .bashrc
+#
+#	bash - copy .bashrc to ~/ and suggest terminal restart to pick up changes
+#
+# Notes.
+#      LibreCalc/LibreOffice operations:
+#      copy $WINGIT_PATH/Libraries-Project/BadAss to $CALC_LIB_PATH
+#	   copy $WINGIT_PATH/Libraries-Project/XRay to $CALC_LIB_PATH
+#	   copy file $WINGIT_PATH/Libraries-Project/script.xlc to $CALC_LIB_PATH
+#      copy file $WINGIT_PATH/Libraries-Project/dialog.xlc to $CALC_LIB_PATH
+#      copy file $WINGIT_PATH/Libraries-Project/Standard/Module1.xba to
+#            $CALC_LIB_PATH/Standard
+# Wishlist.
+# 	Add "revert" option to revert to last change
+
+if [ -z $system_log ]; then
+  system_log=$HOME/SystemLog.txt
+fi
+touch $system_log #
+date +%T >> $system_log #
+echo "  SYSEDIT initiated." >> $system_log #
+echo "  SYSEDIT initiated."
+sysedit_mode=$1
+sysedit_mode=${sysedit_mode,,}
+if [ -z $sysedit_mode ]; then
+  date +%T >> $system_log #
+  echo "  No SYSEDIT mode specified. SYSEDIT abandoned." >> $system_log #
+  echo "  No SYSEDIT mode specified. SYSEDIT abandoned."
+  exit 1
+fi
+case $sysedit_mode in
+  "sysedit")
+    date +%T >> $system_log #
+    echo "  SYSEDIT mode = '$sysedit_mode' " >> $system_log 
+    echo "  updating ~/sysprocs/SYSEDIT..." >> $system_log
+    echo "  SYSEDIT mode = '$sysedit_mode' "
+    echo "SYSEDIT will clobber itself while running..."
+    echo "Run NewSYSEDIT bash script to update SYSEDIT"
+    read -t5 -p "Press Enter to continue..."
+    exit 0 ;;
+  "librecalc" | "libreoffice")
+    date +%T >> $system_log #
+    echo "  Updating LibreOffice MyDocuments Libraries..." >> $system_log #
+    echo "  Updating LibreOffice MyDocuments Libraries..."
+    if [ true ]; then
+       echo "  SYSEDIT $sysedit_mode - Ignored (not implemented)" >> $system_log #
+       echo "  SYSEDIT $sysedit_mode - Ignored (not implemented)"
+       echo "  Use LibreOffice/Tools/Macros/Organize Macros/Organizer/Libraries/Import"
+    else
+#      copy $WINGIT_PATH/Libraries-Project/BadAss to $CALC_LIB_PATH
+    echo "  copying BadAss library.." >> $system_log #
+    echo "  copying BadAss library.."
+    cp -ru $WINGIT_PATH/Libraries-Project/BadAss  $CALC_LIB_PATH
+#      copy $WINGIT_PATH/Libraries-Project/XRay to $CALC_LIB_PATH
+    echo "  copying XRayTool library.." >> $system_log #
+    echo "  copying XrayTool library.."
+    cp -ru $WINGIT_PATH/Libraries-Project/XrayTool  $CALC_LIB_PATH
+#      copy file $WINGIT_PATH/Libraries-Project/u_script.xlc to $CALC_LIB_PATH/script.xlc
+#      copy file $WINGIT_PATH/Libraries-Project/u_dialog.xlc to $CALC_LIB_PATH/dialog.xlc
+    echo "  updating MyDocuments library definitions.." >> $system_log #
+    echo "  updating MyDocuments library definitions.."
+    cp -u $WINGIT_PATH/Libraries-Project/u_script.xlc  $CALC_LIB_PATH/script.xlc
+    cp -u $WINGIT_PATH/Libraries-Project/u_dialog.xlc  $CALC_LIB_PATH/dialog.xlc
+#      copy file $WINGIT_PATH/Libraries-Project/Standard/Module1.xba to
+#            $CALC_LIB_PATH/Standard
+    echo "  copying Standard/Module1.." >> $system_log #
+    echo "  copying Standard/Module1.."
+    cp -u $WINGIT_PATH/Libraries-Project/Standard/Module1.xba $CALC_LIB_PATH/Standard/Module1.xba
+    date +%T >> $system_log #
+    echo "  SYSEDIT complete." >> $system_log 
+    echo "  SYSEDIT complete."
+    echo  -e "If LibreOffice/LibreCalc is running, close/exit and\nre-open to pick up changes."
+  fi # end skip-around conditional
+    exit 0 ;;
+  "bash")
+    date +%T >> $system_log #
+    echo "  SYSEDIT mode = '$sysedit_mode' " >> $system_log 
+    echo "  updating ~/.bashrc" >> $system_log
+    echo "  SYSEDIT mode = '$sysedit_mode' "
+    echo "  updating ~/.bashrc..."
+    cp -u $WINGIT_PATH/ShellFiles/.bashrc ~/.bashrc
+    date +%T >> $system_log #
+    echo "  SYSEDIT complete." >> $system_log 
+    echo "  SYSEDIT complete."
+    echo "  exit and restart Terminal to pick up changes..."
+    read -t2 -p "Press Enter to continue.."
+    exit 0 ;;
+  *)
+    date +%T >> $system_log #
+    echo "  ** Unrecognized SYSEDIT mode $sysedit_mode " >> $system_log #
+    echo "  SYSEDIT abandoned." >> $system_log #
+    echo "  ** Unrecognized SYSEDIT mode '$sysedit_mode' "
+    echo "  SYSEDIT abandoned." ;;
+esac
+read -t2 -p "SYSEDIT stubbed for now... Press Enter to continue..."
+date +%T >> $system_log #
+echo "  SYSEDIT stub completed." >> $system_log #
+echo "  SYSEDIT stub completed."
+
