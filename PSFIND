@@ -1,0 +1,4 @@
+#!/bin/bash
+echo -e "When the ps command executes, enter '/<process-name>'\nat the ':' prompt"
+read -p "Press Enter to continue.."
+ps -ef | less

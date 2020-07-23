@@ -2,7 +2,7 @@
 # NewSYSEDIT - Replace current ~/sysprocs/SYSEDIT with new version.
 #	7/21/20.  wmk.  12:00
 date +%T >> $system_log #
-echo "  NewSYSEDIT initiated." $system_log #
+echo "  NewSYSEDIT initiated." >> $system_log #
 echo "NewSYSEDIT will overwrite the current ~/sysprocs/SYEDIT"
 read -p "Do you wish to continue (y/n)? "
 if [ $REPLY == 'Y' ] || [ $REPLY == 'y' ] ; then
@@ -13,7 +13,6 @@ if [ $REPLY == 'Y' ] || [ $REPLY == 'y' ] ; then
   date +%T >> $system_log #
   echo "  NewSYSEDIT complete." >> $system_log #
   echo "  NewSYSEDIT complete."
-  exit 0
 else
   date +%T >> $system_log #
   echo "  NewSYSEDIT abandoned at user request." >> $system_log #

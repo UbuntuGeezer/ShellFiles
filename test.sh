@@ -1,4 +1,4 @@
 echo "This is test.sh"
-read -p "Press any key to continue:..."
-# end test.sh
+read -t3 -p "Press Enter key to continue..
+"
 

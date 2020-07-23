@@ -1,6 +1,6 @@
 #!/bin/bash
 # SYSEDIT - Perform update to running system configuration and associated files.
-#	7/21/20.	wmk. 08:15
+#	7/22/20.	wmk. 22:30
 # Usage.  bash SYSEDIT <option>
 #
 #   <option> = SYSEDIT option; to be defined, but can be .bashrc or .gitconfig update,
@@ -57,6 +57,20 @@ case $sysedit_mode in
        echo "  SYSEDIT $sysedit_mode - Ignored (not implemented)" >> $system_log #
        echo "  SYSEDIT $sysedit_mode - Ignored (not implemented)"
        echo "  Use LibreOffice/Tools/Macros/Organize Macros/Organizer/Libraries/Import"
+       echo "  Do the following from any Calc spreadsheet..."
+       echo "Tools/Options/LibreOffice/Security Macros enable with user approval"
+       echo "Tools/Macros/Organize Macros/Libre Basic/Organizer/Libraries"
+       echo "  Import/BadAss from '$'WINGIT_PATH/Libraries-Project/BadAss"
+       echo "  Import/Banking-Basics from above"
+       echo "  Import/XrayTool from above"
+       echo "  Use Geany to get DayName.bas code, then move to"
+       echo "  Tools/Macros/Edit Macros/Standard/Module1 and insert DayName.bas code"
+       echo "    after Main"
+       echo "  Tools/Customize/Keyboard Load alpha.cfg"
+       echo "  Tools/Macros/Edit Macros/BadAss Module1/main, ensure DEC2=123 LibreCalc"
+       echo "     or DEC2=118 OpenOffice and also in Module2 dialog recording subs"
+       echo "  Tools/Options/LibreCalc/General move right on 'enter' "
+       read -p "Press Enter to continue..."
     else
 #      copy $WINGIT_PATH/Libraries-Project/BadAss to $CALC_LIB_PATH
     echo "  copying BadAss library.." >> $system_log #
@@ -76,13 +90,14 @@ case $sysedit_mode in
 #            $CALC_LIB_PATH/Standard
     echo "  copying Standard/Module1.." >> $system_log #
     echo "  copying Standard/Module1.."
-    cp -u $WINGIT_PATH/Libraries-Project/Standard/Module1.xba $CALC_LIB_PATH/Standard/Module1.xba
+  cp -u $WINGIT_PATH/Libraries-Project/Standard/Module1.xba $CALC_LIB_PATH/Standard/Module1.xba
     date +%T >> $system_log #
     echo "  SYSEDIT complete." >> $system_log 
     echo "  SYSEDIT complete."
-    echo  -e "If LibreOffice/LibreCalc is running, close/exit and\nre-open to pick up changes."
+    echo  -e "If LibreOffice/LibreCalc is running, close/exit "
+    echo " and re-open to pick up changes."
   fi # end skip-around conditional
-    exit 0 ;;
+   ;;
   "bash")
     date +%T >> $system_log #
     echo "  SYSEDIT mode = '$sysedit_mode' " >> $system_log 
@@ -103,8 +118,7 @@ case $sysedit_mode in
     echo "  ** Unrecognized SYSEDIT mode '$sysedit_mode' "
     echo "  SYSEDIT abandoned." ;;
 esac
-read -t2 -p "SYSEDIT stubbed for now... Press Enter to continue..."
+#read -p "SYSEDIT stubbed for now... Press Enter to continue..."
 date +%T >> $system_log #
-echo "  SYSEDIT stub completed." >> $system_log #
-echo "  SYSEDIT stub completed."
-
+echo "  SYSEDIT completed." >> $system_log #
+echo "  SYSEDIT completed." 
