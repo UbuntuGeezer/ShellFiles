@@ -1,0 +1,15 @@
+#!/bin/bash
+# SETBACK - Set BACKUP_PATH to match flash drive currently in use.
+#	7/23/20.	wmk.	21:45
+date +%T >> $system_log #
+echo "  SETBACK started to set BACKUP_PATH to mounted flash drive.." >> $system_log #
+echo "  SETBACK started to set BACKUP_PATH to mounted flash drive.."
+if  ls  /media/ubuntu/$1 > $TEMP_PATH/scratch ; then
+ BACKUP_PATH=media/ubuntu/$1/git-Projects #
+ echo "  BACKUP_PATH set to $BACKUP_PATH " >> $system_log #
+ echo "  BACKUP_PATH set to $BACKUP_PATH "
+else
+ echo "  SETBACK - Specified drive $1 not mounted." >> $system_log
+ echo "  SETBACK - Specified drive $1 not mounted."
+fi
+

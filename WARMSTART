@@ -21,6 +21,7 @@
 #	Install Java JDK/JDR
 #	Install FlowBlade
 #       Install testdisk
+#	Install Python
 #	[SYSEDIT LibreCalc to include BadAss, XRay and Standard/Module1 with DayName]
 date +%T >> $system_log
 echo "  WARMSTART initiated..."  >> $system_log #
@@ -31,6 +32,7 @@ InstallGeany
 InstallJDK
 InstallFlowBlade
 Installtestdisk
+InstallPython
 date +%T >> $system_log
 echo "  WARMSTART complete."  >> $system_log #
 echo "  WARMSTART complete."

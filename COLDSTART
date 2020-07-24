@@ -1,6 +1,6 @@
 #!/bin/bash
 # COLDSTART - bash shell to be run after hard reset of system.
-#	7/21/20.	wmk.	15:15
+#	7/23/20.	wmk.	12:15
 # Usage.   bash COLDSTART
 # Exit. System time set to Eastern time
 #	Initialize System Log file
@@ -18,11 +18,15 @@
 #	  Install Zoom
 #	  Install Java JDK
 #	  Install FlowBlade
+#         Install testdisk
+#	  Install Python
 # Modification History.
 # --------------------
 # 7/20/20.	wmk.	original script
-# 7/21/20.	wmk.	swapped out terminal_ for term_; teststart utility
+# 7/21/20.	wmk.	swapped out terminal_ for term_; testdisk utility
 #                       added
+# 7/23/20.	wmk.	moved term_, termx_ and SETBACK to $HOME/sysprocs; add
+#                       InstallPython to COLDSTART_1 list
 timedatectl set-timezone America/New_York #
 if [ -z $system_log ]; then
   system_log=$HOME/SystemLog.txt
@@ -41,8 +45,6 @@ cd $HOME
 startup_src=/media/ubuntu/Windows/Users/Bill/ubuntu/sysstart
 cp $startup_src/.bashrc ./
 cp $startup_src/.gitconfig ./
-cp $startup_src/term_ ./
-cp $startup_src/termx_ ./
 # copy startup shells to $HOME/sysstart
 cd $HOME
 if  cd ./sysstart ; then
@@ -72,6 +74,8 @@ else
  echo "  Creating ~/sysprocs.." >> $system_log #
  echo "  Creating ~/sysprocs.."
 sysproc_src=/media/ubuntu/Windows/Users/Bill/ubuntu/sysprocs
+ cp $startup_src/term_ ./sysprocs
+ cp $startup_src/termx_ ./sysprocs
  cp $sysproc_src/KillTPad.sh ./sysprocs
  cp $sysproc_src/EnblTPad.sh ./sysprocs
  cp $sysproc_src/Installgit.sh ./sysprocs
@@ -82,6 +86,7 @@ sysproc_src=/media/ubuntu/Windows/Users/Bill/ubuntu/sysprocs
  cp $sysproc_src/InstallZoom.sh ./sysprocs
  cp $sysproc_src/InstallFlowBlade.sh ./sysprocs
  cp $sysproc_src/SYSEDIT ./sysprocs
+ cp $sysproc_src/SETBACK ./sysprocs
  cp $sysproc_src/Installtestdisk.sh ./sysprocs
 fi  # end $HOME/sysprocs exists conditional
  date +%T >> $system_log #

@@ -1,4 +1,5 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
+#	7/23/20.	wmk.	12:00
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -119,9 +120,12 @@ fi
 # enable git  and other aliases
 alias got='git'
 alias ga='git add'
-alias term_='bash ~/term_'
-alias termx_='bash ~/termx_'
+alias COLDSTART_1='bash ~/sysstart/COLDSTART_1'
+alias WARMSTRT='bash ~/sysstart/WARMSTART'
+alias term_='bash ~/sysprocs/term_'
+alias termx_='bash ~/sysprocs/termx_'
 alias SYSEDIT='bash ~/sysprocs/SYSEDIT'
+alias BACKLOG='bash ~/sysprocs/BACKLOG'
 alias KillTPad='bash ~/sysprocs/KillTPad.sh'
 alias EnblTPad='bash ~/sysprocs/EnblTPad.sh'
 alias Installgit='bash ~/sysprocs/Installgit.sh'
@@ -129,8 +133,11 @@ alias InstallGeany='bash ~/sysprocs/InstallGeany.sh'
 alias InstallZoom='bash ~/sysprocs/InstallZoom.sh'
 alias InstallJRE='bash ~/sysprocs/InstallJRE.sh'
 alias Installmksub='bash ~/sysprocs/Installmkusb.sh'
+alias InstallFlowBlade='bash ~/sysprocs/InstallFlowBlade.sh'
+alias InstallPython='bash ~/sysprocs/InstallPython.sh'
 alias NewSSHKey='bash ~/sysprocs/NewSSHKey.sh'
 alias PJDUMP='bash ~/sysprocs/PJDUMP'
+alias SETBACK='bash ~/sysprocs/SETBACK'
 
 #set some global vars
 export WINGIT_PATH='/media/ubuntu/Windows/Users/Bill/Documents/GitHub'
