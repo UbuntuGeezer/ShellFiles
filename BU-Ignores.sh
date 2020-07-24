@@ -1,16 +1,15 @@
 #!/bin/bash
 # BU-Ignores.sh = backup project files ignored by git; save with project backup
-#	7/17/20.	wmk. ShellFiles
-# Usage. bash BU-Ignores.sh <backup-path>
+#	7/24/20.	wmk. ShellFiles
 # NOTE. BU-Ignores.sh should reside on every project's main directory path. It
 # is invoked by the shell PJDUMP which is a generic shell for doing incremental
 # dumps of projects to a backup medium. Each BU-Ignores.sh sets its project name
 # in local environment variable MY_PROJ.
 # BU-Ignores processes the .gitignore file in the project main directory to backup
 # files which were not dumped with "git clone" in the main PJDUMP script.
-# Usage. bash BU-Ignores.sh <backup-path>
-#        <backup-path> = base path containing backed up git projects
-#                        e.g. /media/ubuntu/USB20FD/git-Projects
+# Usage. bash BU-Ignores.sh <drive-name>
+#	<drive-name> = backup drive "mount" name (e.g. PNY)
+#
 # Entry. Assumes current bash session is focused on primary project source directory.
 #        typically ../Windows/Users/Bill../GitHub/<project-name>
 #        .gitignore contains file patterns that are ignored by git processing; these
@@ -26,11 +25,14 @@
 # that is considered irrelevant. If the bash scripts are set up so that if they terminate
 # abnormally and they do not remove the temporary files, these can prove useful for
 # debugging where the script failed.
+# Modification History.
+# ---------------------
+# 7/24/20.	wmk.	paths adjusted for new imported environement vars
 MY_PROJ='ShellFiles'
-if [ -z $TEMP_FILES ]; then
-  TEMP_FILES=$HOME/temp
+if [ -z $TEMP_PATH ]; then
+  TEMP_PATH=$HOME/temp
 fi
-echo "TEMP_FILES = '$TEMP_FILES'"
+echo "TEMP_PATH = '$TEMP_PATH'"
 
 error_counter=0		# set error counter to 0
 IFS="&"			# set & as the word delimiter for read.
@@ -38,21 +40,21 @@ if [ -z $1 ]; then
   echo -e "Backup path must be specified...\nBU-Ignores abandoned."
   exit 1
 fi
-pushd ./   >> $TEMP_FILES/scratchfile
-if cd $1/$MY_PROJ ; then
- popd      >> $TEMP_FILES/scratchfile
+pushd ./   >> $TEMP_PATH/scratchfile
+if cd $U_DISK/$1/git-Projects/$MY_PROJ ; then
+ popd      >> $TEMP_PATH/scratchfile
 else
  date +%T >> $system_log #
  echo -e "  BU-Ignores:Backup path not found...\n  BU-Ignores abandoned." >> $system_log #
  echo -e "Backup path not found...\nBU-Ignores abandoned."
  exit 1
 fi
-echo -e "BU-Ignores for $MY_PROJ...\n" >> $TEMP_FILES/scratchfile
+echo -e "BU-Ignores for $MY_PROJ...\n" >> $TEMP_PATH/scratchfile
 file='.gitignore'
 i=0
 while read -e; do
   #reading each line
-  echo -e " processing $REPLY " >> $TEMP_FILES/scratchfile
+  echo -e " processing $REPLY " >> $TEMP_PATH/scratchfile
   len=${#REPLY}
   len1=$((len-1))
   firstchar=${REPLY:0:1}
@@ -63,13 +65,13 @@ while read -e; do
    echo >> $HOME/temp/scratchfile
   else
    filespec=${REPLY:0:len}
-#   cp -r -u -v ./$filespec $1     >> $TEMP_FILES/scratchfile
-   echo " cp -r -u ./$filespec $1/$MY_PROJ"
-   cp  -r -u  ./$filespec $1/$MY_PROJ #   
+#   cp -r -u -v ./$filespec $1     >> $TEMP_PATH/scratchfile
+   echo " cp -r -u ./$filespec $U_DISK/$1/$PJ_BACK/$MY_PROJ"
+   cp  -r -u  ./$filespec $U_DISK/$1/$PJ_BACK/$MY_PROJ #   
    # check for error and increment error counter
 #   error_code=${?}
    if [ $? -eq 0 ]; then  
-     echo " " >> $TEMP_FILES/scratchfile
+     echo " " >> $TEMP_PATH/scratchfile
    else
      error_counter=$((error_counter+1))
      date +%T >> $system_log #
@@ -82,10 +84,9 @@ i=$((i+1))
 done < $file
 echo " $i .gitignore lines processed."
 if [ $error_counter = 0 ]; then
-  rm $TEMP_FILES/scratchfile
+  rm $TEMP_PATH/scratchfile
 else
-  echo "  $error_counter errors encountered - check $HOME/temp/scratchfile "
+  echo "  $error_counter errors encountered - check $TEMP_PATH/scratchfile "
 fi
 echo " BU-Ignores complete."
 
-exit 0

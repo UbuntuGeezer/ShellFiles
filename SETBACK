@@ -5,7 +5,7 @@ date +%T >> $system_log #
 echo "  SETBACK started to set BACKUP_PATH to mounted flash drive.." >> $system_log #
 echo "  SETBACK started to set BACKUP_PATH to mounted flash drive.."
 if  ls  /media/ubuntu/$1 > $TEMP_PATH/scratch ; then
- BACKUP_PATH=media/ubuntu/$1/git-Projects #
+ BACKUP_PATH=/media/ubuntu/$1/git-Projects #
  echo "  BACKUP_PATH set to $BACKUP_PATH " >> $system_log #
  echo "  BACKUP_PATH set to $BACKUP_PATH "
 else

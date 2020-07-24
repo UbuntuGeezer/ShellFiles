@@ -1,8 +1,14 @@
 #!/bin/bash
 # term_ - standard terminal starup bash script.
-#	7/19/20.	wmk.	19:30
-# Usage. bash terminal_ (executed from anywhere)
+#	7/24/20.	wmk.	08:40
+# Usage. bash terminal_ <option>
+#	<option> = if present, list environment variables from .bashrc
+#
 # Entry. alias terminal_='bash $HOME/terminal_' defined in $HOME/.bashrc
+#	U_DISK = /media/ubuntu
+#	PJ_BACK = 'git-Projects
+#	WINGIT_PATH = /media/ubuntu/Windows/Users/Bill/Documents/GitHub
+#	WINUBUNTU_PATH = /media/ubuntu/Windows/Users/Bill/ubuntu
 #
 # By entering the "terminal_" command, the user makes a $system_log entry
 # with the time stamp of when the bash session was started. If a parameter
@@ -13,8 +19,14 @@ echo "  Terminal app started." >> $system_log #
 if [ -z $1 ]; then
   echo "Terminal app started."
 else
-  echo "  $1 " >> $system_log #
-  echo -e "$1 \nMessage recorded in System Log."
+  echo "Terminal app started."
+  echo "  U_DISK = '$U_DISK'"
+  echo "  WINGIT_PATH = '$WINGIT_PATH'"
+  echo "  BACKUP_PATH = '$BACKUP_PATH'"
+  echo "  PJ_BACK = '$PJ_BACK'"
+  echo "  WINUBUNTU_PATH = 'WINUBUNTU_PATH'"
+  echo "  TEMP_PATH = '$HOME/temp'"
+  echo "  system_log = '$system_log'"
+  echo "  .bashsrc environment vars displayed." >> $system_log #
 fi
-echo "Reminder: set BACKUP_PATH pointing to flash drive"
-exit 0
+
