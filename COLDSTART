@@ -1,10 +1,11 @@
 #!/bin/bash
 # COLDSTART - bash shell to be run after hard reset of system.
-#	7/23/20.	wmk.	12:15
+#	7/24/20.	wmk.	11:45
 # Usage.   bash COLDSTART
 # Exit. System time set to Eastern time
 #	Initialize System Log file
 #	System log message issued with date/time stamp 
+#       Create $TEMP_PATH directory ~/temp
 #	Configuration files copied to $HOME
 #	System startup procedures copied to $HOME/startup
 #	System bash procedures copied to ~/sysprocs
@@ -27,6 +28,7 @@
 #                       added
 # 7/23/20.	wmk.	moved term_, termx_ and SETBACK to $HOME/sysprocs; add
 #                       InstallPython to COLDSTART_1 list
+# 7/24/20.	wmk.	code added to create $TEMP_PATH directory ~/temp
 timedatectl set-timezone America/New_York #
 if [ -z $system_log ]; then
   system_log=$HOME/SystemLog.txt
@@ -37,6 +39,8 @@ touch $system_log #
 date >> $system_log #
 echo "  System COLDSTART initiated." >> $system_log #
 echo "  System COLDSTART initiated."
+# create $TEMP_PATH directory
+mkdir ~/temp
 # copy configuration files to $HOME
 date +%T >> $system_log #
 echo "  Copying configuration files..." >> $system_log #
@@ -94,5 +98,4 @@ fi  # end $HOME/sysprocs exists conditional
  echo "  COLDSTART complete."
 # advise terminal restart and run COLDSTART_1
 echo "Exit Terminal then restart Terminal to run COLDSTART_1"
-exit 0
 

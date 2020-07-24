@@ -41,7 +41,7 @@ if [ -z $1 ]; then
   exit 1
 fi
 pushd ./   >> $TEMP_PATH/scratchfile
-if cd $U_DISK/$1/git-Projects/$MY_PROJ ; then
+if cd $1/$MY_PROJ ; then
  popd      >> $TEMP_PATH/scratchfile
 else
  date +%T >> $system_log #
@@ -66,8 +66,8 @@ while read -e; do
   else
    filespec=${REPLY:0:len}
 #   cp -r -u -v ./$filespec $1     >> $TEMP_PATH/scratchfile
-   echo " cp -r -u ./$filespec $U_DISK/$1/$PJ_BACK/$MY_PROJ"
-   cp  -r -u  ./$filespec $U_DISK/$1/$PJ_BACK/$MY_PROJ #   
+   echo " cp -r -u ./$filespec $1/$MY_PROJ"
+   cp  -r -u  ./$filespec $1/$MY_PROJ #   
    # check for error and increment error counter
 #   error_code=${?}
    if [ $? -eq 0 ]; then  

@@ -6,7 +6,7 @@
 date +%T >> $system_log #
 echo "  Installing FlowBlade 2.0..." >> $system_log #
 echo "  Installing FlowBlade 2.0..."
-cd WINUBUNTU_PATH/Downloads
+cd $WINUBUNTU_PATH/Downloads
 sudo apt update
 sudo apt install ./flowblade-2.0.0-1_all.deb
 echo "  FlowBlade 2,0 installation complete." >> $system_log #
