@@ -35,6 +35,6 @@ else
   echo "  system_log = '$system_log'"
   echo "  .bashsrc environment vars displayed." >> $system_log #
 fi
-if  ls ~/term_user_msg.txt ; then
+touch ~/term_user_msg.txt
  cat ~/term_user_msg.txt
-fi
+

@@ -1,6 +1,7 @@
 #.gitingore - ignore list for ShellFiles project.
-#     7/20/20.  wmk.  16:00
+#     7/25/20.  wmk.  06:15
 # bash.pdf and any .deb files will be ignored, since are on other repositories.
 *.pdf
 *.deb
 .ssh*
+NewSSHKey.sh
