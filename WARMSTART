@@ -1,6 +1,6 @@
 #!/bin/bash
 # WARMSTART - abbreviated system startup following QUICKSTART.
-#	7/21/20.	wmk.	16:15
+#	7/24/20.	wmk.	17:00
 # Usage. bash WARMSTART
 # Entry. QUICKSTART already run
 #       key initializations performed; bare bones ubuntu runnning
@@ -20,7 +20,7 @@
 #	Install Geany
 #	Install Java JDK/JDR
 #	Install FlowBlade
-#       Install testdisk
+#   Install testdisk
 #	Install Python
 #	[SYSEDIT LibreCalc to include BadAss, XRay and Standard/Module1 with DayName]
 date +%T >> $system_log

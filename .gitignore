@@ -3,3 +3,4 @@
 # bash.pdf and any .deb files will be ignored, since are on other repositories.
 *.pdf
 *.deb
+.ssh*

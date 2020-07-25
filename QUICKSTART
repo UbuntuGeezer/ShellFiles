@@ -78,6 +78,7 @@ sysproc_src=/media/ubuntu/Windows/Users/Bill/ubuntu/sysprocs
  cp $sysproc_src/InstallFlowBlade.sh ./sysprocs
  cp $sysproc_src/Installtestdisk.sh ./sysprocs
  cp $sysproc_src/InstallPython.sh ./sysprocs
+ cp $sysproc_src/PSFIND ./sysprocs
 fi  # end $HOME/sysprocs exists conditional
 # install Zoom
 bash ~/sysprocs/InstallZoom.sh

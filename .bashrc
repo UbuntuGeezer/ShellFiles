@@ -138,6 +138,7 @@ alias Installtestdisk='bash ~/sysprocs/Installtestdisk.sh'
 alias InstallPython='bash ~/sysprocs/InstallPython.sh'
 alias NewSSHKey='bash ~/sysprocs/NewSSHKey.sh'
 alias PJDUMP='bash ~/sysprocs/PJDUMP'
+alias PSFIND='bash ~/sysprocs/PSFIND'
 alias SETBACK='bash ~/sysprocs/SETBACK'
 
 #set some global vars
