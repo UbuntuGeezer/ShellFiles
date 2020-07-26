@@ -1,5 +1,5 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
-#	7/23/20.	wmk.	12:00
+#	7/25/20.	wmk.	08:30
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -140,6 +140,7 @@ alias NewSSHKey='bash ~/sysprocs/NewSSHKey.sh'
 alias PJDUMP='bash ~/sysprocs/PJDUMP'
 alias PSFIND='bash ~/sysprocs/PSFIND'
 alias SETBACK='bash ~/sysprocs/SETBACK'
+alias SETMSG='bash ~/sysprocs/SETMSG'
 
 #set some global vars
 export U_DISK='/media/ubuntu'

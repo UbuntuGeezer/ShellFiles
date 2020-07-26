@@ -1,4 +1,8 @@
 echo "This is test.sh"
-read -t3 -p "Press Enter key to continue..
-"
-
+a_str="With blank"
+if [ -z $a_str ]; then
+echo " empty string."
+else
+echo $a_str #
+fi
+echo

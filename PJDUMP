@@ -20,6 +20,8 @@
 # 7/24/20. wmk.	WARNING added to not run anything else while project backup
 # 		is in progress; updated to use new environment vars $U_DISK
 #               and $PJ_BACK
+# 7/25/20. wmk. changed line 108 to evaluate bu_ainthere before testing
+#               string length
 # 7/17/20. Notes. A new bash shell is expected to be resident on each primary
 # <project-name> path, named BU-Ignores.sh. This bash script will be invoked
 # by PJDUMP to backup files that are ignored by git during cloning or commit
@@ -95,7 +97,7 @@ if cd $PJDUMP_DEST/$2 ; then
   ls  >>$TEMP_PATH/scratch.txt
   cd ..   # move back to base destination
 else
-  bu_ainthere="Aint Here"
+  bu_ainthere="AintHere"
   date +%T >> $system_log #
   echo  -e "  Destination path '"$PFDUMP_DEST/$2 "'not found." >> $system_log #
   echo "  PJDUMP will create when dumping via git clone." >> $system_log #
