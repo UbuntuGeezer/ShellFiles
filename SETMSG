@@ -4,7 +4,8 @@
 # Usage. bash SETMSG "<message-text>"
 #	<message-text> message to be issued next time term_ is used
 #   to start a Terminal session.
-if [ len($1) -eq 0 ]; then
+#if [ len($1) -eq 0 ]; then
+if [ -z "$1" ]; then
  touch ~/term_user_msg.txt
  rm ~/term_user_msg.txt
  date +%T >> $system_log #
