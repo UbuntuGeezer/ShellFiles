@@ -51,26 +51,26 @@ fi
 pgrep -l ssh-agent    # should produce error
 if [ $? -eq 0 ]; then
  echo "  ssh-agent is running..." >> $system_log #
+ echo "  ssh-add ~/.ssh/id_rsb" >> $system_log #
  echo "  ssh-agent is running..." 
-else
- echo "  ssh-agent is not running..." >> $system_log #
- echo "  ssh-agent is not running..."
- echo "  ReloadSSH abandoned." >> $system_log #
- echo "  ReloadSSH abandoned."
- echo "Start ssh-agent manually with 'exec ssh-agent bash' command"
-fi     # end ssh-agent running conditional
-# unconditionally end test code
-if [ true ]; then
- echo "  ReloadSSH test complete." >> $system_log #
- echo "  ReloadSSH test complete."
-else
-touch $TEMP_PATH/scratch
-if [ ls $WINUBUNTU_PATH/sysstart/.ssh/known_hosts ]; then
- echo "  .ssh backup located." >> $system_log #
- echo "  .ssh backup located."
-else
- echo "  .ssh backup not located.. check $WINUBUNTU/sysstart for .ssh" >> $system_log #
- echo "  .ssh backup not located.. check $WINUBUNTU/sysstart for .ssh"
- exit 1
-fi
-fi
+ read -p "  Proceed to add keys to running ssh-agent (y/n)? "
+ if [ $RESPONSE == 'y' ] || [ $RESPONSE == "Y" ]; then
+  ssh-add ~/.ssh/id_rsb
+  if [ $? -eq 0 ]; then
+    echo "   .ssh keys successfully added." >> $system_log #
+    echo "  ReloadSSH complete." >> $system_log #
+    echo "   .ssh keys successfully added."
+    echo "  ReloadSSH complete."   
+  else
+    echo "  Error(s) attempting to add .ssh keys. " >> $system_log #
+    echo "  ReloadSSH incomplete termination." >> $system_log #
+    echo "  Error(s) attempting to add .ssh keys. "
+    echo "  Check ~/.ssh files and add to ssh-agent manually"    
+  fi     # end ssh-add successful conditional
+ else   # user nixed add keys
+  echo "  .ssh keys restored but not activated by user." >> $system_log #
+  echo "  ReloadSSH complete." >> $system_log
+  echo "  ReloadSSH complete."
+  echo "  Run 'ssh-add ~/.ssh/id_rsb' to activate keys."
+ fi    #  end y to add keys prompt
+fi # end ssh-agent running conditional
