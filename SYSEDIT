@@ -1,7 +1,7 @@
 #!/bin/bash
 # SYSEDIT - Perform update to running system configuration and associated files.
-#	7/24/20.	wmk. 16:30
-# Usage.  bash SYSEDIT <option>
+#	7/27/20.	wmk. 11:45
+# Usage.  bash SYSEDIT <option>  <shellfile-name>
 #
 #   <option> = SYSEDIT option; to be defined, but can be .bashrc or .gitconfig update,
 #              LibreCalc update to mention a few...
@@ -13,12 +13,20 @@
 #
 #	bash - copy .bashrc to ~/ and suggest terminal restart to pick up changes
 #
+#	proc - copy <shellfile_name> to ~/sysprocs and 
+#			to path WINUBUNTU/sysprocs
+#           <shellfile-name> = proc to update in ~/sysprocs and
+#              on path WINUBUNTU/sysprocs (e.g. InstallWifi.sh)
+#
 # Modification History.
 # --------------------
 # 7/22/20.  wmk.	"libreoffice" case modified to list manual changes to be
 #			made by user to bring LibreOffice/LibreCalc up-to-date
 # 7/24/20.  wmk.	"bash" case modified to also copy .bashrc to the
-#			install path $WINUBUNTU_PATH
+#					install path $WINUBUNTU_PATH
+# 7/27/20.	wmk.	"proc" case added to update procs in ~/sysprocs;
+#					"start" case added to update procs in ~/sysstart
+#
 # Notes.
 #      LibreCalc/LibreOffice operations:
 #      copy $WINGIT_PATH/Libraries-Project/BadAss to $CALC_LIB_PATH
@@ -111,15 +119,59 @@ case $sysedit_mode in
     echo "  SYSEDIT mode = '$sysedit_mode' "
     echo "  updating ~/.bashrc..."
     cp -u $WINGIT_PATH/ShellFiles/.bashrc ~/.bashrc
-    echo "  updating $WINUBUNTU_PATH/.bashrc..." >> $system_log
-    echo "  updating $WINUBUNTU_PATH/.bashrc..."
-    cp -u $WINGIT_PATH/ShellFiles/.bashrc $WINUBUNTU_PATH/.bashrc
+    echo "  updating $WINUBUNTU_PATH/sysstart/.bashrc..." >> $system_log
+    echo "  updating $WINUBUNTU_PATH/sysstart/.bashrc..."
+    cp -u $WINGIT_PATH/ShellFiles/.bashrc $WINUBUNTU_PATH/sysstart
     date +%T >> $system_log #
     echo "  SYSEDIT complete." >> $system_log 
     echo "  SYSEDIT complete."
     echo "  exit and restart Terminal to pick up changes..."
     read -t2 -p "Press Enter to continue.."
     exit 0 ;;
+  "proc")
+    date +%T >> $system_log #
+    echo "  SYSEDIT mode = '$sysedit_mode' " >> $system_log #
+    # copy proc to running ~/sysprocs and WINUBUNTU_PATH/sysprocs
+    if [ -z "$2" ]; then
+      echo "  SYSEDIT - proc filename not specified." >> $system_log #
+      echo "  SYSEDIT abandoned." >> $system_log #
+      echo "  SYSEDIT - proc filename not specified."
+      echo "  SYSEDIT abandoned."
+      exit 1
+    fi  # end file not specified conditional 
+    # copy proc to running ~/sysprocs and WINUBUNTU_PATH/sysprocs
+    cp -u $WINGIT_PATH/ShellFiles/$2 ~/sysprocs
+    cp -u $WINGIT_PATH/ShellFiles/$2 $WINUBUNTU_PATH/sysprocs
+    if [ $? -eq 0 ]; then
+      echo "    $2 updated." >> $system_log #
+      echo "    $2 updated." 
+    else
+      echo "  Error copying proc to target - SYSEDIT failed." >>$system_log #
+      echo "  Error copying proc to target - SYSEDIT failed."
+    fi   # end no copy error conditional   
+    exit 0 ;;  
+  "start")
+    date +%T >> $system_log #
+    echo "  SYSEDIT mode = '$sysedit_mode' " >> $system_log #
+    # copy proc to running ~/sysstart and WINUBUNTU_PATH/sysstart
+    if [ -z "$2" ]; then
+      echo "  SYSEDIT - proc filename not specified." >> $system_log #
+      echo "  SYSEDIT abandoned." >> $system_log #
+      echo "  SYSEDIT - proc filename not specified."
+      echo "  SYSEDIT abandoned."
+      exit 1
+    fi  # end file not specified conditional 
+    # copy proc to running ~/sysprocs and WINUBUNTU_PATH/sysstart
+    cp -u $WINGIT_PATH/ShellFiles/$2 ~/sysstart
+    cp -u $WINGIT_PATH/ShellFiles/$2 $WINUBUNTU_PATH/sysstart
+    if [ $? -eq 0 ]; then
+      echo "    $2 updated." >> $system_log #
+      echo "    $2 updated." 
+    else
+      echo "  Error copying proc to target - SYSEDIT failed." >>$system_log #
+      echo "  Error copying proc to target - SYSEDIT failed."
+    fi   # end no copy error conditional   
+    exit 0 ;;  
   *)
     date +%T >> $system_log #
     echo "  ** Unrecognized SYSEDIT mode $sysedit_mode " >> $system_log #

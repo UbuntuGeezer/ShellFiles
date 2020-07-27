@@ -1,6 +1,6 @@
 #!/bin/bash
 # COLDSTART_1 - bash shell to be run after COLDSTART has completed.
-#	7/24/20.	wmk.	17:00
+#	7/27/20.	wmk.	06:45
 # Usage.   bash COLDSTART_1
 # Entry. System time set to Eastern time
 #	Initialize System Log file
@@ -9,7 +9,7 @@
 #	System startup procedures copied to $HOME/startup
 #	System bash procedures copied to $HOME/sysprocs
 #	Terminal restart advised to pick up configuration files
-# Exit. (run COLDSTART_1)
+# Exit. (COLDSTART_1 complete)
 # 	  Touchpad disabled	
 #         Universe repository connected
 #	  [Special bash files with command aliases copied to $HOME\sysprocs]
@@ -20,6 +20,9 @@
 #	  Install FlowBlade
 #	  Install testdisk
 #	  Install Python
+#     Install Bless (hex file editor)
+#     Install SQL Lite
+#     [Install wifi driver]
 #	  Remind user to copy WINUBUNTU/.ssh/id_rsa, id_rsa.pub to ~/.ssh
 #         and run ssh-agent add to register the current SSH keys
 # Modification History.
@@ -28,6 +31,8 @@
 # 7/23/20. wmk.	added testdisk and Python installs
 # 7/24/20. wmk.	eliminated exit at end to save Terminal session; updated
 #               script to include SSH key installation and registration
+# 7/27/20. wmk. add hooks for Bless (hex editor), SQL Lite, and wifi
+#               driver installs
 if [ -z $system_log ]; then
   system_log=$HOME/SystemLog.txt
 else
@@ -51,6 +56,9 @@ InstallJRE
 InstallFlowBlade
 Installtestdisk
 InstallPython
+InstallBless
+InstallSQL
+InstallWifi
 date +%T >> $system_log #
 echo "  COLDSTART_1 Complete." >> $system_log #
 echo "  COLDSTART_1 Complete."

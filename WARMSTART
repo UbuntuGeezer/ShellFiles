@@ -1,6 +1,6 @@
 #!/bin/bash
 # WARMSTART - abbreviated system startup following QUICKSTART.
-#	7/24/20.	wmk.	17:00
+#	7/27/20.	wmk.	11:45
 # Usage. bash WARMSTART
 # Entry. QUICKSTART already run
 #       key initializations performed; bare bones ubuntu runnning
@@ -22,7 +22,14 @@
 #	Install FlowBlade
 #   Install testdisk
 #	Install Python
+#	InstallBless
+#	InstallSQL
+#	InstallWifi
 #	[SYSEDIT LibreCalc to include BadAss, XRay and Standard/Module1 with DayName]
+# Modification History.
+# --------------------
+# 7/24/20.	wmk.	original script
+# 7/27/20.	wmk.	InstallBless, InstallSQL, InstallWifi added
 date +%T >> $system_log
 echo "  WARMSTART initiated..."  >> $system_log #
 echo "  WARMSTART initiated..."
@@ -33,6 +40,9 @@ InstallJDK
 InstallFlowBlade
 Installtestdisk
 InstallPython
+InstallBless
+InstallSQL
+InstallWifi
 date +%T >> $system_log
 echo "  WARMSTART complete."  >> $system_log #
 echo "  WARMSTART complete."
