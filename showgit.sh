@@ -1,4 +1,4 @@
-#git rev-list --format=%B --max-count=1 5fc73ef
+#git rev-list --format=%B --max-count=1 f6376b1
 echo "See commit-list.txt for list of commits..."
-read -p "Latest ShellFiles is 5fc73ef; Press <return> to continue>..."
+read -p "Latest ShellFiles is f6376b1; Press <return> to continue>..."
 git rev-list --format=%B --max-count=1 $1  # comment
