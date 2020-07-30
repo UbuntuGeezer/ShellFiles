@@ -1,6 +1,6 @@
 #!/bin/bash
 # SYSEDIT - Perform update to running system configuration and associated files.
-#	7/27/20.	wmk. 11:45
+#	7/30/20.	wmk. 12:15
 # Usage.  bash SYSEDIT <option>  <shellfile-name>
 #
 #   <option> = SYSEDIT option; to be defined, but can be .bashrc or .gitconfig update,
@@ -26,7 +26,8 @@
 #					install path $WINUBUNTU_PATH
 # 7/27/20.	wmk.	"proc" case added to update procs in ~/sysprocs;
 #					"start" case added to update procs in ~/sysstart
-#
+# 7/30/20	wmk.	"bash" case modified to also copy .bashrc to the
+#					~/sysstart directory
 # Notes.
 #      LibreCalc/LibreOffice operations:
 #      copy $WINGIT_PATH/Libraries-Project/BadAss to $CALC_LIB_PATH
@@ -122,6 +123,9 @@ case $sysedit_mode in
     echo "  updating $WINUBUNTU_PATH/sysstart/.bashrc..." >> $system_log
     echo "  updating $WINUBUNTU_PATH/sysstart/.bashrc..."
     cp -u $WINGIT_PATH/ShellFiles/.bashrc $WINUBUNTU_PATH/sysstart
+    echo "  updating $WINUBUNTU_PATH/sysstart/.bashrc..." >> $system_log
+    echo "  updating ~/sysstart/.bashrc..."
+    cp -u $WINGIT_PATH/ShellFiles/.bashrc ~/sysstart
     date +%T >> $system_log #
     echo "  SYSEDIT complete." >> $system_log 
     echo "  SYSEDIT complete."

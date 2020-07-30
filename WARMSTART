@@ -22,14 +22,20 @@
 #	Install FlowBlade
 #   Install testdisk
 #	Install Python
-#	InstallBless
-#	InstallSQL
-#	InstallWifi
-#	[SYSEDIT LibreCalc to include BadAss, XRay and Standard/Module1 with DayName]
+#	Install Bless
+#	Install SQL
+#    [Installtcl # for sqlite build]
+#    [InstallFossil # for sqlite source code management]
+#    [Install wifi driver]
+#	  Remind user to copy WINUBUNTU/.ssh/id_rsa, id_rsa.pub to ~/.ssh
+#         and run ssh-agent add to register the current SSH keys
+#	  Remind user to run LibreCalc to include BadAss, XrayTool libraries
+#       and add Standard/Module1 DayName from DayName.bas
 # Modification History.
 # --------------------
 # 7/24/20.	wmk.	original script
 # 7/27/20.	wmk.	InstallBless, InstallSQL, InstallWifi added
+# 7/30/20.  wmk.    Installctl, InstallFossil added
 date +%T >> $system_log
 echo "  WARMSTART initiated..."  >> $system_log #
 echo "  WARMSTART initiated..."

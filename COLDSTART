@@ -1,6 +1,6 @@
 #!/bin/bash
 # COLDSTART - bash shell to be run after hard reset of system.
-#	7/24/20.	wmk.	11:45
+#	7/30/20.	wmk.	12:03
 # Usage.   bash COLDSTART
 # Exit. System time set to Eastern time
 #	Initialize System Log file
@@ -19,8 +19,14 @@
 #	  Install Zoom
 #	  Install Java JDK
 #	  Install FlowBlade
-#         Install testdisk
+#     Install testdisk
 #	  Install Python
+#     Install Bless (hex file editor)
+#     Install SQL Lite
+#     [Install wifi driver]
+#	  Remind user to copy WINUBUNTU/.ssh/id_rsa, id_rsa.pub to ~/.ssh
+#         and run ssh-agent add to register the current SSH keys
+#
 # Modification History.
 # --------------------
 # 7/20/20.	wmk.	original script
@@ -29,6 +35,7 @@
 # 7/23/20.	wmk.	moved term_, termx_ and SETBACK to $HOME/sysprocs; add
 #                       InstallPython to COLDSTART_1 list
 # 7/24/20.	wmk.	code added to create $TEMP_PATH directory ~/temp
+# 7/30/20.  wmk.    documentation on InstallSQL
 timedatectl set-timezone America/New_York #
 if [ -z $system_log ]; then
   system_log=$HOME/SystemLog.txt
