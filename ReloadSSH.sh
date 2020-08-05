@@ -33,8 +33,8 @@ if [ $? -eq 0 ]; then
  echo "  .ssh copied to ~/.ssh from WINUBUNTU" >> $system_log #
  echo "  .ssh copied to ~/.ssh from WINUBUNTU"
   # set file mode to 600 on all ~/.ssh files for protection
-  ls -alh $TEMP_PATH/.ssh/*
-  chmod 600 $TEMP_PATH/.ssh/*
+  ls -alh ~/.ssh/*
+  chmod 600 ~/.ssh/*
   if [ $? -eq 0 ]; then
    echo "  .ssh file protections set to 600" >> $system_log #
    echo "  .ssh file protections set to 600"
@@ -66,7 +66,7 @@ if [ $? -eq 0 ]; then
  fi    #  end y to add keys prompt
 fi # end ssh-agent running conditional
   else
-   ls -alh ~$TEMP_PATH/.ssh/*
+   ls -alh ~/.ssh/*
    echo "  ReloadSSH/chmod failed" >> $system_log #
    echo "  ReloadSSH/chmod failed"
    read -p "Press Enter to continue.."
