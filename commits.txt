@@ -114,3 +114,190 @@ Date:   Sat May 2 23:07:12 2020 -0400
     Create README.md
     
     Add README.md to set up project on github
+commit 9af7d294cceb92c94a1f4d8076e433b76a02092b
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Wed Aug 5 08:05:29 2020 -0400
+
+    ReloadSSH fixed
+
+commit fb3737b3fb0b8fa8493a507efbe2b6b521def4ac
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Tue Aug 4 23:17:19 2020 -0400
+
+    InstallSQLIte, InstallZoom, ReloadSSH updated
+
+commit 1d4315092c5ec4d8428aafe6ba93216e6bb65722
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Thu Jul 30 12:54:04 2020 -0400
+
+    InstallFossil, Installtcl added; COLDSTART, COLDSTART_1,WARMSTART,SYSEDIT, .bashrc modified
+
+commit 567fd30b9d74e2f9a6dc4d3913fd048d0a8dfcd6
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Wed Jul 29 21:00:03 2020 -0400
+
+    testopt added to test getopt command
+
+commit f640eddbdd5c9e921b6b64288244fb8ae4592a43
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Wed Jul 29 10:42:34 2020 -0400
+
+    Bug fix in Installgit
+
+commit f6376b1bd46cefb0e8e4c988c5f57d18759340e1
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Mon Jul 27 11:56:48 2020 -0400
+
+    COLDSTART_1, WARMSTART, SYSEDIT, InstallWifi.sh corrections
+
+commit 2510956fdf8b3c5dfd3415abe39679a6bc7f0c83
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sun Jul 26 20:50:20 2020 -0400
+
+    ReloadSSH completed.
+
+commit 5fc73efd86944ff18aa59f2c91ab332240a0ae39
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sun Jul 26 20:23:30 2020 -0400
+
+    InstallBlessHex.sh ReloadSSH.sh added
+
+commit 93c6e4fac697643071576fb742f8596a0a10cc54
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sun Jul 26 18:40:50 2020 -0400
+
+    SETMSG updated, ZoomIDs.sh added
+
+commit 30e3e6c1b5fab6070576ec15685882b8e1fdfba9
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sun Jul 26 09:39:05 2020 -0400
+
+    InstallWifi, InstallSQLlt added; SETMSG, PJDUMP updated
+
+commit a6446a7ba060101bb9281d26d466ad2899f933cd
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sat Jul 25 06:24:16 2020 -0400
+
+    NewSSHKey added to .gitignore
+
+commit 970da74aa062a7649ef26ba3b919e03934b5b17f
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sat Jul 25 05:49:31 2020 -0400
+
+    NewSSHKey removed; term_ modified for user startup message
+
+commit 727db43b3eee850a1b242dd59f3f06c8ed2f9e5e
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Fri Jul 24 22:44:45 2020 -0400
+
+    Startup updates
+
+commit 3901f66e92184ea7340d3b8b7dc509f4bebc0a39
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Fri Jul 24 17:05:37 2020 -0400
+
+    sysstart and sysprocs scripts updated for path consistency
+
+commit 3b66e8168db496ca15d0cd4f0a43bdf565f4e998
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Fri Jul 24 09:25:08 2020 -0400
+
+    BU-Ignores.sh updated for new .bashrc environment vars; DistribBUScripts added
+
+commit 811f881767d8a2b786c22bd49a14eafd4799b201
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Thu Jul 23 22:17:28 2020 -0400
+
+    COLDSTART, QUICKSTART, WARMSTART updated; InstallFlowBlade, InstallPython, SETBACK added
+
+commit d533fa5d26e37721fd8d3c9c0b4a533d44cb0c5f
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Wed Jul 22 22:27:39 2020 -0400
+
+    PSFIND added; SYSEDIT and NewSYSEDIT updated
+
+commit 9c58e71f7a96448c6e689695a50b98a35060d576
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Tue Jul 21 18:08:58 2020 -0400
+
+    System log messaging standardized in Install and System startup scripts
+
+commit e09414106dc145ce0f054a1b23694661e5ad2d3d
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Tue Jul 21 14:50:28 2020 -0400
+
+    SYSEDIT improvements propagated; sysstart procs updated
+
+commit 865dd53526993f11c2e8e15d963f1fc971dc7de2
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sun Jul 19 17:35:30 2020 -0400
+
+    More fixes to PJDUMP, BU-Ignores
+
+commit b45a7d74bab3805f8526965c30262bba40440fc6
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sun Jul 19 14:55:12 2020 -0400
+
+    PJDUMP bug fixes - again
+
+commit 38c4e5e22fc07e29b1a28c2c1b560232c4f7332f
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sun Jul 19 14:25:25 2020 -0400
+
+    PJDUMP bug fixes
+
+commit 077fb6ea90f1f5642c8d91814dd06ea9b4bf66b9
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sun Jul 19 13:43:07 2020 -0400
+
+    KillTPad added; PJDUMP system log messaging added
+
+commit 6b620dd82fdf8f70742199036708096120beffb5
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sun Jul 19 11:54:02 2020 -0400
+
+    NewSSHKey mod to issue log message
+
+commit 7f84cc07a016bf9e0a0b07da1a59a64710247b21
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sun Jul 19 09:00:45 2020 -0400
+
+    NewSSHKey added; StartupNotes updated
+
+commit 3f784cdeac150ad95cefc82ab01095341d41e08b
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sat Jul 18 20:02:07 2020 -0400
+
+    Installgit.sh modified to message SystemLog.txt
+
+commit c5bfeb0e01925e0df8dfa6b7ad3922d79397944c
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Fri Jul 17 18:29:20 2020 -0400
+
+    PJDUMP support - BU-Ignores.sh added
+
+commit 64d4f20099caf04941ba576cf567b3eaf443ed23
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Fri Jul 17 18:20:41 2020 -0400
+
+    System-wide bash shells added
+
+commit a6ae370bfca943c669dfd9b5ca65261e8a4c8adb
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Tue Jul 14 22:26:17 2020 -0400
+
+    Shell files for ubuntu non-persistent added
+
+commit 7691b9af3b44050b4432205871b8b990eea7ffbb
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Mon May 4 11:06:21 2020 -0400
+
+    Added test.sh shell file
+
+commit 5c89aa42fca80640e095a980f3d9e7882085b0fe
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sat May 2 23:07:12 2020 -0400
+
+    Create README.md
+    
+    Add README.md to set up project on github

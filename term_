@@ -15,6 +15,7 @@
 # 7/24/29.  wmk.	modified to display ~/term_user_msg.txt if it exists;
 #                       this allows for a reminder text to be saved and displayed
 #                       the next time term_ starts up.
+# 8/5/20.	wmk.	get term_user_msg.txt from persistent storage.
 # Notes.
 # By entering the "term_" command, the user makes a $system_log entry
 # with the time stamp of when the bash session was started. [If a parameter
@@ -35,6 +36,5 @@ else
   echo "  system_log = '$system_log'"
   echo "  .bashsrc environment vars displayed." >> $system_log #
 fi
-touch ~/term_user_msg.txt
- cat ~/term_user_msg.txt
-
+touch $WINUBUNTU_PATH/term_user_msg.txt
+ cat $WINUBUNTU_PATH/term_user_msg.txt

@@ -1,18 +1,19 @@
 #!/bin/bash
 # SETMSG - Set message string for next Terminal startup.
-#	7/24/20.  wmk.  23:00
+#	8/5/20.  wmk.  19:45
 # Usage. bash SETMSG "<message-text>"
 #	<message-text> message to be issued next time term_ is used
 #   to start a Terminal session.
+# Note. 8/5/20 moved to persistent storage.
 #if [ len($1) -eq 0 ]; then
 if [ -z "$1" ]; then
- touch ~/term_user_msg.txt
- rm ~/term_user_msg.txt
+ touch $WINUBUNTU_PATH/term_user_msg.txt
+ rm $WINUBUNTU_PATH/term_user_msg.txt
  date +%T >> $system_log #
  echo "  Terminal startup message cleared." >> $system_log #
  echo "  Terminal startup message cleared."
 else
- echo "$1" >> ~/term_user_msg.txt
+ echo "$1" >> $WINUBUNTU_PATH/term_user_msg.txt
  echo "  Terminal startup message set. " >> $system_log #
  echo '  Message = $1 ' >> $system_log #
  echo "  Terminal startup message set. "
