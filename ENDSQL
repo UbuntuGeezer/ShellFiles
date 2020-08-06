@@ -1,0 +1,5 @@
+#!/bin/bash
+#EndSQL - log end of SQL session.
+#	8/6/20.	wmk.	12:00
+echo "  SQL session - user .quit." >> $system_log #
+echo "SQL session logged as ended."
