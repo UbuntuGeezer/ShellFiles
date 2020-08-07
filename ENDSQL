@@ -1,5 +1,12 @@
 #!/bin/bash
 #EndSQL - log end of SQL session.
 #	8/6/20.	wmk.	12:00
-echo "  SQL session - user .quit." >> $system_log #
-echo "SQL session logged as ended."
+if [ -z "$1" ]; then
+  echo "  SQL session - user .quit." >> $system_log #
+  echo "SQL session logged as ended."
+else
+  echo "$1" >> $system_log #
+  echo "$1"
+  echo "  SQL session - user .quit." >> $system_log #
+  echo "SQL session logged as ended."
+fi 
