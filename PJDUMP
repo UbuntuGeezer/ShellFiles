@@ -7,6 +7,7 @@
 #         <flash_drive> = flash drive for backup (e.g. USB20FD)
 #         <project-name> = git project name (e.g. Libraries-Project)
 # Entry. $BACKUP_PATH= '/media/ubuntu'
+#		 WINGIT_PATH = base path of project to dump
 # Because of the volatility of ubuntu non-persistent, and the risk of unexpected crashes
 # git projects should only be modified on the Windows hard-drive. This stands the best chance
 # of not losing local changes.

@@ -1,0 +1,13 @@
+#!/bin/bash
+# LISTENV - List persistent environment variables.
+#    8/8/20.	wmk.
+
+echo "U_DISK = $U_DISK"
+echo "WINGIT_PATH = $WINGIT_PATH"
+echo "BACKUP_PATH = $"
+echo "PJ_BACK = $PJ_BACK"
+echo "WINUBUNTU_PATH = $WINUBUNTU_PATH"
+echo "WINCONG_PATH = $WINCONG_PATH"
+echo "TEMP_PATH =  $TEMP_PATH"
+echo "system_log = $system_log"
+echo "LS_COLORS = <long-list w/o line-breaks>"

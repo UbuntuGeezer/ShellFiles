@@ -1,5 +1,5 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
-#	8//20.	wmk.	11:45
+#	8/25/20.	wmk.	16:15
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -139,6 +139,7 @@ alias InstallPython='bash ~/sysprocs/InstallPython.sh'
 alias InstallBless='bash ~/sysprocs/InstallBlessHex.sh'
 alias InstallSQL='bash ~/sysprocs/InstallSQLite.sh'
 alias InstallWifi='bash ~/sysprocs/InstallWifi.sh'
+alias UpdateLibre='bash ~/sysprocs/UpdateLibre.sh'
 alias NewSSHKey='bash ~/sysprocs/NewSSHKey.sh'
 alias PJDUMP='bash ~/sysprocs/PJDUMP'
 alias PSFIND='bash ~/sysprocs/PSFIND'
@@ -146,6 +147,7 @@ alias SETBACK='bash ~/sysprocs/SETBACK'
 alias SETMSG='bash ~/sysprocs/SETMSG'
 alias SQL='bash ~/sysprocs/SQL'
 alias ENDSQL='bash ~/sysprocs/ENDSQL'
+alias LISTENV='bash ~/sysprocs/LISTENV'
 
 #set some global vars
 export U_DISK='/media/ubuntu'
