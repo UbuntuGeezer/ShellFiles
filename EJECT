@@ -1,0 +1,14 @@
+#!/bin/bash
+#EJECT - eject specified USB flash drive.
+#	9/1/20.	wmk.
+# Usage. EJECT <drive-name>
+date +%T >> $system_log #
+if [ -z "$1" ]; then
+  echo "  eject ignored.. must specify flash drive name." >> $system_log #
+  echo "  eject ignored.. must specify flash drive name."
+else
+  echo "  eject $1 - initiated from Terminal" >> $system_log #
+  echo "  eject $1 - initiated from Terminal"
+  eject /media/ubuntu/$1
+fi 
+

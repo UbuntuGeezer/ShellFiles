@@ -93,12 +93,15 @@ sysproc_src=/media/ubuntu/Windows/Users/Bill/ubuntu/sysprocs
  cp $sysproc_src/Installgit.sh ./sysprocs
  cp $sysproc_src/InstallGeany.sh ./sysprocs
  cp $sysproc_src/InstallJRE.sh ./sysprocs
+ cp $sysproc_src/InstallSQLite.sh ./sysprocs
  cp $sysproc_src/PJDUMP ./sysprocs
  cp $sysproc_src/PF-Utilities-README.txt ./sysprocs
  cp $sysproc_src/InstallZoom.sh ./sysprocs
  cp $sysproc_src/InstallFlowBlade.sh ./sysprocs
  cp $sysproc_src/SYSEDIT ./sysprocs
  cp $sysproc_src/SETBACK ./sysprocs
+ cp $sysproc_src/EJECT ./sysprocs
+ cp $sysproc_src/LISTENV ./sysprocs
  cp $sysproc_src/Installtestdisk.sh ./sysprocs
  cp $sysproc_src/PSFIND ./sysprocs
  cp $sysproc_src/SQL ./sysprocs
