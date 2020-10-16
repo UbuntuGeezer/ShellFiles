@@ -1,0 +1,14 @@
+#!/bin/bash
+# LOGMSG - Set message string in system log.
+#	9/28/20.  wmk.  08:30
+# Usage. bash LOGMSG "<message-text>"
+#	<message-text> message to be issued to system log
+#   adapted from SETMSG
+date +%T >> $system_log #
+if [ -z "$1" ]; then
+ echo "  <>." >> $system_log #
+ echo "  time-stamp issued to system log."
+else
+ echo "  $1" >> $system_log #
+ echo "  System log entry made. "
+fi
