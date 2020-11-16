@@ -5,7 +5,7 @@
 # bash <procname> p1 p2 p3..
 #
 #	<command line parameters>
-#	p1 = paramter 1 description, etc.
+#	p1 = parameter 1 description, etc.
 #
 #	Entry Dependencies.
 #   <assumed paths, etc>

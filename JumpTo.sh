@@ -23,6 +23,7 @@
 #	Notes.
 
 # include this boilerplate
+# jumpto function definition
 function jumpto
 {
     label=$1
