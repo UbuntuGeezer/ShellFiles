@@ -38,3 +38,5 @@ else
 fi
 touch $WINUBUNTU_PATH/term_user_msg.txt
  cat $WINUBUNTU_PATH/term_user_msg.txt
+ 
+

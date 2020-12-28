@@ -1,5 +1,5 @@
 #/bin/bash
-#proc-name.sh -  (Dev) shor proc description.
+#proc-name.sh -  (Dev) short proc description.
 # 11/16/20.	wmk.
 #	Usage. bash proc-name.sh param
 #		param  - command line parameter(s)

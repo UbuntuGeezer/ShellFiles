@@ -12,7 +12,7 @@ else
   echo "  eject $1 - initiated from Terminal" >> $system_log #
   echo "  eject $1 - initiated from Terminal"
   eject /media/ubuntu/$1
-  notify-send "EJECT" "SaFe to remove $1"
+  notify-send "EJECT" "Safe to remove $1"
   echo "  $1 ejected - safe to remove"
 fi 
 

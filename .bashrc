@@ -1,5 +1,5 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
-#	11/7/20.	wmk.	13:30
+#	12/14/20.	wmk.	08:15
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -132,6 +132,7 @@ alias KillTPad='bash ~/sysprocs/KillTPad.sh'
 alias EnblTPad='bash ~/sysprocs/EnblTPad.sh'
 alias Installgit='bash ~/sysprocs/Installgit.sh'
 alias InstallGeany='bash ~/sysprocs/InstallGeany.sh'
+alias InstallGEarth='bash ~/sysprocs/InstallGoogleEarth.sh'
 alias InstallZoom='bash ~/sysprocs/InstallZoom.sh'
 alias InstallJRE='bash ~/sysprocs/InstallJRE.sh'
 alias Installmkusb='bash ~/sysprocs/Installmkusb.sh'
@@ -142,6 +143,7 @@ alias InstallPython='bash ~/sysprocs/InstallPython.sh'
 alias InstallBless='bash ~/sysprocs/InstallBlessHex.sh'
 alias InstallSQL='bash ~/sysprocs/InstallSQLite.sh'
 alias InstallTPadI='bash ~/sysprocs/InstallTPadI.sh'
+alias InstallURE='bash ~/sysprocs/InstallURE.sh'
 alias InstallWifi='bash ~/sysprocs/InstallWifi.sh'
 alias UpdateLibre='bash ~/sysprocs/UpdateLibre.sh'
 alias NewSSHKey='bash ~/sysprocs/NewSSHKey.sh'
@@ -150,11 +152,13 @@ alias PJDUMP='bash ~/sysprocs/PJDUMP'
 alias PSFIND='bash ~/sysprocs/PSFIND'
 alias SETBACK='bash ~/sysprocs/SETBACK'
 alias SETMSG='bash ~/sysprocs/SETMSG'
+alias GETMSG='bash ~/sysprocs/GETMSG'
 alias SQL='bash ~/sysprocs/SQL'
 alias ENDSQL='bash ~/sysprocs/ENDSQL'
 alias LISTENV='bash ~/sysprocs/LISTENV'
 alias cda='cd $WINCONG_PATH/Territories'
 alias cdb='cd $WINGIT_PATH/Territories'
+alias cdc='. ~/sysprocs/cdc.sh'
 
 #set some global vars
 export U_DISK='/media/ubuntu'

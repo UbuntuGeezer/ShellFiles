@@ -1,0 +1,8 @@
+#!/bin/bash
+# GETMSG - Get message strings for next Terminal startup.
+#	12/15/20.  wmk.  22:15
+# Usage. bash GETMSG 
+#	message to be issued next time term_ is displayed in terminal window.
+
+# Note. 8/5/20 moved to persistent storage.
+less $WINUBUNTU_PATH/term_user_msg.txt
