@@ -1,5 +1,5 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-#	1/27/21.	wmk.	08:15
+# ~/.bashrc: executed by bash for non-login shells.
+#	1/28/21.	wmk.	21:30
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -161,6 +161,7 @@ alias cdb='cd $WINGIT_PATH/Territories'
 alias cdc='. ~/sysprocs/cdc.sh'
 alias cdd='. ~/sysprocs/cdd.sh'
 alias cdp='. ~/sysprocs/cdp.sh'
+alias cds='. ~/sysprocs/cds.sh'
 alias cdt='. ~/sysprocs/cdt.sh'
 
 #set some global vars
