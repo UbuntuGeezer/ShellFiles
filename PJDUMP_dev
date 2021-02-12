@@ -23,7 +23,7 @@
 #               and $PJ_BACK
 # 7/25/20. wmk. changed line 108 to evaluate bu_ainthere before testing
 #               string length
-# 2/11/21. wmk. mods to use LOGMSG to log dump to system log; FD and GD
+# 2/11/21. wmk. mods to use LOGMSG to log dump to system log; FD and GP
 #				environment vars added.
 # 7/17/20. Notes. A new bash shell is expected to be resident on each primary
 # <project-name> path, named BU-Ignores.sh. This bash script will be invoked
@@ -42,7 +42,8 @@
 # have to ensure that any files spec'd in .gitignore are copied to the dump area
 # separately from the "git clone".
 FD=$1
-GD=$2
+GP=$2
+SFX="_"
 if [ -z TEMP_PATH ]; then
   TEMP_PATH=$HOME/temp #
 fi
@@ -50,7 +51,7 @@ if [ -z $FD ] ; then
   echo -e "No backup drive specified (e.g. USB20FD)\nPJDUMP Abandoned."
   exit 1
 fi
-if [ -z $GD ] ; then
+if [ -z $GP ] ; then
   echo -e "No Project specified (e.g. OpenOffice-Basics)\nPJDUMP Abandoned."
   exit 1
 fi
@@ -61,11 +62,11 @@ touch $TEMP_PATH/scratch.txt
 # rm the existing backup and rename the <project-name> directory by appending
 # a '_' to the <project-name>
 #date +%T >> $system_log #
-#echo -e "  PJDUMP Initiated..\n  Source = $WINGIT_PATH/$GD " >> $system_log
+#echo -e "  PJDUMP Initiated..\n  Source = $WINGIT_PATH/$GP " >> $system_log
 #echo -e "  Destination = $U_DISK/$FD/$PJ_BACK "  >> $system_log #
-bash ~/sysprocs/LOGMSG "  PJDUMP Initiated..  Source = $WINGIT_PATH/$GD "
+bash ~/sysprocs/LOGMSG "  PJDUMP Initiated..  Source = $WINGIT_PATH/$GP "
 bash ~/sysprocs/LOGMSG "  Destination = $U_DISK/$FD/$PJ_BACK "
-echo -e "PJDUMP Initiated..\nSource = $WINGIT_PATH/$GD "
+echo -e "PJDUMP Initiated..\nSource = $WINGIT_PATH/$GP "
 echo -e "Destination = $U_DISK/$FD/$PJ_BACK "
 echo -e "*** WARNING - MAKE SURE NO OTHER APPS ARE RUNNING BEFORE PROCEEDING ***"
 read -p "Do you wish to proceed? (y/n)"
@@ -77,7 +78,7 @@ else
  echo "  PJDUMP abandoned - user wants to close other apps."
  exit 0 
 fi
-PJDUMP_SOURCE=$WINGIT_PATH/$GD #
+PJDUMP_SOURCE=$WINGIT_PATH/$GP #
 PJDUMP_DEST=$U_DISK/$FD/$PJ_BACK                #
 # verify both paths exist
 if  cd $PJDUMP_SOURCE ; then
@@ -101,40 +102,40 @@ else
 fi
 #export BACKUP_PATH=$FD    # set backup path from 1st parameter
 # check for existing backup
-if cd $PJDUMP_DEST/$GD ; then
-  echo -e "\nFile list of $PJDUMP_DEST/$GD ..." >>$TEMP_PATH/scratch.txt
+if cd $PJDUMP_DEST/$GP ; then
+  echo -e "\nFile list of $PJDUMP_DEST/$GP ..." >>$TEMP_PATH/scratch.txt
   bu_ainthere=""
   ls  >>$TEMP_PATH/scratch.txt
   cd ..   # move back to base destination
 else
   bu_ainthere="AintHere"
   date +%T >> $system_log #
-  echo  -e "  Destination path '"$PFDUMP_DEST/$GD "'not found." >> $system_log #
+  echo  -e "  Destination path '"$PFDUMP_DEST/$GP "'not found." >> $system_log #
   echo "  PJDUMP will create when dumping via git clone." >> $system_log #
-  bash ~/sysprocs/LOGMSG "  Destination path '"$PFDUMP_DEST/$GD "'not found."
+  bash ~/sysprocs/LOGMSG "  Destination path '"$PFDUMP_DEST/$GP "'not found."
   bash ~/sysrpocs/LOGMSG "  PJDUMP will create when dumping via git clone."
-  echo -e "Destination path $PJDUMP_DEST/$GD not found."
+  echo -e "Destination path $PJDUMP_DEST/$GP not found."
   echo "PJDUMP will create when dumping via git clone."
 fi;
 
 # if backup exists, as permission to delete and replace with current
 #if [ $? -eq 0 ]; then
 if [ -z $bu_ainthere ]; then
-  echo -e "Backup of $GD exists..."
-  echo -e "\nLooking for $BACKUP_PATH/$GD_ " >>$TEMP_PATH/scratch.txt
+  echo -e "Backup of $GP exists..."
+  echo -e "\nLooking for $BACKUP_PATH/$GP_ " >>$TEMP_PATH/scratch.txt
   read -p "OK to recycle and proceed? (y/n)"
   if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
-    if ls ./$GD_ >> $TEMP_PATH/scratch.txt ; then
-      rm -r -f ./$GD_           # remove oldest backup
+    if ls ./$GP_ >> $TEMP_PATH/scratch.txt ; then
+      rm -r -f ./$GP$SFX          # remove oldest backup
     fi # end secondary backup exists conditional
     # move current to <project-name>_
-    echo -e "ready to preserve $GD on $GD_..\nCurrent path = $PWD "
+    echo -e "ready to preserve $GP on $GP_..\nCurrent path = $PWD "
     read -p "Press Enter to continue..."
-    mv $GD $GD_
+    mv $GP $GP$SFX
 #    date +%T >> $system_log #
-#    echo "  Current backup preserved in $PJDUMP_DEST/$GD_ " >>$system_log #
-    bash ~/sysprocs/LOGMSG "  Current backup preserved in $PJDUMP_DEST/$GD_ " 
-    echo "Current backup preserved in $GD_ "
+#    echo "  Current backup preserved in $PJDUMP_DEST/$GP_ " >>$system_log #
+    bash ~/sysprocs/LOGMSG "  Current backup preserved in $PJDUMP_DEST/$GP_ " 
+    echo "Current backup preserved in $GP_ "
   else
 #    date +%T >> $system_log #
 #    echo "  User canceled overwrite of existing backup." >> $system_log #
@@ -154,9 +155,9 @@ fi
 # proceed with PJDUMP
 read -t1 -p " PJDUMP intiating file copy..."
 #date +%T >> $system_log #
-#echo "  git clone $PJDUMP_SOURCE $GD " >> $system_log #
-bash ~/sysprocs/LOGMSG "  git clone $PJDUMP_SOURCE $GD "
-git clone $PJDUMP_SOURCE $GD
+#echo "  git clone $PJDUMP_SOURCE $GP " >> $system_log #
+bash ~/sysprocs/LOGMSG "  git clone $PJDUMP_SOURCE $GP "
+git clone $PJDUMP_SOURCE $GP
 # see if user wants to backup .gitignore files
 # note. PWD = $BACKUP_PATH; need to move PJDUMP_SOURCE to
 # execute BU-Ignores.sh
@@ -176,8 +177,8 @@ if [ $? -eq 0 ]; then
   fi    # ok to recycle backup conditional
 fi
 rm $TEMP_PATH/scratch.txt
-date +%T >> $system_log
-echo -e "  PJDUMP complete." >> $system_log #
+#date +%T >> $system_log
+#echo -e "  PJDUMP complete." >> $system_log #
 bash ~/sysprocs/LOGMSG "  PJDUMP complete."
 echo -e "\n PJDUMP complete."
 exit 0

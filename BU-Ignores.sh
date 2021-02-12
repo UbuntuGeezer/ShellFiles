@@ -28,24 +28,28 @@
 # Modification History.
 # ---------------------
 # 7/24/20.	wmk.	paths adjusted for new imported environement vars
+# 2/11/21.	wmk.	mod supporting 1-line log entries; FD environment var
 MY_PROJ='ShellFiles'
+PJ_BACK="git-Projects"
 if [ -z $TEMP_PATH ]; then
   TEMP_PATH=$HOME/temp
 fi
 echo "TEMP_PATH = '$TEMP_PATH'"
-
+FD=$1
+bash ~/sysprocs/LOGMSG "  BU-Ignores $MY_PROJ initiated from terminal."
 error_counter=0		# set error counter to 0
 IFS="&"			# set & as the word delimiter for read.
-if [ -z $1 ]; then
+if [ -z $FD ]; then
   echo -e "Backup path must be specified...\nBU-Ignores abandoned."
   exit 1
 fi
 pushd ./   >> $TEMP_PATH/scratchfile
-if cd $1/$MY_PROJ ; then
+if cd /media/ubuntu/$FD/$PJ_BACK/$MY_PROJ ; then
  popd      >> $TEMP_PATH/scratchfile
 else
- date +%T >> $system_log #
- echo -e "  BU-Ignores:Backup path not found...\n  BU-Ignores abandoned." >> $system_log #
+# date +%T >> $system_log #
+# echo -e "  BU-Ignores:Backup path not found...\n  BU-Ignores abandoned." >> $system_log #
+ bash ~/sysprocs/LOGMSG "  BU-Ignores:Backup path not found...\n  BU-Ignores abandoned."
  echo -e "Backup path not found...\nBU-Ignores abandoned."
  exit 1
 fi
@@ -65,17 +69,18 @@ while read -e; do
    echo >> $HOME/temp/scratchfile
   else
    filespec=${REPLY:0:len}
-#   cp -r -u -v ./$filespec $1     >> $TEMP_PATH/scratchfile
-   echo " cp -r -u ./$filespec $1/$MY_PROJ"
-   cp  -r -u  ./$filespec $1/$MY_PROJ #   
+#   cp -r -u -v ./$filespec $FD     >> $TEMP_PATH/scratchfile
+   echo " cp -r -u ./$filespec $FD/$MY_PROJ"
+   cp  -r -u  ./$filespec /media/ubuntu/$FD/$PJ_BACK/$MY_PROJ #   
    # check for error and increment error counter
 #   error_code=${?}
    if [ $? -eq 0 ]; then  
      echo " " >> $TEMP_PATH/scratchfile
    else
      error_counter=$((error_counter+1))
-     date +%T >> $system_log #
-     echo -e "  BU-Ignores:Error  $error_code processing $REPLY " >> $system_log #
+#     date +%T >> $system_log #
+#     echo -e "  BU-Ignores:Error  $error_code processing $REPLY " >> $system_log #
+	 bash ~/sysprocs/LOGMSG "  BU-Ignores:Error  $error_code processing $REPLY "
      echo -e "  BU-Ignores:Error  $error_code processing $REPLY "
    fi
 
@@ -88,5 +93,5 @@ if [ $error_counter = 0 ]; then
 else
   echo "  $error_counter errors encountered - check $TEMP_PATH/scratchfile "
 fi
+bash ~/sysprocs/LOGMSG "  $error_counter errors encountered - check $TEMP_PATH/scratchfile "
 echo " BU-Ignores complete."
-
