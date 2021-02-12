@@ -1,7 +1,7 @@
 #!/bin/bash
-# COLDSTART_1 - bash shell to be run after COLDSTART has completed.
-#	1/31/21.	wmk.	16:30
-# Usage.   bash COLDSTART_1
+# installs - bash shell to be run after sysedits has completed.
+#	1/31/21.	12:00	wmk.	
+# Usage.   bash installs
 # Entry. System time set to Eastern time
 #	Initialize System Log file
 #	System log message issued with date/time stamp 
@@ -44,8 +44,8 @@ else
   echo "system_log environment var already set."
 fi  # end system_log defined conditional
 date >> $system_log #
-echo "  System COLDSTART_1 initiated." >> $system_log #
-echo "  System COLDSTART_1 initiated."
+echo "  System installs initiated." >> $system_log #
+echo "  System installs initiated."
 # connect universe repository
 date +%T >> $system_log #
 echo "  Connecting universe repository..." >> $system_log #
@@ -69,5 +69,5 @@ UpdateLibre
 # Installtcl # for sqlite build
 # InstallFossil # for sqlite source code management
 date +%T >> $system_log #
-echo "  COLDSTART_1 Complete." >> $system_log #
-echo "  COLDSTART_1 Complete."
+echo "  installs Complete." >> $system_log #
+echo "  installs Complete."

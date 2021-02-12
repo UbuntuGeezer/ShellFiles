@@ -10,7 +10,6 @@
 # ---------------------
 # 9/28/20.	wmk.	original shell
 # 11/13/20.	wmk.	-q option added; jumpto definition added
-# 2/11/21.	wmk.	code overhaul to combine timestamp with message.
 # Notes. options -q or -Q	quiet mode; no echo of message
 # jumpto function definition
 function jumpto
@@ -20,48 +19,28 @@ function jumpto
     eval "$cmd"
     exit
 }
-OPTION=$1
-MSG=$2
-if [ -z "$MSG" ]; then
- MSG=$OPTION
- if [ -z "$OPTION" ]; then
-  if [ "$OPTION" == "-q" ] || [ $1 == "-Q" ]; then
-   date +%T >> $system_log #
+date +%T >> $system_log #
+if [ -z "$2" ]; then
+ if [ -z "$1" ]; then
+  if [ "$1" == "-q" ] || [ $1 == "-Q" ]; then
    echo "  <>." >> $system_log #
    echo "  time-stamp issued to system log."
   fi
+ echo "  $1" >> $system_log #
  echo "  System log entry made. "
- # echo "  $MSG" >> $system_log #
- jumpto IssueMsg
  fi
-else   # 2 parameters...
- if [ "$OPTION" == "-q" ] || [ "$OPTION" == "-Q" ]; then
-  if [ -z "$MSG" ]; then
-   MSG="  <>."
-#   echo "  <>." >> $system_log #
+else
+ if [ "$1" == "-q" ] || [ "" == "-Q" ]; then
+  if [ -z "$2" ]; then
+   echo "  <>." >> $system_log #
    echo "  time-stamp issued to system log."
-   jumpto IssueMsg
+  else
+   echo "  $2" >> $system_log #
   fi
-
  else
-    echo "unrecognized option '$OPTION'"
+    echo "unrecognized option '$1'"
     jumpto alldone
  fi
 fi
-
-jumpto IssueMsg
-IssueMsg:
-pushd ./ >junk.txt
-cd ~/Documents
-date +%H.%M.%S. >logmsg.sh
-echo "$MSG \" " >> logmsg.sh
-echo ">> \$system_log #" >>logmsg.sh
-sed -i -n ':a;$!N;s/\n//;ta;P;D'  logmsg.sh
-sed -i 's/./echo -e \"&/' logmsg.sh
-. logmsg.sh
-popd >junk.txt
-
-
 jumpto alldone
 alldone:
-

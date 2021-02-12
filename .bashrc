@@ -1,5 +1,5 @@
 # ~/.bashrc: executed by bash for non-login shells.
-#	1/28/21.	wmk.	21:30
+#	1/31/21.	wmk.	12:00
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -142,7 +142,7 @@ alias Installtestdisk='bash ~/sysprocs/Installtestdisk.sh'
 alias InstallPython='bash ~/sysprocs/InstallPython.sh'
 alias InstallBless='bash ~/sysprocs/InstallBlessHex.sh'
 alias InstallSQL='bash ~/sysprocs/InstallSQLite.sh'
-alias InstallTPadI='bash ~/sysprocs/InstallTPadI.sh'
+alias InstallTPadI='bash ~/sysprocs/InstallTPadI.sh <nyes'
 alias InstallURE='bash ~/sysprocs/InstallURE.sh'
 alias InstallWifi='bash ~/sysprocs/InstallWifi.sh'
 alias UpdateLibre='bash ~/sysprocs/UpdateLibre6p7.sh'
@@ -163,7 +163,9 @@ alias cdd='. ~/sysprocs/cdd.sh'
 alias cdp='. ~/sysprocs/cdp.sh'
 alias cds='. ~/sysprocs/cds.sh'
 alias cdt='. ~/sysprocs/cdt.sh'
-
+alias sysedits='. ~/sysprocs/sysedits.sh'
+alias installs='. ~/sysprocs/installs.sh'
+alias ToSysstart='. ~/sysprocs/CP-Sysstart.sh'
 #set some global vars
 export U_DISK='/media/ubuntu'
 export WINGIT_PATH='/media/ubuntu/Windows/Users/Bill/Documents/GitHub'
