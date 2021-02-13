@@ -1,6 +1,6 @@
 #!/bin/bash
 #prochdr.sh - <proc-name> short description.
-#	2/3/21.	wmk.
+#	2/12/21.	wmk.
 #
 # bash <proc-name> p1 p2 p3..
 #
@@ -15,7 +15,8 @@
 #
 #	Modification History.
 #	---------------------
-#	mm/dd/yy.	wmk.	original shell
+#	2/3/21.		wmk.	original shell
+#	2/12/21.	wmk.	jumpto definition added
 #
 #	Notes.
 # jumpto function definition
@@ -27,8 +28,9 @@ function jumpto
     exit
 }
 P1=$1	# preserve passed parameter as $P1
-date +%T >> $system_log #
-echo "  <proc-name> started." >> $system_log #
+#date +%T >> $system_log #
+#echo "  <proc-name> started." >> $system_log #
+bash ~/sysprocs/LOGMSG "  <proc-name> started."
 echo "  <proc-name> started."
 if [ -z $1 ]; then
   echo "  <param-1> not specified... <proc-name> abandoned." >> $system_log #

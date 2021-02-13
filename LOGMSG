@@ -1,6 +1,6 @@
 #!/bin/bash
 # LOGMSG - Set message string in system log.
-#	9/28/20.  wmk.  08:30
+#	2/11/21.  wmk.  08:30
 # Usage. bash LOGMSG [options] "<message-text>"
 #	[options] utility options - see Notes.
 #	<message-text> message to be issued to system log
@@ -22,15 +22,22 @@ function jumpto
 }
 OPTION=$1
 MSG=$2
+if [ -z "$MSG" ] && [ -z "$OPTION" ]; then
+ MSG="<.>."
+ echo "  time-stamp issued to system log."
+ jumpto IssueMsg
+fi
 if [ -z "$MSG" ]; then
  MSG=$OPTION
- if [ -z "$OPTION" ]; then
-  if [ "$OPTION" == "-q" ] || [ $1 == "-Q" ]; then
-   date +%T >> $system_log #
-   echo "  <>." >> $system_log #
-   echo "  time-stamp issued to system log."
+ if [ not = ${#OPTION}  ]; then
+  if [ "$OPTION" == "-q" ] || [ "$OPTION" == "-Q" ]; then
+#   date +%T >> $system_log #
+#   echo "  <>." >> $system_log #
+   bash ~/sysprocs/LOGMSG "  <>." 
+#   echo "  time-stamp issued to system log."
+  else
+   echo "  System log entry made. "
   fi
- echo "  System log entry made. "
  # echo "  $MSG" >> $system_log #
  jumpto IssueMsg
  fi
@@ -39,6 +46,7 @@ else   # 2 parameters...
   if [ -z "$MSG" ]; then
    MSG="  <>."
 #   echo "  <>." >> $system_log #
+#   bash ~/sysprocs/LOGMSG "  <>." 
    echo "  time-stamp issued to system log."
    jumpto IssueMsg
   fi
@@ -64,4 +72,3 @@ popd >junk.txt
 
 jumpto alldone
 alldone:
-

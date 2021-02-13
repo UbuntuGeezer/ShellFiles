@@ -1,6 +1,6 @@
 #!/bin/bash
 # term_ - standard terminal starup bash script.
-#	7/24/20.	wmk.	17:30
+#	2/12/21.	wmk.	01:00
 # Usage. bash terminal_ <option>
 #	<option> = if present, list environment variables from .bashrc
 #
@@ -16,13 +16,15 @@
 #                       this allows for a reminder text to be saved and displayed
 #                       the next time term_ starts up.
 # 8/5/20.	wmk.	get term_user_msg.txt from persistent storage.
+# 2/12/21.	wmk.	LOGMSG used to message to system_log.
 # Notes.
 # By entering the "term_" command, the user makes a $system_log entry
 # with the time stamp of when the bash session was started. [If a parameter
 # is included, it will be a quoted literal that will also be recorded in
 # the $system_log.] If the file ~/term_user_msg.txt exists, it will be displayed.
-date +%T >> $system_log #
-echo "  Terminal app started." >> $system_log #
+#date +%T >> $system_log #
+#echo "  Terminal app started." >> $system_log #
+bash ~/sysprocs/LOGMSG "  Terminal app started."
 if [ -z $1 ]; then
   echo "Terminal app started."
 else
@@ -34,9 +36,9 @@ else
   echo "  WINUBUNTU_PATH = 'WINUBUNTU_PATH'"
   echo "  TEMP_PATH = '$HOME/temp'"
   echo "  system_log = '$system_log'"
-  echo "  .bashsrc environment vars displayed." >> $system_log #
+#  echo "  .bashsrc environment vars displayed." >> $system_log #
+  bash ~/sysprocs/LOGMSG "  .bashsrc environment vars displayed."
 fi
 touch $WINUBUNTU_PATH/term_user_msg.txt
  cat $WINUBUNTU_PATH/term_user_msg.txt
  
-

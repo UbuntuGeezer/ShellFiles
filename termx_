@@ -3,8 +3,9 @@
 # Usage.	termx_ from anywhere.
 #
 # termx_ exits the Terminal app after issuing a System Log message.
-date +%T >> $system_log #
-echo "  Exiting Terminal app." >> $system_log #
+#date +%T >> $system_log #
+#echo "  Exiting Terminal app." >> $system_log #
+bash ~/sysprocs/LOGMSG "  Exiting Terminal app."
 echo "Enter 'exit' command or close Terminal window with [x].."
 exit 0
 

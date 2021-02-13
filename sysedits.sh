@@ -12,9 +12,11 @@
 #	Modification History.
 #	---------------------
 #	1/30/21.	wmk.	original shell
+#	2/12/21.	wmk.	updated to use LOGMSG for system log messages.
 #
 #	Notes.
 echo "Startup SYSEDITs initiated..."
+bash ~/sysprocs/LOGMSG "  Startup SYSEDITs initiated..."
 SYSEDIT PROC Installgit.sh
 SYSEDIT PROC InstallGeany.sh
 SYSEDIT PROC InstallJRE.sh
@@ -29,6 +31,7 @@ SYSEDIT PROC cdp.sh
 SYSEDIT PROC cds.sh
 SYSEDIT PROC cdt.sh
 echo "Startup SYSEDITs complete."
+bash ~/sysprocs/LOGMSG "  Startup SYSEDITs complete."
 cd ~
 echo "" >nyes
 echo "y" >>nyes
