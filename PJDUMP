@@ -25,6 +25,8 @@
 #               string length
 # 2/11/21. wmk. mods to use LOGMSG to log dump to system log; FD and GP
 #				environment vars added.
+# 2/25/21. wmk.	mod to use $PFD as source if folder not specified (P2)
+#				in call.
 # 7/17/20. Notes. A new bash shell is expected to be resident on each primary
 # <project-name> path, named BU-Ignores.sh. This bash script will be invoked
 # by PJDUMP to backup files that are ignored by git during cloning or commit
@@ -49,10 +51,13 @@ if [ -z TEMP_PATH ]; then
 fi
 if [ -z $FD ] ; then
   echo -e "No backup drive specified (e.g. USB20FD)\nPJDUMP Abandoned."
-  exit 1
+  PJDUMP_SOURCE=$PFD #
+#  exit 1
+else
+  PJDUMP_SOURCE=$WINGIT_PATH/$GP #
 fi
 if [ -z $GP ] ; then
-  echo -e "No Project specified (e.g. OpenOffice-Basics)\nPJDUMP Abandoned."
+  echo -e "No Project specified.. using current folder."
   exit 1
 fi
 # initialize $TEMP_PATH/scratch file
@@ -64,7 +69,7 @@ touch $TEMP_PATH/scratch.txt
 #date +%T >> $system_log #
 #echo -e "  PJDUMP Initiated..\n  Source = $WINGIT_PATH/$GP " >> $system_log
 #echo -e "  Destination = $U_DISK/$FD/$PJ_BACK "  >> $system_log #
-bash ~/sysprocs/LOGMSG "  PJDUMP Initiated..  Source = $WINGIT_PATH/$GP "
+bash ~/sysprocs/LOGMSG "  PJDUMP Initiated..  Source = $PJDUMP_SOURCE "
 bash ~/sysprocs/LOGMSG "  Destination = $U_DISK/$FD/$PJ_BACK "
 echo -e "PJDUMP Initiated..\nSource = $WINGIT_PATH/$GP "
 echo -e "Destination = $U_DISK/$FD/$PJ_BACK "
@@ -78,7 +83,7 @@ else
  echo "  PJDUMP abandoned - user wants to close other apps."
  exit 0 
 fi
-PJDUMP_SOURCE=$WINGIT_PATH/$GP #
+#PJDUMP_SOURCE=$WINGIT_PATH/$GP #
 PJDUMP_DEST=$U_DISK/$FD/$PJ_BACK                #
 # verify both paths exist
 if  cd $PJDUMP_SOURCE ; then

@@ -1,6 +1,6 @@
 #!/bin/bash
 # BU-Ignores.sh = backup project files ignored by git; save with project backup
-#	7/24/20.	wmk. ShellFiles
+#	2/16/21..	wmk. ShellFiles
 # NOTE. BU-Ignores.sh should reside on every project's main directory path. It
 # is invoked by the shell PJDUMP which is a generic shell for doing incremental
 # dumps of projects to a backup medium. Each BU-Ignores.sh sets its project name
@@ -37,6 +37,7 @@ fi
 echo "TEMP_PATH = '$TEMP_PATH'"
 FD=$1
 bash ~/sysprocs/LOGMSG "  BU-Ignores $MY_PROJ initiated from terminal."
+bash ~/sysprocs/LOGMSG "   Target device $1. "
 error_counter=0		# set error counter to 0
 IFS="&"			# set & as the word delimiter for read.
 if [ -z $FD ]; then
@@ -94,4 +95,5 @@ else
   echo "  $error_counter errors encountered - check $TEMP_PATH/scratchfile "
 fi
 bash ~/sysprocs/LOGMSG "  $error_counter errors encountered - check $TEMP_PATH/scratchfile "
+bash ~/sysprocs/LOGMSG "  BU-Ignores complete."
 echo " BU-Ignores complete."

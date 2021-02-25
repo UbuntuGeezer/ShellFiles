@@ -19,22 +19,16 @@ function jumpto
     eval "$cmd"
     exit
 }
-
-start=${1:-"start"}
-
-jumpto $start
-
-start:
-date +%T >> $system_log #
-if [ -z "$1" ]; then
+P1=$1
+#date +%T >> $system_log #
+if [ -z "$P1" ]; then
+LOGMSG "  user changed to /Territories folder."
 cda
 else 
+LOGMSG "  user changed to Territories/$P1 folder."
 cda 
-cd ./$1
+cd ./$P1
 fi 
-#proc body here
-cda 
-cd ./$1
 #end cdc proc
 
 

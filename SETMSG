@@ -1,6 +1,6 @@
 #!/bin/bash
 # SETMSG - Set message string for next Terminal startup.
-#	12/28/20.  wmk.  09:00
+#	2/14/21.  wmk.  07:00
 # Usage. bash SETMSG "<message-text>"
 #	<message-text> message to be issued next time term_ is used
 #   to start a Terminal session.
@@ -8,31 +8,40 @@
 # 12/25/20. touch added after message cleared.
 # 12/27/20. -c parameter added to clear existing message(s) before adding.
 # 12/28/20. bug fix at line 18, needed quotes around dollar1.
+# 2/14/21.	one-line log messaging.
 #if [ len($1) -eq 0 ]; then
-if [ -z "$1" ]; then
+P1=$1
+P2=$2
+if [ -z "$P1" ]; then
  touch $WINUBUNTU_PATH/term_user_msg.txt
  rm $WINUBUNTU_PATH/term_user_msg.txt
  touch $WINUBUNTU_PATH/term_user_msg.txt
- date +%T >> $system_log #
- echo "  Terminal startup message cleared." >> $system_log #
+# date +%T >> $system_log #
+# echo "  Terminal startup message cleared." >> $system_log #
+ bash ~/sysprocs/LOGMSG "  Terminal startup message cleared."
  echo "  Terminal startup message cleared."
-elif [ "$1" == "-c" ]; then
+elif [ "$P1" == "-c" ] || [ "$P1" == "-C" ] ; then
  touch $WINUBUNTU_PATH/term_user_msg.txt
  rm $WINUBUNTU_PATH/term_user_msg.txt
  touch $WINUBUNTU_PATH/term_user_msg.txt
- date +%T >> $system_log #
- echo "  Terminal startup message cleared." >> $system_log #
- if [ -z "$2" ]; then
+# date +%T >> $system_log #
+# echo "  Terminal startup message cleared." >> $system_log #
+ bash ~/sysprocs/LOGMSG "  Terminal startup message cleared."
+ if [ -z "$P2" ]; then
   echo "  Terminal startup message cleared."
  else
-  echo "$2" >> $WINUBUNTU_PATH/term_user_msg.txt
-  echo "  Terminal startup message set. " >> $system_log #
-  echo "  Message = \"$1\" " >> $system_log #
+  echo "$P2" >> $WINUBUNTU_PATH/term_user_msg.txt
+#  echo "  Terminal startup message set. " >> $system_log #
+#  echo "  Message = \"$1\" " >> $system_log #
+ bash ~/sysprocs/LOGMSG "  Terminal startup message cleared."
+ bash ~/sysprocs/LOGMSG "  Message = \"$P1\" "
   echo "  Terminal startup message set. "
  fi
 else
- echo "$1" >> $WINUBUNTU_PATH/term_user_msg.txt
- echo "  Terminal startup message set. " >> $system_log #
- echo "  Message = \"$1\" " >> $system_log #
+ echo "$P1" >> $WINUBUNTU_PATH/term_user_msg.txt
+# echo "  Terminal startup message set. " >> $system_log #
+# echo "  Message = \"$1\" " >> $system_log #
+ bash ~/sysprocs/LOGMSG "  Terminal startup message set."
+ bash ~/sysprocs/LOGMSG "  Message = \"$P1\" "
  echo "  Terminal startup message set. "
 fi

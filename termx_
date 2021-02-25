@@ -1,5 +1,6 @@
 #!/bin/bash
 #termx_ - bash script when exiting Terminal app.
+# 2/13/20.	wmk.
 # Usage.	termx_ from anywhere.
 #
 # termx_ exits the Terminal app after issuing a System Log message.
@@ -7,5 +8,5 @@
 #echo "  Exiting Terminal app." >> $system_log #
 bash ~/sysprocs/LOGMSG "  Exiting Terminal app."
 echo "Enter 'exit' command or close Terminal window with [x].."
-exit 0
+
 

@@ -1,6 +1,6 @@
 #/bin/bas
 # cds.sh - Change to SCPA-Downloads subfolder.
-#	1/28/21.	wmk.
+#	2/20/21.	wmk.
 #	Usage. cds <folder>
 #
 #		<folder> - folder to change to in SCPA-Downloads.
@@ -11,13 +11,16 @@
 # Modification History.
 # ---------------------
 # 1/28/21.	wmk.	original shell
-date +%T >> $system_log #
-if [ -z "$1" ]; then
+# 2/20/21.	wmk.	LOGMSG added.
+#date +%T >> $system_log #
+P1=$1
+if [ -z "$P1" ]; then
+LOGMSG "  user changed to Territories/ folder."
 cda
 else 
-TID=$1
+TID=$P1
+LOGMSG "  user changed to ~SCPA-Downloads/Terr$TID folder."
 cd /media/ubuntu/Windows/Users/Bill/Territories/RawData/SCPA/SCPA-Downloads/Terr$TID
-echo "" >> $system_log #
 fi 
 #end cds proc
 

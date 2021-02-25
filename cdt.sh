@@ -1,6 +1,6 @@
 #/bin/bas
 # cdt.sh - Change to Territories subfolder.
-#	1/26/21.	wmk.
+#	2/20/21.	wmk.
 #	Usage. cdt <folder>
 #
 #		<folder> - folder to change to in RefUSA-Downloads.
@@ -11,13 +11,16 @@
 # Modification History.
 # ---------------------
 # 1/26/21.	wmk.	original shell
-date +%T >> $system_log #
-if [ -z "$1" ]; then
+# 2/20/21.	wmk.	LOGMSG added.
+#date +%T >> $system_log #
+P1=$1
+if [ -z "$P1" ]; then
+LOGMSG "  user changed to Territories/ folder."
 cda
 else 
-TID=$1
-cd /media/ubuntu/Windows/Users/Bill/Territories/RawData/RefUSA/RefUSA-Downloads/Terr$TID
-echo "" >> $system_log #
+TID=$P1
+LOGMSG "  user changed to ~RefUSA-Downloads/Terr$TID folder."
+cd /media/ubuntu/Windows/Users/Bill/Territories/RawData/RefUSA/RefUSA-Downloads/Terr$TID #
 fi 
 #end cdt proc
 

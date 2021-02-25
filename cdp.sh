@@ -1,6 +1,6 @@
 #/bin/bas
 # cdp.sh - Change to Territories/Procs-Dev subfolder.
-#	1/26/21.	wmk.
+#	2/20/21.	wmk.
 #	Usage. cdp
 #
 #
@@ -9,10 +9,11 @@
 #
 # Modification History.
 # ---------------------
-# 1/21/20.	wmk.	original shell
-date +%T >> $system_log #
+# 1/20/21	wmk.	original shell
+# 2/20/21.	wmk.	LOGMSG added.	
+#date +%T >> $system_log #
+LOGMSG "  user changed to Territories/Procs-Dev folder."
 cd /media/ubuntu/Windows/Users/Bill/Territories/Procs-Dev
-echo "  cd /media/ubuntu/Windows/Users/Bill/Territories/Procs-Dev" >> $system_log #
 #end cdp proc
 
 

@@ -10,7 +10,7 @@ if [ -z "$1" ]; then
 #  echo "  eject ignored.. must specify flash drive name." >> $system_log #
   echo "  eject ignored.. must specify flash drive name."
 else
-  echo "  eject $1 - initiated from Terminal" >> $system_log #
+#  echo "  eject $1 - initiated from Terminal" >> $system_log #
   bash ~/sysprocs/LOGMSG "  UNLOAD/eject $1 - initiated from Terminal"
   echo "  eject $1 - initiated from Terminal"
   eject /media/ubuntu/$1
@@ -18,4 +18,3 @@ else
   bash ~/sysprocs/LOGMSG "   UNLOAD $1 completed safely."
   echo "  $1 unloaded - safe to remove"
 fi 
-

@@ -1,6 +1,6 @@
 #/bin/bas
 # cdd.sh - Change to Territories/DB-Dev subfolder.
-#	1/27/21.	wmk.
+#	2/20/21.	wmk.
 #	Usage. cdd
 #
 #
@@ -9,10 +9,11 @@
 #
 # Modification History.
 # ---------------------
-# 1/27/20.	wmk.	original shell
-date +%T >> $system_log #
+# 1/27/21.	wmk.	original shell
+# 2/20/21.	wmk.	LOGMSG added.
+#date +%T >> $system_log #
+LOGMSG "  user changed to Territories/DB-Dev folder."
 cd /media/ubuntu/Windows/Users/Bill/Territories/DB-Dev
-echo "  cd /media/ubuntu/Windows/Users/Bill/Territories/DB-Dev" >> $system_log #
 #end cdd proc
 
 

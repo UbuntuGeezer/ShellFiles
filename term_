@@ -1,6 +1,6 @@
 #!/bin/bash
 # term_ - standard terminal starup bash script.
-#	2/12/21.	wmk.	01:00
+#	2/14/21.	wmk.	01:45
 # Usage. bash terminal_ <option>
 #	<option> = if present, list environment variables from .bashrc
 #
@@ -17,6 +17,8 @@
 #                       the next time term_ starts up.
 # 8/5/20.	wmk.	get term_user_msg.txt from persistent storage.
 # 2/12/21.	wmk.	LOGMSG used to message to system_log.
+# 2/14/21.	wmk.	bu_ environment var set /media/ubuntu/Windows/StagingAreaIn
+# 2/21/21.	wmk.	LOGMSG direct calls failed; use sysprocs path.
 # Notes.
 # By entering the "term_" command, the user makes a $system_log entry
 # with the time stamp of when the bash session was started. [If a parameter
@@ -25,6 +27,7 @@
 #date +%T >> $system_log #
 #echo "  Terminal app started." >> $system_log #
 bash ~/sysprocs/LOGMSG "  Terminal app started."
+bu_="/media/ubuntu/Windows/StagingAreaIn"
 if [ -z $1 ]; then
   echo "Terminal app started."
 else
@@ -41,4 +44,3 @@ else
 fi
 touch $WINUBUNTU_PATH/term_user_msg.txt
  cat $WINUBUNTU_PATH/term_user_msg.txt
- 

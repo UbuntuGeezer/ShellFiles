@@ -1,5 +1,5 @@
 # ~/.bashrc: executed by bash for non-login shells.
-#	1/31/21.	wmk.	12:00
+#	2/21/21.	wmk.	05:45
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
