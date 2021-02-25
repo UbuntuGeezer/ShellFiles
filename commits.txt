@@ -1,3 +1,99 @@
+commit f424205aaa58dc95351849ad9093eb6b4d5474ea
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Thu Feb 25 06:56:08 2021 -0500
+
+    Multiple cd shells added; LOGMSG mods to several shells; PJDUMP mod
+
+commit ccffbd60adf8327762a2c09f07c03a261d0efeeb
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Sat Feb 13 08:05:20 2021 -0500
+
+    Critical fixes to SYSEDIT
+
+commit 771fbe0f030494e5b294165dfa2d359fd04a9e29
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Thu Feb 11 22:02:59 2021 -0500
+
+    PJDUMP updated to issue 1-line log messages.
+
+commit e0330511eb488c495dbf4f138cd70af24cbc4157
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Thu Feb 11 19:10:38 2021 -0500
+
+    Utility LOGMSG one-line system log messages.
+
+commit 79e8ac24c5da7a9dccd6a81cb53128db30d039a7
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Fri Jan 29 01:08:08 2021 -0500
+
+    cds added for Territories, .bashrc mods for  command aliases
+
+commit 4cba2fa581247055a38d74c1cb0470c2522e0866
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Wed Jan 27 09:32:53 2021 -0500
+
+    Territories cd support; UpdateLibre6p7.sh
+
+commit 0deccb112ba6342295ebd8e16c017890b6cfb74c
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Mon Dec 28 09:18:02 2020 -0500
+
+    InstallGoogleEarth, InstallURE, Install VLC added; misc. fixes
+
+commit ee309e0e716e77afce47baf6cdf4b655f603d91e
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Tue Nov 17 14:11:46 2020 -0500
+
+    CP-AcctsToMirror.sh added
+
+commit 09815b848ed7787ed39bc60b1941a2c056f72a8a
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Tue Nov 17 07:49:38 2020 -0500
+
+    proctemplate.sh added
+
+commit 8adc2cc97ff4e71a323efc418092ad46b32fb0d8
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Mon Nov 16 08:36:18 2020 -0500
+
+    Updates for procs issuing notify-send; header.sh added
+
+commit cb23eb1e36b11135e6dbb17ebfcf77b36f94cc84
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Tue Nov 10 07:00:31 2020 -0500
+
+    .bashrc updated; new shells Installpdftk,JumpTo,UNLOAD, procheader
+
+commit 58ee7e62fb4fec813f3d42f1a013c5741414df53
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Fri Oct 16 10:52:12 2020 -0400
+
+    InstallTPadI, LOGMSG, ReadOnlyOff added; SETMSG modified; cda, cdb shortucts added to bashrc
+
+commit fe8e638f33db25ff21189a959a770ac4da408789
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Tue Sep 1 17:00:44 2020 -0400
+
+    EJECT added; COLDSTART updated with SQLite, EJECT, LISTENV
+
+commit c396aee5e779cb5b1245d46bbc609151c81e8c95
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Tue Aug 25 16:19:13 2020 -0400
+
+    LISTENV, PJLOAD, UpdateLibre added; PJDUMP updated; COLDSTART_1, .bashrc updated
+
+commit 790b89245bf5bdbd8acf91c81acded61ff38deaf
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Thu Aug 6 23:00:23 2020 -0400
+
+    ENDSQL updated to allow user input end session message
+
+commit aa0098b899ddb2f70ed869658006eb89f295b2e6
+Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
+Date:   Thu Aug 6 12:12:14 2020 -0400
+
+    SQL, ENDSQL added; COLDSTART, .bashrc updated
+
 commit e1219663d1dd4300ad5dbc881b6725064d50ea98
 Author: UbuntuGeezer <63589184+UbuntuGeezer@users.noreply.github.com>
 Date:   Wed Aug 5 19:54:24 2020 -0400

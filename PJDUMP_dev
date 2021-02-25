@@ -1,5 +1,5 @@
 #!/bin/bash
-#PJDUMP - emulate incremental Cyber PFDUMP of <project-name> using predetermined directory names.
+#PJDUMP_dev - emulate incremental Cyber PFDUMP of <project-name> using predetermined directory names.
 #  2/11/21.  18:00 PJLOAD NEEDS TO BE REWRITTEN TO BRING PROJECT BACK TO
 #            /Windows/../StagingArea-In
 #                   FROM ../USB20FD/git-Projects ($BACKUP_PATH)
