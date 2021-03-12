@@ -1,6 +1,6 @@
 #!/bin/bash
 # LOGMSG - Set message string in system log.
-#	2/11/21.  wmk.  08:30
+#	3/1/21.  wmk.  11:30
 # Usage. bash LOGMSG [options] "<message-text>"
 #	[options] utility options - see Notes.
 #	<message-text> message to be issued to system log
@@ -11,6 +11,7 @@
 # 9/28/20.	wmk.	original shell
 # 11/13/20.	wmk.	-q option added; jumpto definition added
 # 2/11/21.	wmk.	code overhaul to combine timestamp with message.
+# 3/1/21.	wmk.	fix environment vars when called from make.
 # Notes. options -q or -Q	quiet mode; no echo of message
 # jumpto function definition
 function jumpto
@@ -20,6 +21,9 @@ function jumpto
     eval "$cmd"
     exit
 }
+if [ -z "$system_log" ]; then
+  system_log="/media/ubuntu/Windows/Users/Bill/ubuntu/SystemLog.txt"
+fi
 OPTION=$1
 MSG=$2
 if [ -z "$MSG" ] && [ -z "$OPTION" ]; then

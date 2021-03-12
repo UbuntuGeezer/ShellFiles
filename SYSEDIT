@@ -1,6 +1,6 @@
 #!/bin/bash
 # SYSEDIT - Perform update to running system configuration and associated files.
-#	2/13/21..	wmk. 06:00
+#	3/1/21.	wmk. 11:30
 # Usage.  bash SYSEDIT <option>  <shellfile-name>
 #
 #   <option> = SYSEDIT option; to be defined, but can be .bashrc or .gitconfig update,
@@ -31,6 +31,8 @@
 #					"start" case added to update procs in ~/sysstart
 # 7/30/20	wmk.	"bash" case modified to also copy .bashrc to the
 #					~/sysstart directory
+# 3/1/21.	wmk.	modified for running with make; no environment vars
+#					inherited.
 # Notes.
 #      LibreCalc/LibreOffice operations:
 #      copy $WINGIT_PATH/Libraries-Project/BadAss to $CALC_LIB_PATH
@@ -51,6 +53,8 @@ function jumpto
 }
 if [ -z $system_log ]; then
   system_log=$HOME/SystemLog.txt
+  WINGIT_PATH="/media/ubuntu/Windows/Users/Bill/Documents/GitHub"
+  WINUBUNTU_PATH="/media/ubuntu/Windows/Users/Bill/ubuntu"
 fi
 touch $system_log #
 bash ~/sysprocs/LOGMSG "  SYSEDIT initiated."

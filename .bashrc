@@ -1,5 +1,5 @@
 # ~/.bashrc: executed by bash for non-login shells.
-#	2/21/21.	wmk.	05:45
+#	3/1/21.	wmk.	10:24
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -138,6 +138,7 @@ alias InstallJRE='bash ~/sysprocs/InstallJRE.sh'
 alias Installmkusb='bash ~/sysprocs/Installmkusb.sh'
 alias Installpdftk='bash ~/sysprocs/Installpdftk.sh'
 alias InstallFlowBlade='bash ~/sysprocs/InstallFlowBlade.sh'
+alias Installshellcheck='bash ~/sysprocs/Installshellcheck.sh'
 alias Installtestdisk='bash ~/sysprocs/Installtestdisk.sh'
 alias InstallPython='bash ~/sysprocs/InstallPython.sh'
 alias InstallBless='bash ~/sysprocs/InstallBlessHex.sh'
@@ -160,6 +161,7 @@ alias cda='cd $WINCONG_PATH/Territories'
 alias cdb='cd $WINGIT_PATH/Territories'
 alias cdc='. ~/sysprocs/cdc.sh'
 alias cdd='. ~/sysprocs/cdd.sh'
+alias cdj='. ~/sysprocs/cdj.sh'
 alias cdp='. ~/sysprocs/cdp.sh'
 alias cds='. ~/sysprocs/cds.sh'
 alias cdt='. ~/sysprocs/cdt.sh'

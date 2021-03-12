@@ -54,19 +54,21 @@ sudo apt update
 sudo add-apt-repository universe
 # install packages for standard system operations using sysprocs
 # and aliases defined in ~/.bashrc
-sysedits     # SYSEDIT all install packages
-Installgit
-InstallGeany
-#InstallZoom
-InstallJRE
-#InstallFlowBlade
-#Installtestdisk
-#InstallPython
-#InstallBless
-InstallSQL
-UpdateLibre
-# InstallWifi
-# Installtcl # for sqlite build
+echo "now run the following..."
+echo "sysedits"     # SYSEDIT all install packages
+echo "InstallTPadI"
+echo "Installgit"
+echo "InstallGeany"
+echo "#InstallZoom"
+echo "InstallJRE"
+echo "#InstallFlowBlade"
+echo "#Installtestdisk"
+echo "#InstallPython"
+echo "#InstallBless"
+echo "UpdateLibre"
+echo "InstallSQL"
+echo "# InstallWifi"
+echo "# Installtcl # for sqlite build"
 # InstallFossil # for sqlite source code management
 date +%T >> $system_log #
 echo "  COLDSTART_1 Complete." >> $system_log #
