@@ -1,6 +1,6 @@
 #!/bin/bash
 #sysedits.sh - Perform all startup SYSEDITs after initial boot.
-#	1/31/21.	wmk.
+#	3/17/21.	wmk.
 #
 #	Usage. 	sysedits
 #
@@ -13,7 +13,7 @@
 #	---------------------
 #	1/30/21.	wmk.	original shell
 #	2/12/21.	wmk.	updated to use LOGMSG for system log messages.
-#
+#	3/17/21.	wmk.	cdc and cdg added.
 #	Notes.
 echo "Startup SYSEDITs initiated..."
 bash ~/sysprocs/LOGMSG "  Startup SYSEDITs initiated..."
@@ -26,7 +26,9 @@ SYSEDIT PROC GETMSG
 SYSEDIT PROC SETMSG
 SYSEDIT PROC LOGMSG
 SYSEDIT PROC UNLOAD
+SYSEDIT PROC cdc.sh
 SYSEDIT PROC cdd.sh
+SYSEDIT PROC cdc.sh
 SYSEDIT PROC cdp.sh
 SYSEDIT PROC cds.sh
 SYSEDIT PROC cdt.sh

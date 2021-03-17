@@ -1,6 +1,6 @@
 #!/bin/bash
 # installs - bash shell to be run after sysedits has completed.
-#	1/31/21.	12:00	wmk.	
+#	3/17/21.	16:00	wmk.	
 # Usage.   bash installs
 # Entry. System time set to Eastern time
 #	Initialize System Log file
@@ -23,6 +23,7 @@
 #     Install Bless (hex file editor)
 #     Install SQL Lite
 #	  Update Libre Office to ver. 6.4.6
+#	  InstallBuild - make and associated utilities
 #     [Install wifi driver]
 #	  Remind user to copy WINUBUNTU/.ssh/id_rsa, id_rsa.pub to ~/.ssh
 #         and run ssh-agent add to register the current SSH keys
@@ -38,6 +39,7 @@
 # 8/25/20. wmk.	add UpdateLibre to update LibreOffice to ver 6.4.6
 # 1/31/21. wmk.	UpdateLibre maps to update to LibreOffice 6.4.7; sysedits
 # 				invoked prior to Install procs
+# 3/17/21. wmk. InstallBuild added to install make and associates.
 if [ -z $system_log ]; then
   system_log=$HOME/SystemLog.txt
 else
@@ -65,6 +67,7 @@ InstallJRE
 #InstallBless
 InstallSQL
 UpdateLibre
+InstallBuild
 # InstallWifi
 # Installtcl # for sqlite build
 # InstallFossil # for sqlite source code management
