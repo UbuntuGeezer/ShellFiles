@@ -1,6 +1,6 @@
 #!/bin/bash
 # COLDSTART - bash shell to be run after hard reset of system.
-#	1/31/21.	wmk.	17:30
+#	3/22/21.	wmk.	23:13
 # Usage.   bash COLDSTART
 # Entry. environment var startup_src set in .bashrc
 # Exit. System time set to Eastern time
@@ -41,9 +41,10 @@
 # 1/30/21.  wmk.	2ys, nyes, yes prompt input files added; UNLOAD,
 #					InstallTPadI added
 # 2/11/21.	wmk.	log messages consolidated with date/time stamp.
+# 3/22/21.	wmk.	bug fix where log messages not going to main system log.
 timedatectl set-timezone America/New_York #
 if [ -z $system_log ]; then
-  system_log=$HOME/SystemLog.txt
+  system_log="/media/ubuntu/Windows/Users/Bill/ubuntu/SystemLog.txt"
 else
   echo "system_log environment var already set."
 fi  # end system_log defined conditional
@@ -125,6 +126,6 @@ fi  # end $HOME/sysprocs exists conditional
  echo "y" > yes
  echo "" >> yes
  echo "  COLDSTART complete." >> $system_log #
- echo "  COLDSTART complete."
+date +%H.%M.%S | sed 's/$/  COLDSTART complete. &/'  >> $system_log # echo "  COLDSTART complete."
 # advise terminal restart and run COLDSTART_1
 echo "Exit Terminal then restart Terminal to run COLDSTART_1"

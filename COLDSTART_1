@@ -1,6 +1,6 @@
 #!/bin/bash
 # COLDSTART_1 - bash shell to be run after COLDSTART has completed.
-#	1/31/21.	wmk.	16:30
+#	3/22/21.	wmk.	23:22
 # Usage.   bash COLDSTART_1
 # Entry. System time set to Eastern time
 #	Initialize System Log file
@@ -38,17 +38,20 @@
 # 8/25/20. wmk.	add UpdateLibre to update LibreOffice to ver 6.4.6
 # 1/31/21. wmk.	UpdateLibre maps to update to LibreOffice 6.4.7; sysedits
 # 				invoked prior to Install procs
+# 3/22/21. wmk.	systemlog properly set if not previously set; log messages
+#				consolidated with time stamp.
 if [ -z $system_log ]; then
-  system_log=$HOME/SystemLog.txt
+  system_log="/media/ubuntu/Windows/Users/Bill/ubuntu/SystemLog.txt"
 else
   echo "system_log environment var already set."
 fi  # end system_log defined conditional
-date >> $system_log #
-echo "  System COLDSTART_1 initiated." >> $system_log #
+touch $system_log #
+date +%F.%H.%M.%S | sed 's/$/ System COLDSTART_1 initiated. &/' >> $system_log #
 echo "  System COLDSTART_1 initiated."
 # connect universe repository
 date +%T >> $system_log #
 echo "  Connecting universe repository..." >> $system_log #
+date +%F.%H.%M.%S | sed 's/$/  Connecting universe repository... &/' >> $system_log #
 echo "  Connecting universe repository..."
 sudo apt update
 sudo add-apt-repository universe
@@ -70,6 +73,5 @@ echo "InstallSQL"
 echo "# InstallWifi"
 echo "# Installtcl # for sqlite build"
 # InstallFossil # for sqlite source code management
-date +%T >> $system_log #
-echo "  COLDSTART_1 Complete." >> $system_log #
+date +%F.%H.%M.%S | sed 's/$/  COLDSTART_1 Complete. &/' >> $system_log #
 echo "  COLDSTART_1 Complete."
