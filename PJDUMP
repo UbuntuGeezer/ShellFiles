@@ -1,6 +1,6 @@
 #!/bin/bash
 #PJDUMP - emulate incremental Cyber PFDUMP of <project-name> using predetermined directory names.
-#  2/11/21.  18:00 PJLOAD NEEDS TO BE REWRITTEN TO BRING PROJECT BACK TO
+#  4/19/21.  12:20 PJLOAD NEEDS TO BE REWRITTEN TO BRING PROJECT BACK TO
 #            /Windows/../StagingArea-In
 #                   FROM ../USB20FD/git-Projects ($BACKUP_PATH)
 # Usage. bash PJDUMP <backup-path> <project-name>
@@ -25,6 +25,8 @@
 #               string length
 # 2/11/21. wmk. mods to use LOGMSG to log dump to system log; FD and GP
 #				environment vars added.
+# 4/19/21. wmk. bug fix where == test throwing error if user cancels.
+
 # 7/17/20. Notes. A new bash shell is expected to be resident on each primary
 # <project-name> path, named BU-Ignores.sh. This bash script will be invoked
 # by PJDUMP to backup files that are ignored by git during cloning or commit
@@ -47,11 +49,11 @@ SFX="_"
 if [ -z TEMP_PATH ]; then
   TEMP_PATH=$HOME/temp #
 fi
-if [ -z $FD ] ; then
+if [ -z "$FD" ] ; then
   echo -e "No backup drive specified (e.g. USB20FD)\nPJDUMP Abandoned."
   exit 1
 fi
-if [ -z $GP ] ; then
+if [ -z "$GP" ] ; then
   echo -e "No Project specified (e.g. OpenOffice-Basics)\nPJDUMP Abandoned."
   exit 1
 fi
@@ -70,7 +72,7 @@ echo -e "PJDUMP Initiated..\nSource = $WINGIT_PATH/$GP "
 echo -e "Destination = $U_DISK/$FD/$PJ_BACK "
 echo -e "*** WARNING - MAKE SURE NO OTHER APPS ARE RUNNING BEFORE PROCEEDING ***"
 read -p "Do you wish to proceed? (y/n)"
-if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
+if [ "$REPLY" == 'y' ] || [ "$REPLY" == 'Y' ]; then
  echo "  Proceeding with PJDUMP..."
 else
 # echo "  PJDUMP abandoned - user wants to close other apps." >> $system_log
@@ -124,7 +126,7 @@ if [ -z $bu_ainthere ]; then
   echo -e "Backup of $GP exists..."
   echo -e "\nLooking for $BACKUP_PATH/$GP$SFX " >>$TEMP_PATH/scratch.txt
   read -p "OK to recycle and proceed? (y/n)"
-  if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
+  if [ "$REPLY" == 'y' ] || [ "$REPLY" == 'Y' ]; then
     if ls ./$GP$SFX >> $TEMP_PATH/scratch.txt ; then
       rm -r -f ./$GP$SFX          # remove oldest backup
     fi # end secondary backup exists conditional
@@ -146,7 +148,7 @@ fi  # end no primary backup present conditional
 
 read -p "New backup area vacant. Proceed with PJDUMP (y/n)? "
 
-if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
+if [ "$REPLY" == 'y' ] || [ "$REPLY" == 'Y' ]; then
   echo "PJDUMP proceeding..."
 else
   echo "PJDUMP Abandoned at user request."
@@ -167,7 +169,7 @@ if [ $? -eq 0 ]; then
   bash ~/sysprocs/LOGMSG "  Backup clone complete..."
   echo -e "Backup clone complete..."
   read -p "Do you wish to backup .gitignore files? (y/n)"
-  if [ $REPLY == 'y' ] || [ $REPLY == 'Y' ]; then
+  if [ "$REPLY" == 'y' ] || [ "$REPLY" == 'Y' ]; then
 #    bash ./BU-Ignores.sh $FD
 #     date +%T >> $system_log #
 #     echo "  processing .gitignores to backup." >> $system_log #
