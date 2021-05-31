@@ -1,1 +1,1 @@
-/media/ubuntu/Windows/Users/Bill/Documents/GitHub/ShellFiles /media/ubuntu/Windows/Users/Bill/Documents/GitHub/ShellFiles
+~/GitHub/ShellFiles ~/GitHub/ShellFiles

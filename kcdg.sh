@@ -1,7 +1,6 @@
 #/bin/bas
-# cdg.sh - Change to Windows/../Documents/GitHub subfolder.
-# 5/30/21.	wmk.	modified for multihost system support.
-#	3/17/21.	wmk.
+# kcdg.sh - Change to ~/GitHub subfolder Kay's system.
+#	<date>.	wmk.
 #	Usage. cdg <folder>
 #
 #		<folder> - folder to change to in GitHub.
@@ -12,14 +11,10 @@
 # Modification History.
 # ---------------------
 # 3/17/21.	wmk.	original shell
+# 5/25/21.	wmk.	modified for use with Kay's system.
 #date +%T >> $system_log #
-if [ "$HOME" = "/home/bill" ]; then
- folderbase=$HOME
-else 
- folderbase="/media/ubuntu/Windows/Users/Bill"
-fi
 if [ -z "$system_log" ]; then
- system_log=$folderbase"/ubuntu/SystemLog.txt"
+ system_log="/home/bill/ubuntu/SystemLog.txt"
 fi
 if [ -z "$1" ]; then
 bash ~/sysprocs/LOGMSG "   user changed to ~/GitHub folder."
@@ -29,4 +24,3 @@ bash ~/sysprocs/LOGMSG "   user changed to ~/GitHub/$1 folder."
  cd $WINGIT_PATH/$1
 fi 
 #end cdg proc
-

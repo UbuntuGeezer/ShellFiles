@@ -1,7 +1,7 @@
 #!/bin/bash
-# SYSEDIT - Perform update to running system configuration and associated files.
-#	3/1/21.	wmk. 11:30
-# Usage.  bash SYSEDIT <option>  <shellfile-name>
+# KSYSEDIT - Perform update to running system configuration and associated files.
+#	<date>.	wmk. 7:07
+# Usage.  bash KSYSEDIT <option>  <shellfile-name>
 #
 #   <option> = SYSEDIT option; to be defined, but can be .bashrc or .gitconfig update,
 #              LibreCalc update to mention a few...
@@ -34,6 +34,7 @@
 # 3/1/21.	wmk.	modified for running with make; no environment vars
 #					inherited.
 # 5/25/21.	wmk.	modified for running on Kay's system; KSYSEDIT.
+# 5/26/21.	wmk.	.kbashrc support on Kay's system.
 # Notes.
 #      LibreCalc/LibreOffice operations:
 #      copy $WINGIT_PATH/Libraries-Project/BadAss to $CALC_LIB_PATH
@@ -53,9 +54,9 @@ function jumpto
     exit
 }
 if [ -z $system_log ]; then
-  system_log=$HOME/SystemLog.txt
-  WINGIT_PATH="/media/ubuntu/Windows/Users/Bill/Documents/GitHub"
-  WINUBUNTU_PATH="/media/ubuntu/Windows/Users/Bill/ubuntu"
+  system_log=/home/bill/ubuntu/SystemLog.txt
+  WINGIT_PATH="/home/bill/GitHub"
+  WINUBUNTU_PATH="/home/bill/ubuntu"
 fi
 touch $system_log #
 bash ~/sysprocs/LOGMSG "  SYSEDIT initiated."
@@ -135,21 +136,21 @@ case $sysedit_mode in
 "bash")
 #    date +%T >> $system_log #
 #    echo "  SYSEDIT mode = '$sysedit_mode' " >> $system_log 
-#    echo "  updating ~/.bashrc" >> $system_log
- bash ~/sysprocs/LOGMSG "  SYSEDIT mode = '$sysedit_mode'\n  updating ~/.bashrc"
+#    echo "  updating ~/.bashrc from .kbashrc" >> $system_log
+ bash ~/sysprocs/LOGMSG "  SYSEDIT mode = '$sysedit_mode'\n  updating ~/.bashrc from .kbashrc"
     echo "  SYSEDIT mode = '$sysedit_mode' "
-    echo "  updating ~/.bashrc..."
-    cp -u $WINGIT_PATH/ShellFiles/.bashrc ~/.bashrc
-    echo "  updating $WINUBUNTU_PATH/sysstart/.bashrc..." >> $system_log
+    echo "  updating ~/.bashrc from .kbashrc..."
+    cp -u $WINGIT_PATH/ShellFiles/.kbashrc ~/.bashrc
+    echo "  updating $WINUBUNTU_PATH/sysstart/.bashrc from .kbashrc..." >> $system_log
 # bash ~/sysprocs/LOGMSG "  updating $WINUBUNTU_PATH/sysstart/.bashrc..."
 #    echo "  updating $WINUBUNTU_PATH/sysstart/.bashrc..."
-    cp -u $WINGIT_PATH/ShellFiles/.bashrc $WINUBUNTU_PATH/sysstart
+    cp -u $WINGIT_PATH/ShellFiles/.kbashrc $WINUBUNTU_PATH/sysstart
 #    echo "  updating $WINUBUNTU_PATH/sysstart/.bashrc..." >> $system_log
- bash ~/sysprocs/LOGMSG "  updating $WINUBUNTU_PATH/sysstart/.bashrc..."
-    echo "  updating ~/sysstart/.bashrc..."
-    cp -u $WINGIT_PATH/ShellFiles/.bashrc ~/sysstart
-    date +%T >> $system_log #
-    echo "  SYSEDIT complete." >> $system_log 
+ bash ~/sysprocs/LOGMSG "  updating $WINUBUNTU_PATH/sysstart/.bashrc from .kbashrc..."
+    echo "  updating ~/sysstart/.bashrc from .kbashrc..."
+    cp -u $WINGIT_PATH/ShellFiles/.kbashrc ~/sysstart
+#    date +%T >> $system_log #
+#    echo "  SYSEDIT complete." >> $system_log 
  bash ~/sysprocs/LOGMSG "  SYSEDIT complete."
     echo "  SYSEDIT complete."
     echo "  exit and restart Terminal to pick up changes..."

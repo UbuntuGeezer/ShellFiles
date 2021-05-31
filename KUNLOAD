@@ -1,0 +1,22 @@
+#!/bin/bash
+#KUNLOAD - eject specified USB flash drive Kay's system.
+#	5/26/21.		wmk.
+# Usage. UNLOAD <drive-name>
+#	9/1/20. 	wmk.	original shell
+#	11/13/20. 	wmk.	alert added
+#   2/12/21. 	wmk.	change to use LOGMSG for system log messages.
+#	5/26/21.		wmk.	modified to work on Kay's system; name change to 
+#						KUNLOAD.
+#date +%T >> $system_log #
+if [ -z "$1" ]; then
+#  echo "  eject ignored.. must specify flash drive name." >> $system_log #
+  echo "  UNLOAD ignored.. must specify flash drive name."
+else
+#  echo "  eject $1 - initiated from Terminal" >> $system_log #
+  bash ~/sysprocs/LOGMSG "  UNLOAD(KUNLOAD)/eject $1 - initiated from Terminal"
+  echo "  UNLOAD (KUNLOAD) $1 - initiated from Terminal"
+  eject $U_DISK/$1
+  notify-send "UNLOAD" "Safe to remove $1"
+  bash ~/sysprocs/LOGMSG "   UNLOAD (KUNLOAD) $1 completed safely."
+  echo "  $1 unloaded - safe to remove"
+fi 

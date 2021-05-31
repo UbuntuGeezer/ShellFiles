@@ -1,5 +1,6 @@
 #/bin/bas
 # cdd.sh - Change to Territories/DB-Dev subfolder.
+# 5/30/21.	wmk.	modified for multihost system support.
 #	2/20/21.	wmk.
 #	Usage. cdd
 #
@@ -12,8 +13,24 @@
 # 1/27/21.	wmk.	original shell
 # 2/20/21.	wmk.	LOGMSG added.
 #date +%T >> $system_log #
-LOGMSG "  user changed to Territories/DB-Dev folder."
-cd /media/ubuntu/Windows/Users/Bill/Territories/DB-Dev
+if [ "$HOME" = "/home/bill" ]; then
+ folderbase=$HOME
+else 
+ folderbase="$folderbase"
+fi
+if [ -z "$system_log" ]; then
+ system_log=$folderbase"/ubuntu/SystemLog.txt"
+fi
+#
+if [ "$HOME" = "/home/bill" ]; then
+ folderbase=$HOME
+else 
+ folderbase="/media/ubuntu/Windows/Users/Bill"
+fi
+if [ -z "$system_log" ]; then
+ system_log=$folderbase"/ubuntu/SystemLog.txt"
+fi
+~/sysprocs/LOGMSG "  user changed to Territories/DB-Dev folder."
+cd $folderbase/Territories/DB-Dev
 #end cdd proc
-
 

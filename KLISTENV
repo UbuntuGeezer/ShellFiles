@@ -1,0 +1,17 @@
+#!/bin/bash
+# KLISTENV - List persistent environment variables Kay's system.
+#    8/8/20.	wmk.
+# Modification History.
+# ---------------------
+# 8/8/20.	wmk.	original shell.
+# 5/26/21.	wmk.	modified for use with Kay's system.
+echo "U_DISK = $U_DISK"
+echo "WINGIT_PATH = $WINGIT_PATH"
+echo "BACKUP_PATH = $"
+echo "PJ_BACK = $PJ_BACK"
+echo "WINUBUNTU_PATH = $WINUBUNTU_PATH"
+echo "WINCONG_PATH = $WINCONG_PATH"
+echo "TEMP_PATH =  $TEMP_PATH"
+echo "system_log = $system_log"
+echo "PRINTER = $PRINTER"
+echo "LS_COLORS = <long-list w/o line-breaks>"

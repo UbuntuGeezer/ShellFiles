@@ -58,6 +58,7 @@ else
  exit 1
 fi
 echo -e "BU-Ignores for $MY_PROJ...\n" >> $TEMP_PATH/scratchfile
+echo $PWD
 file='.gitignore'
 i=0
 while read -e; do
@@ -75,7 +76,7 @@ while read -e; do
    filespec=${REPLY:0:len}
 #   cp -r -u -v ./$filespec $FD     >> $TEMP_PATH/scratchfile
    echo " cp -r -u ./$filespec $FD/$MY_PROJ"
-   cp  -r -u  ./$filespec /media/ubuntu/$FD/$PJ_BACK/$MY_PROJ #   
+   cp  -r -u  ./$filespec $U_DISK/$FD/$PJ_BACK/$MY_PROJ #   
    # check for error and increment error counter
 #   error_code=${?}
    if [ $? -eq 0 ]; then  

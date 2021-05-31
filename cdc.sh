@@ -1,6 +1,7 @@
 #/bin/bas
-# cdc.sh - Change to Territories subfolder.
-#	12/26/20.	wmk.
+# cdc.sh - Change to Territories/ subfolder.
+# 5/30/21.	wmk.	modified for multihost system support.
+#	1/20/21.	wmk.
 #	Usage. cdc <folder>
 #
 #		<folder> - folder to change to in Territories.
@@ -11,24 +12,25 @@
 # Modification History.
 # ---------------------
 # 12/26/20.	wmk.	original shell
-#jumpto function definition
-function jumpto
-{
-    label=$1
-    cmd=$(sed -n "/$label:/{:a;n;p;ba};" $0 | grep -v ':$')
-    eval "$cmd"
-    exit
-}
-P1=$1
+# 1/20/21.	wmk.	LOGMSG added.
 #date +%T >> $system_log #
-if [ -z "$P1" ]; then
-LOGMSG "  user changed to /Territories folder."
+if [ "$HOME" = "/home/bill" ]; then
+ folderbase=$HOME
+else 
+ folderbase="/media/ubuntu/Windows/Users/Bill"
+fi
+if [ -z "$system_log" ]; then
+ system_log=$folderbase"/ubuntu/SystemLog.txt"
+fi
+#if [ -z "$1" ]; then
+bash ~/sysprocs/LOGMSG "   user changed to ~/Territories folder."
 cda
 else 
-LOGMSG "  user changed to Territories/$P1 folder."
+bash ~/sysprocs/LOGMSG "   user changed to ~/Territories/$1 folder."
 cda 
-cd ./$P1
+cd ./$1
 fi 
 #end cdc proc
+
 
 
