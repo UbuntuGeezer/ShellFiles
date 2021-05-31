@@ -24,7 +24,6 @@ P1=$1
 #  echo "  StartDaily $P1 - initiated from Terminal" >> $system_log #
 bash ~/LOGMSG "  StartDaily $1 - initiated from Terminal"
   echo "  StartDaily $P1 - initiated from Terminal"
-fi 
 #proc body here
 systemd-run --user --on-calendar 'daily' /bin/bash -c 'date >> "/home/bill/ubuntu/SystemLog.txt"'
 jumpto EndProc
