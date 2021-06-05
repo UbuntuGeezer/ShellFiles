@@ -1,6 +1,9 @@
 #!/bin/bash
 # ReloadSSH - reload SSH configuration from WINUBUNTU/.ssh backup
-#	2/17/21.	wmk.	09:00
+#	6/5/21.	wmk.	18:09
+#
+# Entry.	WINUBUNTU_PATH points to folderbase/ubuntu; on hard-drive
+#			 Windows when running from non-persistent flash drive
 #
 # Modification History.
 # --------------------
@@ -8,6 +11,7 @@
 # 8/4/20.	wmk.	~/ path replaced TEMP_PATH; ifs nested properly
 #					for correct error handling
 # 2/17/21.	wmk.	log messaging using LOGMSG.
+# 6/5/21.	wmk.	documentation; minor bug fixes checking REPLY.
 #
 # Notes. The backup key files for SSH are saved on the system hard
 # drive WINUBUNTU/.ssh subdirectory. The current files in use are
@@ -51,7 +55,7 @@ if [ $? -eq 0 ]; then
    bash ~/sysprocs/LOGMSG "   ssh-add ~/.ssh/id_rsb"
    echo "  ssh-agent is running..." 
    read -p "  Proceed to add keys to running ssh-agent (y/n)? "
-   if [ $REPLY == 'y' ] || [ $REPLY == "Y" ]; then
+   if [ "$REPLY" == "y" ] || [ "$REPLY" == "Y" ]; then
     ssh-add ~/.ssh/id_rsb
     if [ $? -eq 0 ]; then
 #      echo "   .ssh keys successfully added." >> $system_log #
@@ -90,3 +94,4 @@ else
  echo "  .ssh copy failed"
  read -p "Press Enter to continue.."
 fi
+# end ReloadSSH.sh
