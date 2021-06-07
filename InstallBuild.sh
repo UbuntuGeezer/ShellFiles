@@ -1,7 +1,15 @@
 #!/bin/bash
 #InstallBuild.sh - Install make and associated utilities.
-#	3/17/21. - wmk.
+#	6/7/21.	wmk.
+#
+# Modification History.
+# ---------------------
+# 3/17/21.	wmk.	initial shell script.
+# 6/7/21.	wmk.	updated adding autotools-dev and autoconf tools.
+#
 # build-essential supports Geany "make"/Build operations.
+# autotools-dev supports user install operations.
+# autoconf
 #jumpto function definition
 function jumpto
 {
@@ -10,8 +18,8 @@ function jumpto
     eval "$cmd"
     exit
 }
-date +%T >> $system_log #
-echo "  Installing build-essential from repository." >> $system_log #
+#date +%T >> $system_log #
+#echo "  Installing build-essential from repository." >> $system_log #
 bash ~/sysprocs/LOGMSG "  Installing build-essential from repository."
 echo "  Installing build-essential from repository."
 pushd ./ >>junk.txt
@@ -20,7 +28,7 @@ err_code = $?
 popd >>junk.txt
 jumpto EndProc
 EndProc:
-if [ $err_code -eq 0 ]; then
+if [ $err_code eq 0 ]; then
   echo "  InstallBuild complete." >> $system_log #
   echo "  InstallBuild complete."
   read -p -t5 "Press ENTER to continue..."
@@ -28,5 +36,6 @@ else
   echo "  InstallBuild failed." >> $system_log #
   bash ~/sysprocs/LOGMSG "  InstallBuild failed."
   echo "  InstallBuild failed."
-  read -p -t5 "Press ENTER to continue..."
+  read -t5 -p "Press ENTER to continue..."
 fi
+#end InstallBuild.sh
