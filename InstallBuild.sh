@@ -24,14 +24,18 @@ bash ~/sysprocs/LOGMSG "  Installing build-essential from repository."
 echo "  Installing build-essential from repository."
 pushd ./ >>junk.txt
 sudo apt-get install build-essential
+echo "  Installing debhelper from repository."
+sudo apt-get install debhelper
+echo "  Installing dh-make from repository."
+sudo apt-get install dh-make
 err_code = $?
 popd >>junk.txt
 jumpto EndProc
 EndProc:
-if [ $err_code eq 0 ]; then
+if [ $err_code = 0 ]; then
   echo "  InstallBuild complete." >> $system_log #
   echo "  InstallBuild complete."
-  read -p -t5 "Press ENTER to continue..."
+  read -t5 -p  "Press ENTER to continue..."
 else
   echo "  InstallBuild failed." >> $system_log #
   bash ~/sysprocs/LOGMSG "  InstallBuild failed."

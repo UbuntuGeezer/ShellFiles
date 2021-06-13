@@ -34,6 +34,7 @@
 # 3/1/21.	wmk.	modified for running with make; no environment vars
 #					inherited.
 # 5/25/21.	wmk.	modified for running on Kay's system; KSYSEDIT.
+# 6/13/21.	wmk.	modified for any multihost support.
 # Notes.
 #      LibreCalc/LibreOffice operations:
 #      copy $WINGIT_PATH/Libraries-Project/BadAss to $CALC_LIB_PATH
@@ -52,10 +53,15 @@ function jumpto
     eval "$cmd"
     exit
 }
-if [ -z $system_log ]; then
+if [ "$HOME" == "/home/ubuntu" ]; then
+ folderbase=/media/ubuntu/Windows/Users/Bill
+else
+ folderbase=$HOME
+fi
+if [ -z "$system_log"]; then
   system_log=$HOME/SystemLog.txt
-  WINGIT_PATH="/media/ubuntu/Windows/Users/Bill/Documents/GitHub"
-  WINUBUNTU_PATH="/media/ubuntu/Windows/Users/Bill/ubuntu"
+  WINGIT_PATH=$folderbase/Documents/GitHub
+  WINUBUNTU_PATH=$folderbase/ubuntu
 fi
 touch $system_log #
 bash ~/sysprocs/LOGMSG "  SYSEDIT initiated."
@@ -63,7 +69,7 @@ echo "  SYSEDIT initiated."
 sysedit_mode=$1
 sysedit_mode=${sysedit_mode,,}
 sysedit_proc=$2
-if [ -z $sysedit_mode ]; then
+if [ -z "$sysedit_mode" ]; then
   bash ~/sysprocs/LOGMSG "  No SYSEDIT mode specified. SYSEDIT abandoned."
   echo "  No SYSEDIT mode specified. SYSEDIT abandoned."
   jumpto BailOut
@@ -222,7 +228,6 @@ case $sysedit_mode in
     jumpto BailOut;;
 esac     # end case
 #read -p "SYSEDIT stubbed for now... Press Enter to continue..."
-
 jumpto NormalExit
 NormalExit:
 bash ~/sysprocs/LOGMSG "  SYSEDIT completed."

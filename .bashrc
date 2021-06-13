@@ -1,10 +1,16 @@
 #.bashrc: executed by bash for non-login shells.
-#	6/4/21.	wmk.	09:39
+#	6/13/21.	wmk.	17:47
 #
+# Exit.	if not running interactively, do nothing
+#		otherwise ($)folderbase = host path to user "Bill" file system
+#		($)WINGIT_PATH = ($)folderbase)/Documents/GitHub
+#		($)WINUBUNTU_PATH = $(folderbase)/ubuntu
+#		($)WINCONG_PATH  = $(folderbase)
 # Modification History.
 # ---------------------
 # 3/17/21.	wmk.	last modification for 262system.
 # 6/4/21.	wmk.	added SANDISK1, SANDISK2 env vars for flash drives.
+# 6/13/21.	wmk.	multihost support generalized; exit documentation added.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -176,16 +182,16 @@ alias sysedits='. ~/sysprocs/sysedits.sh'
 alias installs='. ~/sysprocs/installs.sh'
 alias ToSysstart='. ~/sysprocs/CP-Sysstart.sh'
 #set some global vars based on which system using...
-if [ "$HOME" == "/home/bill" ]; then
- export folderbase=$HOME
- export U_DISK=/media/bill
-else
+if [ "$HOME" == "/home/ubuntu" ]; then
  export folderbase=/media/ubuntu/Windows/Users/Bill
  export U_DISK=/media/ubuntu
+else
+ export folderbase=$HOME
+ export U_DISK=/media/bill
 fi
 export system_log=$folderbase/ubuntu/SystemLog.txt
 #export U_DISK='/media/ubuntu'
-export SANDISK1=3ACA-C25E
+export SANDISK1=3AC9-C25E
 export SANDISK2=BF7F-D7DA
 export WINGIT_PATH=$folderbase/Documents/GitHub
 export BACKUP_PATH=$U_DISK

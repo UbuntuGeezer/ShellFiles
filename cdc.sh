@@ -1,7 +1,6 @@
 #/bin/bas
 # cdc.sh - Change to Territories/ subfolder.
-# 5/30/21.	wmk.	modified for multihost system support.
-#	1/20/21.	wmk.
+#	6/10.	wmk.
 #	Usage. cdc <folder>
 #
 #		<folder> - folder to change to in Territories.
@@ -13,6 +12,8 @@
 # ---------------------
 # 12/26/20.	wmk.	original shell
 # 1/20/21.	wmk.	LOGMSG added.
+# 5/30/21.	wmk.	modified for multihost system support.
+# 6/10/21.	wmk.	bug fix where # wrapped into if.
 #date +%T >> $system_log #
 if [ "$HOME" = "/home/bill" ]; then
  folderbase=$HOME
@@ -22,7 +23,8 @@ fi
 if [ -z "$system_log" ]; then
  system_log=$folderbase"/ubuntu/SystemLog.txt"
 fi
-#if [ -z "$1" ]; then
+#
+if [ -z "$1" ]; then
 bash ~/sysprocs/LOGMSG "   user changed to ~/Territories folder."
 cda
 else 
