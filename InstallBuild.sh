@@ -1,11 +1,15 @@
 #!/bin/bash
 #InstallBuild.sh - Install make and associated utilities.
-#	6/7/21.	wmk.
+#	6/13/21.	wmk.
 #
+# Exit.	build-essential repository installed.
+#		debhelper binaries installed.
+#		dh-make binaries installed.
 # Modification History.
 # ---------------------
 # 3/17/21.	wmk.	initial shell script.
 # 6/7/21.	wmk.	updated adding autotools-dev and autoconf tools.
+# 6/13/21.	wmk.	debhelper, dh-make utilities added to install.
 #
 # build-essential supports Geany "make"/Build operations.
 # autotools-dev supports user install operations.
