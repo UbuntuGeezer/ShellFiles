@@ -1,5 +1,5 @@
 #.bashrc: executed by bash for non-login shells.
-#	6/13/21.	wmk.	17:47
+#	6/14/21.	wmk.	14:50
 #
 # Exit.	if not running interactively, do nothing
 #		otherwise ($)folderbase = host path to user "Bill" file system
@@ -11,6 +11,7 @@
 # 3/17/21.	wmk.	last modification for 262system.
 # 6/4/21.	wmk.	added SANDISK1, SANDISK2 env vars for flash drives.
 # 6/13/21.	wmk.	multihost support generalized; exit documentation added.
+# 6/14/21.	wmk.	cdq added to aliases.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -176,6 +177,7 @@ alias cdd='. ~/sysprocs/cdd.sh'
 alias cdg='. ~/sysprocs/cdg.sh'
 alias cdj='. ~/sysprocs/cdj.sh'
 alias cdp='. ~/sysprocs/cdp.sh'
+alias cdq='. ~/sysprocs/cdq.sh'
 alias cds='. ~/sysprocs/cds.sh'
 alias cdt='. ~/sysprocs/cdt.sh'
 alias sysedits='. ~/sysprocs/sysedits.sh'

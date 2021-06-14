@@ -100,23 +100,25 @@ termx_ - Terminal session end with log message
 
 Note: many of these are linked to bash aliases in .bashrc.
 
-InstallBlessHex.sh
--rwxrwxrwx 1 ubuntu ubuntu  950 Jul 30  2020 InstallFossil.sh
--rwxrwxrwx 1 ubuntu ubuntu  769 Dec 14 08:15 InstallGoogleEarth.sh
--rwxrwxrwx 1 ubuntu ubuntu  678 Jul 24  2020 InstallPython.sh
--rwxrwxrwx 1 ubuntu ubuntu 1.2K Jul 30  2020 InstallSQLite.sh
--rwxrwxrwx 1 ubuntu ubuntu  344 Oct  7  2020 InstallTPadI.sh
--rwxrwxrwx 1 ubuntu ubuntu  517 Dec 25 08:45 InstallURE.sh
--rwxrwxrwx 1 ubuntu ubuntu  107 Dec 19 11:15 InstallVLC.sh
--rwxrwxrwx 1 ubuntu ubuntu 3.5K Jul 27  2020 InstallWifi.sh
--rwxrwxrwx 1 ubuntu ubuntu  765 Aug  1  2020 InstallZoom.sh
--rwxrwxrwx 1 ubuntu ubuntu  568 Jul 29  2020 Installgit.sh
--rwxrwxrwx 1 ubuntu ubuntu  562 Jul 21  2020 Installmkusb.sh
--rwxrwxrwx 1 ubuntu ubuntu  873 Aug 28  2020 InstallooSDK.sh
--rwxrwxrwx 1 ubuntu ubuntu  297 Nov  1  2020 Installpdftk.sh
--rwxrwxrwx 1 ubuntu ubuntu  421 Mar  9 05:59 Installshellcheck.sh
--rwxrwxrwx 1 ubuntu ubuntu  579 Jul 30  2020 Installtcl.sh
--rwxrwxrwx 1 ubuntu ubuntu  718 Jul 24  2020 Installtestdisk.sh
+InstallBlessHex.sh - install Bless hex file editor.
+InstallFossil.sh - install Fossil source code maintenance (sqlite source).
+InstallGoogleEarth.sh - install Google Earth.
+InstallGStream.sh - install GStream MP4 plugins.
+InstallPython.sh - install Python.
+InstallSQLite.sh - install sqlite3.
+InstallTPadI.sh - install touch-pad indicator.
+InstallURE.sh - install restricted extras (MP4 player, etc.)
+InstallVLC.sh - install VLC video player.
+InstallWifi.sh - (incompatible) install wifi drivers.
+InstallZoom.sh - (obsolete) install Zoom.
+Installgit.sh - install git utility.
+Installmkusb.sh - install make usb bootable Ubuntu.
+InstallooSDK.sh - install Open Office SDK.
+Installpdftk.sh - install pdf toolkit.
+Installshellcheck.sh - install shellcheck utility (Geany Build dependency).
+Installtcl.sh - install tcl scripting language (SQLite source dependency).
+Installtestdisk.sh - testdisk utility; allows deleted file recovery and ot - her
+  specialized disk functions.
 
 
 Bash Command Alias Implementations.
