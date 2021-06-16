@@ -1,6 +1,6 @@
 #!/bin/bash
 # SYSEDIT - Perform update to running system configuration and associated files.
-#	3/1/21.	wmk. 11:30
+#	6/13/21.	wmk. 11:30
 # Usage.  bash SYSEDIT <option>  <shellfile-name>
 #
 #   <option> = SYSEDIT option; to be defined, but can be .bashrc or .gitconfig update,
