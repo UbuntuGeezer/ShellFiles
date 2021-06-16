@@ -1,6 +1,6 @@
 #/bin/bash
 #CP-AcctsToMirror.sh -  (Dev) Copy all subdirectories to accounting Mirror.
-# 11/17/20.	wmk.
+# 6/16/21.	wmk.
 #	Usage. bash CP-AcctsToMirror.sh <target-base>
 #		<target-base>  - root folder for copy (e.g. Windows/Users/Bill)
 #
@@ -14,7 +14,8 @@
 #
 # Modification History.
 # ---------------------
-# 11/17/20.	wmk.	original shell
+# 11/17/20.	wmk.	original shell.
+# 6/16/21.	wmk.	mod to abandon if persistent system.
 #jumpto function definition
 function jumpto
 {
@@ -24,6 +25,10 @@ function jumpto
     exit
 }
 date +%T >> $system_log #
+if [ "$HOME" != "/home/ubuntu" ]; then
+ echo "  CP-AcctstoMirror attempted on persistent system - abandoned."
+ exit 0
+fi
 if [ -z "$1" ]; then
   echo "  CP-AcctsToMirror.. -param not specified - abandoned." >> $system_log #
   echo "  CP-AcctsToMirror.. must specify -param."

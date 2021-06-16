@@ -1,6 +1,22 @@
 #gogit - Shell to move to GitHub from $HOME directory.
-#	7/12/20.	09:00
-cd Documents/GitHub
-echo -e "Moved to GitHub/rUse cd /<project-name> to move to git project."
+#	6/16/21.	wmk.
+#
+# Usage.	. gogit
+#
+# Entry. ($)HOME is /home/.. folder path
+#
+# Modification History.
+# ---------------------
+# 7/12/20.	wmk.	original code.
+# 6/16/21.	wmk.	multihost support.
+# Notes. run with '. gogit' to preserve directory change.
+if [ "$HOME" == "/home/ubuntu" ]; then
+ folderbase="/media/ubuntu/Windows/Users/Bill"
+ cd $folderbase/Documents/GitHub
+else 
+ folderbase=$HOME
+ cd $folderbase/GitHub
+fi
+echo -e "Moved to GitHub\nUse cd ./<project-name> to move to git project."
 read -p "Press Enter to continue..."
-
+# end gogit

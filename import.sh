@@ -1,9 +1,14 @@
 #!/bin/bash
 #import.sh - import git project git subdirectory using "git clone"
-#	7/14/20.	wmk.
+#	6/16/21.	wmk.
 # Usage. bash ./import.sh <project-name>
 # Entry.	current subdirectory should be 'git Projects'
 #
+# Modification History.
+# ---------------------
+# 7/14/20.	wmk.	original code.
+# 6/16/21.	wmk.	mod to abandon if persistent system; LOGMSG used.
+# Notes.
 # by using git clone to import, it insures that the 'StagingArea-In' subdirectory
 # has a ligitimat git project that can be cloned into the appropriate project
 # subdirectory. The files are properly cloned so the project is complete. It is up
@@ -13,6 +18,10 @@
 # and proceed with the git clone to clone the project from 'StagingArea-In. If the
 # project does exist, the project subdirectory should be deleted before cloning.
 #set -e			# don't exit on error
+if [ "$HOME" != "/home/ubuntu" ]; then
+ echo "  Import attempted on persistent system - abandoned."
+ exit 0
+fi
 pushd ./
 #move to backup path and project, verify is git
 cd $BACKUP_PATH

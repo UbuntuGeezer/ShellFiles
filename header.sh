@@ -1,6 +1,6 @@
 #/bin/bash
 #header.sh - bash proc short description
-# mm/dd/yy.	wmk.		10/14/20.	wmk.
+# mm/dd/yy.	wmk.		6/16/21.	wmk.
 #	Usage. bash proc-name <params>
 #		<params> - description of passed parameters
 #
@@ -23,13 +23,20 @@ start=${1:-"start"}
 jumpto $start
 
 start:
-date +%T >> $system_log #
+#date +%T >> $system_log #
+if [ "$HOME" == "/home/ubuntu" ]; then
+ folderbase="/media/ubuntu/Windows/Users/Bill"
+ cd $folderbase/Documents/GitHub
+else 
+ folderbase=$HOME
+ cd $folderbase/GitHub
+fi
 if [ -z "$1" ]; then
   echo "  proc-name ignored.. must specify <parameter>." >> $system_log #
   echo "  proc-name ignored.. must specify f<parameter>."
   exit 1
 else
-  echo "  proc-name $1 - initiated from Terminal" >> $system_log #
+  ~/sysprocs/LOGMSG "  proc-name $1 - initiated from Terminal"
   echo "  proc-name $1 - initiated from Terminal"
 fi 
 #proc body here

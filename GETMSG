@@ -1,8 +1,17 @@
 #!/bin/bash
 # GETMSG - Get message strings for next Terminal startup.
-#	12/15/20.  wmk.  22:15
+#	6/16/21.  wmk.
 # Usage. bash GETMSG 
+#
+# Entry. ($)WINUBUNTU_PATH = ubuntu path this system
+#
+# Exit.
 #	message to be issued next time term_ is displayed in terminal window.
-
-# Note. 8/5/20 moved to persistent storage.
+#
+# Modification History.
+# ---------------------
+# ??		wmk.	original code.
+# 8/5/20.	wmk.	moved to persistent storage /ubuntu/term-user-msg.txt.
+# 12/15/20.	wmk.	less used to display text.
+# 6/16/21.	wmk.	documentation udpated.
 less $WINUBUNTU_PATH/term_user_msg.txt

@@ -1,11 +1,16 @@
 #!/bin/bash
 #EJECT - eject specified USB flash drive.
-#	2/12/21.	wmk.
+#	6/16/21.	wmk.
 # Usage. EJECT <drive-name>
-#	9/1/20. original shell
-#	11/14/20. notify-send added
-#	2/12/21. one-line log messages
-#date +%T >> $system_log #
+#
+# Entry.	($)U_DISK environment var set for unloadable devices
+#
+# Modification History.
+# ---------------------
+# 9/1/20.	wmk.	original shell.
+# 11/14/20. wmk.	notify-send added.
+# 2/12/21. 	wmk.	one-line log messages.
+# 6/16/21.	wmk.	multihost support.
 if [ -z "$1" ]; then
 #  echo "  eject ignored.. must specify flash drive name." >> $system_log #
 #  bash ~/sysprocs/LOGMSG "  eject ignored.. must specify flash drive name."
@@ -14,9 +19,9 @@ else
   echo "  eject $1 - initiated from Terminal" >> $system_log #
   bash ~/sysprocs/LOGMSG "  eject $1 - initiated from Terminal"
   echo "  eject $1 - initiated from Terminal"
-  eject /media/ubuntu/$1
+  eject $U_DISK/$1
   notify-send "EJECT" "Safe to remove $1"
   bash ~/sysprocs/LOGMSG "  $1 ejected safely."
   echo "  $1 ejected - safe to remove"
 fi 
-
+#end EJECT
