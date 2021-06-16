@@ -1,33 +1,47 @@
 READMESSH - Documentation on SSH key generation and GitHub registration.
 
-Generating a new SSH key
+Check to see if ssh-agent is running by using PSFIND to attempt to locate
+it in the running tasks. (at the ":" prompt enter "/ssh-agent") So far
+on all systems it has already been initiated at startup.
 
+Generating a new SSH key.
+-------------------------
     Open Terminal.
 
     Paste the text below, substituting in your GitHub email address.
+      e.g. UbuntuGeezer@github.com
 
     $ ssh-keygen -t ed25519 -C "your_email@example.com"
 
     Note: If you are using a legacy system that doesn't support the Ed25519 algorithm, use:
-
+	(Note: on the nonpersistent ubuntu 18.0.4 system, the following was used
+	 and the resultant files were rsa and rsa.pub in the .ssh folder.)
+	 
     $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 
+ 
     This creates a new ssh key, using the provided email as a label.
 
     > Generating public/private ed25519 key pair.
 
-    When you're prompted to "Enter a file in which to save the key," press Enter. This accepts the default file location.
-
+    When you're prompted to "Enter a file in which to save the key," press Enter.
+     This accepts the default file location.
+	 (to be sure I used: ~/.ssh/id_ed25519
+	  note the underscore character is invisible in kaysacer/Geany)
+	  
     > Enter a file in which to save the key (/home/you/.ssh/id_ed25519): [Press enter]
 
-    At the prompt, type a secure passphrase. For more information, see "Working with SSH key passphrases."
-
+    At the prompt, type a secure passphrase. For more information, see "Working with
+     SSH key passphrases."
+	For the prompts below, I used the Hebrew password..
     > Enter passphrase (empty for no passphrase): [Type a passphrase]
     > Enter same passphrase again: [Type passphrase again]
 
-Adding your SSH key to the ssh-agent
 
-Before adding a new SSH key to the ssh-agent to manage your keys, you should have checked for existing SSH keys and generated a new SSH key.
+Adding your SSH key to the ssh-agent.
+-------------------------------------
+Before adding a new SSH key to the ssh-agent to manage your keys, you should
+ have checked for existing SSH keys and generated a new SSH key.
 
     Start the ssh-agent in the background.
 
@@ -42,6 +56,17 @@ Before adding a new SSH key to the ssh-agent to manage your keys, you should hav
 
     Add the SSH key to your account on GitHub. For more information, see "Adding a new SSH key to your GitHub account."
 
+		Using a text editor (like Geany) open the ~/.ssh/<keyfile>.pub file and copy the
+		 SSH key in its entirety to the clipboard
+		Click on your account icon in the upper right corner of the github web page
+		Click on Settings
+		From the Account Settings menu at the left of the page, click on SSH and GPG keys
+		After checking for the key already in existence, click the green "New SSH Key" button
+		Enter the identifying name for the key in the "Title" field
+		Paste the key from the clipboard into the "Key" field
+		Click the green "Add Key" button
+		
+-----
 The git remote set-url command takes two arguments:
 
     An existing remote name. For example, origin or upstream are two common choices.
@@ -54,4 +79,7 @@ The git remote set-url command takes two arguments:
 
         git@github.com:USERNAME/REPOSITORY.git
 
+For the ShellFiles project: 
+
+git remote set-url origin git@github.com:UbuntuGeezer/ShellFiles.git
 
