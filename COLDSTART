@@ -1,6 +1,6 @@
 #!/bin/bash
 # COLDSTART - bash shell to be run after hard reset of system.
-#	3/22/21.	wmk.	23:13
+#	6/15/21.	wmk.	23:42
 # Usage.   bash COLDSTART
 # Entry. environment var startup_src set in .bashrc
 # Exit. System time set to Eastern time
@@ -42,8 +42,15 @@
 #					InstallTPadI added
 # 2/11/21.	wmk.	log messages consolidated with date/time stamp.
 # 3/22/21.	wmk.	bug fix where log messages not going to main system log.
+# 6/15/21.	wmk.	documentation; code improvements; persistent Ubuntu
+#					detection/ignore.
+# check if running on persistent system..
+if [ "$HOME" != "/home/ubuntu" ]; then
+ echo "  COLDSTART attempted on persistent system - abandoned."
+ exit 0
+fi
 timedatectl set-timezone America/New_York #
-if [ -z $system_log ]; then
+if [ -z "$system_log" ]; then
   system_log="/media/ubuntu/Windows/Users/Bill/ubuntu/SystemLog.txt"
 else
   echo "system_log environment var already set."

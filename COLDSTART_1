@@ -1,6 +1,6 @@
 #!/bin/bash
 # COLDSTART_1 - bash shell to be run after COLDSTART has completed.
-#	3/22/21.	wmk.	23:22
+#	6/15/21.	wmk.	23:50
 # Usage.   bash COLDSTART_1
 # Entry. System time set to Eastern time
 #	Initialize System Log file
@@ -40,7 +40,14 @@
 # 				invoked prior to Install procs
 # 3/22/21. wmk.	systemlog properly set if not previously set; log messages
 #				consolidated with time stamp.
-if [ -z $system_log ]; then
+# 6/15/21. wmk.	documentation; code improvements; persistent Ubuntu
+#				detection/ignore.
+# check if running on persistent system..
+if [ "$HOME" != "/home/ubuntu" ]; then
+ echo "  COLDSTART attempted on persistent system - abandoned."
+ exit 0
+fi
+if [ -z "$system_log" ]; then
   system_log="/media/ubuntu/Windows/Users/Bill/ubuntu/SystemLog.txt"
 else
   echo "system_log environment var already set."

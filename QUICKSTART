@@ -1,6 +1,6 @@
 #!/bin/bash
 # QUICKSTART - abbreviated system startup only installing Zoom.
-#	7/23/20.	wmk.	12:30
+#	6/15/21.	wmk.	00:03
 # Usage. bash QUICKSTART
 # Exit.  key initializations performed; bare bones ubuntu runnning
 #	System time set to Eastern time
@@ -16,6 +16,13 @@
 # --------------------
 # 7/23/20.	wmk.	moved term_ and termx_ to /sysprocs; added
 #                       Installtestdisk and InstallPython to /sysprocs
+# 6/15/21. wmk.	documentation; code improvements; persistent Ubuntu
+#				detection/ignore.
+# check if running on persistent system..
+if [ "$HOME" != "/home/ubuntu" ]; then
+ echo "  QUICKSTART attempted on persistent system - abandoned."
+ exit 0
+fi
 timedatectl set-timezone America/New_York #
 if [ -z $system_log ]; then
   system_log=$HOME/SystemLog.txt
