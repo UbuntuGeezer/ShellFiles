@@ -13,5 +13,4 @@ else
 fi
 systemd-run --user --on-calendar 'daily' /bin/bash -c "date >> $folderbase/ubuntu/SystemLog.txt"
 ~/sysprocs/LOGMSG "systemd-run --user --on-calendar 'daily' /bin/bash -c 'date >> $folderbase/ubuntu/SystemLog.txt'"
-
-
+# end StartDaily.sh

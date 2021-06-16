@@ -1,6 +1,6 @@
 #!/bin/bash
 # term_ - standard terminal starup bash script.
-#	2/14/21.	wmk.	01:45
+#	6/16/21.	wmk.	06:53
 # Usage. bash terminal_ <option>
 #	<option> = if present, list environment variables from .bashrc
 #
@@ -9,6 +9,10 @@
 #	PJ_BACK = 'git-Projects
 #	WINGIT_PATH = /media/ubuntu/Windows/Users/Bill/Documents/GitHub
 #	WINUBUNTU_PATH = /media/ubuntu/Windows/Users/Bill/ubuntu
+#	folderbase = base path to user files set in .bashrc
+#	~/ubuntu/SessionLogged.txt exists if not first term(underscore) since
+#	   termx(underscore) X
+#
 # Modification History.
 # --------------------
 # 7/??/20.  wmk.	original script
@@ -19,16 +23,32 @@
 # 2/12/21.	wmk.	LOGMSG used to message to system_log.
 # 2/14/21.	wmk.	bu_ environment var set /media/ubuntu/Windows/StagingAreaIn
 # 2/21/21.	wmk.	LOGMSG direct calls failed; use sysprocs path.
+# 6/16/21.	wmk.	multihost support added; ($)system_log entry for day start.
 # Notes.
 # By entering the "term_" command, the user makes a $system_log entry
 # with the time stamp of when the bash session was started. [If a parameter
 # is included, it will be a quoted literal that will also be recorded in
 # the $system_log.] If the file ~/term_user_msg.txt exists, it will be displayed.
-#date +%T >> $system_log #
-#echo "  Terminal app started." >> $system_log #
+# If this is the first time term has been started since termx X, a system log
+# message is created with a date/time stamp indicating that the User session day
+# started. This is to facilitate dividing the system log by days where
+# no timer is running at midnight when the date rolls over. (See termx shell.)
 bash ~/sysprocs/LOGMSG "  Terminal app started."
+if [ "$HOME" == "/home/ubuntu" ]; then
+ folderbase=/media/ubuntu/Windows/Users/Bill
+else
+ folderbase=$HOME
+fi
+#if first time today, log start time.
+if file ~/ubuntu/SessionLogged.txt >$TEMP_PATH/scratchfile; then
+ echo "Session logged."
+else
+ touch ~/ubuntu/SessionLogged.txt
+ echo "Session log started."
+ date | sed 's/$/   User session day started.&/' >> $system_log
+fi
 bu_="/media/ubuntu/Windows/StagingAreaIn"
-if [ -z $1 ]; then
+if [ -z "$1" ]; then
   echo "Terminal app started."
 else
   echo "Terminal app started."

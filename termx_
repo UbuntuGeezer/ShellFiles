@@ -1,12 +1,35 @@
 #!/bin/bash
 #termx_ - bash script when exiting Terminal app.
-# 2/13/20.	wmk.
-# Usage.	termx_ from anywhere.
+# 6/16/20.	wmk.
+# Usage.	termx_ <option>
+#
+#	<option> = if any non-null specifies end session day
 #
 # termx_ exits the Terminal app after issuing a System Log message.
+#
+# Modification History.
+# ---------------------
+# 2/13/20.	wmk.	original code.
+# 6/16/21.	wmk.	multihost support; 'x' option added for end-of-day exit.
 #date +%T >> $system_log #
 #echo "  Exiting Terminal app." >> $system_log #
+P1=$1
 bash ~/sysprocs/LOGMSG "  Exiting Terminal app."
-echo "Enter 'exit' command or close Terminal window with [x].."
+if [ "$HOME" == "/home/ubuntu" ]; then
+ folderbase=/media/ubuntu/Windows/Users/Bill
+else
+ folderbase=$HOME
+fi
+#if end-of-day, remove SessionLogged.txt.
+if [ -z "$P1" ]; then
+  echo "Enter 'exit' command or close Terminal window with [x].."
+else
+  if test -f ~/ubuntu/SessionLogged.txt; then
+   rm ~/ubuntu/SessionLogged.txt
+   echo "Session log cleared."
+   echo "Enter 'exit' command or close Terminal window with [x].."
+   date | sed 's/$/   User session day ended.&/' >> $system_log
+  fi
+fi
 
 
