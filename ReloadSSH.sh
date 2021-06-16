@@ -2,7 +2,7 @@
 # ReloadSSH - reload SSH configuration from WINUBUNTU/.ssh backup
 #	6/5/21.	wmk.	18:09
 #
-# Entry.	WINUBUNTU_PATH points to folderbase/ubuntu; on hard-drive
+# Entry.	($)WINUBUNTU-PATH points to folderbase/ubuntu; on hard-drive
 #			 Windows when running from non-persistent flash drive
 #
 # Modification History.
@@ -14,7 +14,7 @@
 # 6/5/21.	wmk.	documentation; minor bug fixes checking REPLY.
 #
 # Notes. The backup key files for SSH are saved on the system hard
-# drive WINUBUNTU/.ssh subdirectory. The current files in use are
+# drive WINUBUNTU-PATH/.ssh subdirectory. The current files in use are
 # the id_rsb files and the known_hosts file. When ReloadSSH completes
 # moving the files back onto the ubuntu-live system, it also sets the
 # files' mode to 600 so the files meet the protection level ssh-agent

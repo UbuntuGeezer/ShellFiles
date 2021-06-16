@@ -1,7 +1,12 @@
 #!/bin/bash
 #PFLOAD - emulate incremental Cyber PFLOAD using predetermined directory names.
-#  7/15/20.  11:00 NEEDS TO BE REWRITTEN TO BRING PROJECT BACK TO /Windows/../StagingArea-In
+#  6/16/21.  11:00 NEEDS TO BE REWRITTEN TO BRING PROJECT BACK TO /Windows/../StagingArea-In
 #                   FROM ../USB20FD/git-Projects
+# Modification History.
+# ---------------------
+# 7/15/20.	wmk.	original code.
+# 6/16/21.	wmk.	mod to abandon if persistent system; LOGMSG used.
+# Notes.
 # Because of the volatility of ubuntu non-persistent, and the risk of unexpected crashes
 # git Projects will only be modifie on the Windows hard-drive. This stands the best chance
 # of not losing local changes.
@@ -9,6 +14,10 @@
 # options: 1) delete the Project on the /Windows hard drive and use PFLOAD to do a full
 # reload, then PFDESTAGE to clone it back from the StagingArea-In, or 2) use
 # "git clone origin <project-name>" to re-clone from the last push to GitHub.
+if [ "$HOME" != "/home/ubuntu" ]; then
+ echo "  PFLOAD attempted on persistent system - abandoned."
+ exit 0
+fi
 echo -e "PFLOAD Initiated..\nSource = /media/ubuntu/USB20FD/StagingArea-In/PNY-StagingArea-In"
 echo -e "Destination = /media/ubuntu/USB20FD"
 read -p "Proceed with PFLOAD? (y/n)"

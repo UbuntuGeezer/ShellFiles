@@ -1,6 +1,6 @@
 #!/bin/bash
 #PJLOAD - emulate full Cyber PFLOAD of <project-name> using predetermined directory names.
-#  7/24/20.  11:30 PJLOAD NEEDS TO BE REWRITTEN TO BRING PROJECT BACK TO
+#  6/16/21.  11:30 PJLOAD NEEDS TO BE REWRITTEN TO BRING PROJECT BACK TO
 #            /Windows/../StagingArea-In
 #                   FROM ../USB20FD/git-Projects ($BACKUP_PATH)
 # Usage. bash PJLOAD <flash_drive> <project-name>
@@ -19,11 +19,13 @@
 #
 # Modification History.
 # --------------------
-# 7/24/20. wmk.	WARNING added to not run anything else while project backup
+# 7/24/20.	wmk.	WARNING added to not run anything else while project backup
 # 		is in progress; updated to use new environment vars $U_DISK
 #               and $PJ_BACK
-# 7/25/20. wmk. changed line 108 to evaluate bu_ainthere before testing
+# 7/25/20.	wmk. changed line 108 to evaluate bu_ainthere before testing
 #               string length
+# 6/16/21.	wmk.	multihost support.	
+# Notes.
 # 7/17/20. Notes. A new bash shell is expected to be resident on each primary
 # <project-name> path, named BU-Ignores.sh. This bash script will be invoked
 # by PJDUMP to backup files that are ignored by git during cloning or commit
@@ -40,14 +42,19 @@
 # subdirectory to receive a clone of the project by just using "git clone". The user
 # have to ensure that any files spec'd in .gitignore are copied to the dump area
 # separately from the "git clone".
-if [ -z TEMP_PATH ]; then
+if [ "$HOME" = "/home/ubuntu" ]; then
+ folderbase="/media/ubuntu/Windows/Users/Bill"
+else 
+ folderbase=$HOME
+fi
+if [ -z "TEMP_PATH" ]; then
   TEMP_PATH=$HOME/temp #
 fi
-if [ -z $1 ] ; then
+if [ -z "$1" ] ; then
   echo -e "No backup drive specified (e.g. USB20FD)\nPJDUMP Abandoned."
   exit 1
 fi
-if [ -z $2 ] ; then
+if [ -z "$2" ] ; then
   echo -e "No Project specified (e.g. OpenOffice-Basics)\nPJDUMP Abandoned."
   exit 1
 fi

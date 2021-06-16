@@ -1,15 +1,26 @@
 #!/bin/bash
 # SETBACK - Set BACKUP_PATH to match flash drive currently in use.
-#	7/23/20.	wmk.	21:45
-date +%T >> $system_log #
-echo "  SETBACK started to set BACKUP_PATH to mounted flash drive.." >> $system_log #
+#	6/16/20.	wmk.
+#
+# Usage.	. SETBACK (keeps BACKUP-PATH with this environment)
+#
+# Entry. ($)U-DISK = removable device path prefix this system.
+#
+# Exit.  ($)BACKUP-PATH = ($)U-DISK/<flashdrive>/git-Projects
+#
+# Modification History.
+# --------------------
+# 7/23/20.	wmk.	original code.
+# 6/16/21.	wmk.	code updated; ($)U-DISK for multihost support.
+#date +%T >> $system_log #
+~/sysprocs/LOGMSG "  SETBACK started to set BACKUP_PATH to mounted flash drive.."
 echo "  SETBACK started to set BACKUP_PATH to mounted flash drive.."
-if  ls  /media/ubuntu/$1 > $TEMP_PATH/scratch ; then
- BACKUP_PATH=/media/ubuntu/$1/git-Projects #
- echo "  BACKUP_PATH set to $BACKUP_PATH " >> $system_log #
+if  test -d $U_DISK/$1; then
+ BACKUP_PATH=$U_DISK/$1/git-Projects #
+ ~/sysprocs/LOGMSG "  BACKUP_PATH set to $BACKUP_PATH. "
  echo "  BACKUP_PATH set to $BACKUP_PATH "
 else
- echo "  SETBACK - Specified drive $1 not mounted." >> $system_log
+ ~/sysprocs/LOGMSG "  SETBACK - Specified drive $1 not mounted." >> $system_log
  echo "  SETBACK - Specified drive $1 not mounted."
 fi
-
+# end SETBACK

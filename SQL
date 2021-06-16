@@ -1,8 +1,14 @@
 #!/bin/bash
 #SQL - Start sqlite3 with optional db specification
-#	8/6/20.	wmk.	12:00
-date +%T >> $system_log #
-echo "  Starting sqlite3 session." >> $system_log #
+#	6/16/21.	wmk.
+#
+# Modification History.
+# ---------------------
+# 8/6/20.	wmk.	original code.
+# 6/16/21.	wmk.	documentation; LOGMSG used.
+#date +%T >> $system_log #
+~/sysprocs/LOGMSG "  Starting sqlite3 session."
 echo "Running sqlite3..."
 sqlite3 $1
 echo "Enter ENDSQL to log end of SQL session..."
+# end SQL

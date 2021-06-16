@@ -1,6 +1,6 @@
 #!/bin/bash
 # WARMSTART - abbreviated system startup following QUICKSTART.
-#	7/27/20.	wmk.	11:45
+#	6/16/21.	wmk.
 # Usage. bash WARMSTART
 # Entry. QUICKSTART already run
 #       key initializations performed; bare bones ubuntu runnning
@@ -36,15 +36,16 @@
 # 7/24/20.	wmk.	original script
 # 7/27/20.	wmk.	InstallBless, InstallSQL, InstallWifi added
 # 7/30/20.  wmk.    Installctl, InstallFossil added
-# 6/15/21. wmk.	documentation; code improvements; persistent Ubuntu
-#				detection/ignore.
+# 6/15/21. wmk.		documentation; code improvements; persistent Ubuntu
+#					detection/ignore.
+# 6/16/21.	wmk.	more documentation.
 # check if running on persistent system..
 if [ "$HOME" != "/home/ubuntu" ]; then
  echo "  WARMSTART attempted on persistent system - abandoned."
  exit 0
 fi
-date +%T >> $system_log
-echo "  WARMSTART initiated..."  >> $system_log #
+#date +%T >> $system_log
+~/sysprocs/LOGMSG "  WARMSTART initiated..."
 echo "  WARMSTART initiated..."
 KillTPad
 Installgit
@@ -56,9 +57,7 @@ InstallPython
 InstallBless
 InstallSQL
 InstallWifi
-date +%T >> $system_log
+#date +%T >> $system_log
 echo "  WARMSTART complete."  >> $system_log #
-echo "  WARMSTART complete."
-
-
-
+~/sysprocs/LOGMSG "  WARMSTART complete."
+# end WARMSTART

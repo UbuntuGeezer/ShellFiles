@@ -1,6 +1,6 @@
 #/bin/bash
 #proc-name.sh -  (Dev) short proc description.
-# 2/13/21.	wmk.
+# 6/16/21.	wmk.
 #	Usage. bash proc-name.sh param
 #		param  - command line parameter(s)
 #
@@ -15,6 +15,7 @@
 # Modification History.
 # ---------------------
 # 2/1/21.	wmk.	original shell
+# 6/16/21.	wmk.	multihost support.
 #jumpto function definition
 function jumpto
 {
@@ -23,6 +24,11 @@ function jumpto
     eval "$cmd"
     exit
 }
+if [ "$HOME" = "/home/ubuntu" ]; then
+ folderbase="/media/ubuntu/Windows/Users/Bill"
+else 
+ folderbase=$HOME
+fi
 P1=$1
 #date +%T >> $system_log #
 if [ -z "$P1" ]; then

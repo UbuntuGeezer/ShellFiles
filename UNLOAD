@@ -1,19 +1,25 @@
 #!/bin/bash
 #UNLOAD - eject specified USB flash drive.
-#	2/12/21.	wmk.
+#	6/16/21.	wmk.
 # Usage. UNLOAD <drive-name>
-#	9/1/20. original shell
-#	11/13/20. alert added
-#   2/12/21. change to use LOGMSG for system log messages.
+#
+# Entry. ($)U-DISK = USB flash drive base path
+#
+# Modification History.
+# ---------------------
+# 9/1/20.	wmk.	original shell.
+# 11/13/20. wmk.	alert added.
+# 2/12/21. 	wmk.	change to use LOGMSG for system log messages.
+# 6/16/21.	wmk.	($)U-DISK used for multihost support.
 #date +%T >> $system_log #
 if [ -z "$1" ]; then
-#  echo "  eject ignored.. must specify flash drive name." >> $system_log #
-  echo "  eject ignored.. must specify flash drive name."
+#  echo "  UNLOAD ignored.. must specify flash drive name." >> $system_log #
+  echo "  UNLOAD ignored.. must specify flash drive name."
 else
-#  echo "  eject $1 - initiated from Terminal" >> $system_log #
+#  echo "  UNLOAD $1 - initiated from Terminal" >> $system_log #
   bash ~/sysprocs/LOGMSG "  UNLOAD/eject $1 - initiated from Terminal"
-  echo "  eject $1 - initiated from Terminal"
-  eject /media/ubuntu/$1
+  echo "  UNLOAD $1 - initiated from Terminal"
+  eject $U_DISK/$1
   notify-send "UNLOAD" "Safe to remove $1"
   bash ~/sysprocs/LOGMSG "   UNLOAD $1 completed safely."
   echo "  $1 unloaded - safe to remove"

@@ -1,7 +1,12 @@
 #!/bin/bash
 #PFDUMP - emulate incremental Cyber PFDUMP using predetermined directory names.
-#  7/16/20.  08:30 NEEDS TO BE REWRITTEN TO BRING PROJECT BACK TO /Windows/../StagingArea-In
+#  6/16/21.  08:30 NEEDS TO BE REWRITTEN TO BRING PROJECT BACK TO /Windows/../StagingArea-In
 #                   FROM ../USB20FD/git-Projects
+# Modification History.
+# ---------------------
+# 7/16/20.	wmk.	original code.
+# 6/16/21.	wmk.	mod to abandon if persistent system; LOGMSG used.
+# Notes.
 # Because of the volatility of ubuntu non-persistent, and the risk of unexpected crashes
 # git Projects should only be modified on the Windows hard-drive. This stands the best chance
 # of not losing local changes.
@@ -15,7 +20,11 @@
 # subdirectory to receive a clone of the project by just using "git clone". The user
 # have to ensure that any files spec'd in .gitignore are copied to the dump area
 # separately from the "git clone".
-if [ $1 == $2 ] ; then
+if [ "$HOME" != "/home/ubuntu" ]; then
+ echo "  PFDUMP attempted on persistent system - abandoned."
+ exit 0
+fi
+if [ "$1" == "$2" ] ; then
   echo -e "No Project specified (e.g. OpenOffice-Basics)\nPFDUMP Abandoned."
   exit 1
 fi

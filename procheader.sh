@@ -1,6 +1,6 @@
 #!/bin/bash
 #prochdr.sh - <proc-name> short description.
-#	2/12/21.	wmk.
+#	6/16/21.	wmk.
 #
 # bash <proc-name> p1 p2 p3..
 #
@@ -15,8 +15,9 @@
 #
 #	Modification History.
 #	---------------------
-#	2/3/21.		wmk.	original shell
-#	2/12/21.	wmk.	jumpto definition added
+#	2/3/21.		wmk.	original shell.
+#	2/12/21.	wmk.	jumpto definition added.
+#	6/16/21.	wmk.	multihost support.
 #
 #	Notes.
 # jumpto function definition
@@ -27,12 +28,17 @@ function jumpto
     eval "$cmd"
     exit
 }
+if [ "$HOME" = "/home/ubuntu" ]; then
+ folderbase="/media/ubuntu/Windows/Users/Bill"
+else 
+ folderbase=$HOME
+fi
 P1=$1	# preserve passed parameter as $P1
 #date +%T >> $system_log #
 #echo "  <proc-name> started." >> $system_log #
 bash ~/sysprocs/LOGMSG "  <proc-name> started."
 echo "  <proc-name> started."
-if [ -z $1 ]; then
+if [ -z "$1" ]; then
   echo "  <param-1> not specified... <proc-name> abandoned." >> $system_log #
   echo -e "<param-1> must be specified...\n <proc-name> abandoned."
   exit 1

@@ -11,3 +11,4 @@ echo "Field Service Meetings - M-F  425 981 905 / 2588"
 echo "Tom VanWieren's Personal Meetings 794 245 9910 / 884166"
 echo "Bill Kaercher's Personal Meetings 949 489 8834 / 1z2fUn"
 read -p "Press Enter to continue.."
+# end ZoomIDs

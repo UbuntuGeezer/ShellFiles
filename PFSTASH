@@ -1,6 +1,15 @@
 #!/bin/bash
 #PFSTASH - emulate incremental Cyber PFDUMP using predetermined directory names.
-#  7/15/20.  11:00
+#  6/16/21.  wmk.
+# Modification History.
+# ---------------------
+# 7/15/20.	wmk.	original code.
+# 6/16/21.	wmk.	mod to abandon if persistent system; LOGMSG used.
+# Notes.
+if [ "$HOME" != "/home/ubuntu" ]; then
+ echo "  PFSTASH attempted on persistent system - abandoned."
+ exit 0
+fi
 if [ $1 == $2 ] ; then
  echo  -e "No Project specified (e.g. OpenOffice-Basics)\nPFSTASH abandoned."
  exit 1

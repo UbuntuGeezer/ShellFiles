@@ -1,6 +1,6 @@
 #!/bin/bash
 #PJDUMP - emulate incremental Cyber PFDUMP of <project-name> using predetermined directory names.
-#  4/19/21.  12:20 PJLOAD NEEDS TO BE REWRITTEN TO BRING PROJECT BACK TO
+#  6/16/21.  12:20 PJLOAD NEEDS TO BE REWRITTEN TO BRING PROJECT BACK TO
 #            /Windows/../StagingArea-In
 #                   FROM ../USB20FD/git-Projects ($BACKUP_PATH)
 # Usage. bash PJDUMP <backup-path> <project-name>
@@ -26,6 +26,7 @@
 # 2/11/21. wmk. mods to use LOGMSG to log dump to system log; FD and GP
 #				environment vars added.
 # 4/19/21. wmk. bug fix where == test throwing error if user cancels.
+# 6/16/21. wmk. multihost support.
 
 # 7/17/20. Notes. A new bash shell is expected to be resident on each primary
 # <project-name> path, named BU-Ignores.sh. This bash script will be invoked
@@ -43,10 +44,18 @@
 # subdirectory to receive a clone of the project by just using "git clone". The user
 # have to ensure that any files spec'd in .gitignore are copied to the dump area
 # separately from the "git clone".
+if [ "$HOME" = "/home/ubuntu" ]; then
+ folderbase="/media/ubuntu/Windows/Users/Bill"
+else 
+ folderbase=$HOME
+fi
+if [ -z "$system_log" ]; then
+  system_log="$folderbase/ubuntu/SystemLog.txt"
+fi
 FD=$1
 GP=$2
 SFX="_"
-if [ -z TEMP_PATH ]; then
+if [ -z "TEMP_PATH" ]; then
   TEMP_PATH=$HOME/temp #
 fi
 if [ -z "$FD" ] ; then
@@ -122,7 +131,7 @@ fi;
 
 # if backup exists, as permission to delete and replace with current
 #if [ $? -eq 0 ]; then
-if [ -z $bu_ainthere ]; then
+if [ -z "$bu_ainthere" ]; then
   echo -e "Backup of $GP exists..."
   echo -e "\nLooking for $BACKUP_PATH/$GP$SFX " >>$TEMP_PATH/scratch.txt
   read -p "OK to recycle and proceed? (y/n)"

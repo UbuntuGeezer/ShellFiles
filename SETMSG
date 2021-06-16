@@ -1,14 +1,23 @@
 #!/bin/bash
 # SETMSG - Set message string for next Terminal startup.
-#	2/14/21.  wmk.  07:00
+#	6/16/21.  wmk.
+#
 # Usage. bash SETMSG "<message-text>"
+#
 #	<message-text> message to be issued next time term_ is used
+#
+# Entry. ($)WINUBUNTU-PATH = base path on which term-user-msg.txt to be stored
 #   to start a Terminal session.
-# Note. 8/5/20 moved to persistent storage.
-# 12/25/20. touch added after message cleared.
-# 12/27/20. -c parameter added to clear existing message(s) before adding.
-# 12/28/20. bug fix at line 18, needed quotes around dollar1.
-# 2/14/21.	one-line log messaging.
+#
+# Modification History.
+# ---------------------
+# ??		wmk.	original code.
+# 8/5/20.	wmk.	moved to persistent storage.
+# 12/25/20. wmk.	touch added after message cleared.
+# 12/27/20. wmk.	-c parameter added to clear existing message(s) before adding.
+# 12/28/20. wmk.	bug fix at line 18, needed quotes around dollar1.
+# 2/14/21.	wmk.	one-line log messaging.
+# 6/16/21.	wmk.	documentation added.
 #if [ len($1) -eq 0 ]; then
 P1=$1
 P2=$2
@@ -45,3 +54,4 @@ else
  bash ~/sysprocs/LOGMSG "  Message = \"$P1\" "
  echo "  Terminal startup message set. "
 fi
+# end SETMSG
