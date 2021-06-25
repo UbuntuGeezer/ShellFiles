@@ -1,12 +1,15 @@
 #!/bin/bash
 #EndSQL - log end of SQL session.
-#	8/6/20.	wmk.	12:00
+#	6/20/21.	wmk.
+# Modification History.
+# ---------------------
+# 8/6/20.	wmk.	original code.
+# 6/20/21.	wmk.	single-line log messages with timestamp.
 if [ -z "$1" ]; then
-  echo "  SQL session - user .quit." >> $system_log #
+  ~/sysprocs/LOGMSG "  SQL session - user .quit." 
   echo "SQL session logged as ended."
 else
-  echo "$1" >> $system_log #
+  ~/sysprocs/LOGMSG "  End SQL session - $1" >> $system_log #
   echo "$1"
-  echo "  SQL session - user .quit." >> $system_log #
   echo "SQL session logged as ended."
 fi 

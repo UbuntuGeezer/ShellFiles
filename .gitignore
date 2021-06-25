@@ -1,0 +1,9 @@
+#.gitingore - ignore list for ShellFiles project.
+#     6/15/21.  wmk.  22:03
+# bash.pdf and any .deb files will be ignored, since are on other repositories.
+# .tar files will be ignored, as these are archive (dump) files.
+*.tar
+*.pdf
+*.deb
+.ssh*
+NewSSHKey.sh
