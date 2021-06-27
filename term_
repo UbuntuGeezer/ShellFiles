@@ -1,6 +1,6 @@
 #!/bin/bash
 # term_ - standard terminal starup bash script.
-#	6/16/21.	wmk.	06:53
+#	6/27/21.	wmk.
 # Usage. bash terminal_ <option>
 #	<option> = if present, list environment variables from .bashrc
 #
@@ -10,7 +10,7 @@
 #	WINGIT_PATH = /media/ubuntu/Windows/Users/Bill/Documents/GitHub
 #	WINUBUNTU_PATH = /media/ubuntu/Windows/Users/Bill/ubuntu
 #	folderbase = base path to user files set in .bashrc
-#	~/ubuntu/SessionLogged.txt exists if not first term(underscore) since
+#	folerbase/ubuntu/SessionLogged.txt exists if not first term(underscore) since
 #	   termx(underscore) X
 #
 # Modification History.
@@ -24,6 +24,7 @@
 # 2/14/21.	wmk.	bu_ environment var set /media/ubuntu/Windows/StagingAreaIn
 # 2/21/21.	wmk.	LOGMSG direct calls failed; use sysprocs path.
 # 6/16/21.	wmk.	multihost support added; ($)system_log entry for day start.
+# 6/27/21.	wmk.	bug in path for SessionLogged.txt
 # Notes.
 # By entering the "term_" command, the user makes a $system_log entry
 # with the time stamp of when the bash session was started. [If a parameter
@@ -40,19 +41,20 @@ else
  folderbase=$HOME
 fi
 #if first time today, log start time.
-if file ~/ubuntu/SessionLogged.txt >$TEMP_PATH/scratchfile; then
+if test -f $folderbase/ubuntu/SessionLogged.txt; then
  echo "Session logged."
 else
- touch ~/ubuntu/SessionLogged.txt
+ touch $folderbase/ubuntu/SessionLogged.txt
+ date +%T | sed 's/$/  User session day started.&/' >> $folderbase/ubuntu/SessionLogged.txt
  echo "Session log started."
  date | sed 's/$/   User session day started.&/' >> $system_log
 fi
-bu_="/media/ubuntu/Windows/StagingAreaIn"
+bu_=/media/ubuntu/Windows/StagingAreaIn
 if [ -z "$1" ]; then
   echo "Terminal app started."
 else
   echo "Terminal app started."
-  echo "  U_DISK = '$U_DISK'"
+  echo "  U_DISK = '$U_DISK' "
   echo "  WINGIT_PATH = '$WINGIT_PATH'"
   echo "  BACKUP_PATH = '$BACKUP_PATH'"
   echo "  PJ_BACK = '$PJ_BACK'"

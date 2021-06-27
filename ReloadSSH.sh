@@ -1,6 +1,6 @@
 #!/bin/bash
 # ReloadSSH - reload SSH configuration from WINUBUNTU/.ssh backup
-#	6/5/21.	wmk.	18:09
+#	6/14/21.	wmk.
 #
 # Entry.	($)WINUBUNTU-PATH points to folderbase/ubuntu; on hard-drive
 #			 Windows when running from non-persistent flash drive
@@ -12,6 +12,7 @@
 #					for correct error handling
 # 2/17/21.	wmk.	log messaging using LOGMSG.
 # 6/5/21.	wmk.	documentation; minor bug fixes checking REPLY.
+# 6/14/21.	wmk.	documentation improved.
 #
 # Notes. The backup key files for SSH are saved on the system hard
 # drive WINUBUNTU-PATH/.ssh subdirectory. The current files in use are
