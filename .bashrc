@@ -12,6 +12,7 @@
 # 6/4/21.	wmk.	added SANDISK1, SANDISK2 env vars for flash drives.
 # 6/13/21.	wmk.	multihost support generalized; exit documentation added.
 # 6/14/21.	wmk.	cdq added to aliases.
+# 6/30/21.	wmk.	tar_ added to aliases.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -134,6 +135,7 @@ alias got='git'
 alias ga='git add'
 alias COLDSTART_1='bash ~/sysstart/COLDSTART_1'
 alias WARMSTRT='bash /home/ubuntu/sysstart/WARMSTART'
+alias tar_='bash ~/sysprocs/tar_.sh'
 alias term_='bash ~/sysprocs/term_'
 alias termx_='bash ~/sysprocs/termx_'
 alias SYSEDIT='bash ~/sysprocs/SYSEDIT'
