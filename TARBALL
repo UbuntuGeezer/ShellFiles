@@ -1,6 +1,6 @@
 #!/bin/bash
 #TARBALL.sh - Generate compressed tar.gz of specified files.
-# 6/28/21.	wmk.
+# 7/1/21.	wmk.
 #
 #	Usage. bash TARBALL <path>
 #		<path> - filepath to obtain files from
@@ -8,10 +8,12 @@
 #
 # Dependencies.
 #	($)BACKUP_PATH env var set to non-null; points to where .tar.gz lands.
+#	user ($)PWD is root directory for <path> downstream files to dump.
 #
 # Modification History.
 # ---------------------
 # 6/28/21.	wmk.	original code (multihost support).
+# 7/1/21.	wmk.	Dependencies documentation updated.
 # function definition
 function jumpto
 {
@@ -55,6 +57,9 @@ else
 fi 
 if [ -z "$P2" ]; then
   P2=tarball.tar.gz
+else
+  P_TEMP=$P2
+  P2=$P_TEMP.tar.gz
 fi
 #
 if [ $local_debug = 1 ]; then
@@ -64,9 +69,9 @@ fi
 
 #proc body here
 #tar --help
-echo "tar --directory=$P1  --create --file=$P2 --gzip $P1"
-~/sysprocs/LOGMSG "tar --directory=$P1  --create --file=$P2 --gzip $P1"
-tar --directory=$P1  --create --file=$P2 --gzip $P1
+echo "tar --directory=$P1  --create --file=$BACKUP_PATH$P2 --gzip $P1"
+~/sysprocs/LOGMSG "tar --directory=$P1  --create --file=$BACKUP_PATH$P2 --gzip $P1"
+tar --directory=$P1  --create --file=$BACKUP_PATH$P2 --gzip $P1
 #end proc body
 if [ $local_debug = 1 ]; then
  popd

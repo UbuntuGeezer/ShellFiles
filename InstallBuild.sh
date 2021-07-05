@@ -1,6 +1,6 @@
 #!/bin/bash
 #InstallBuild.sh - Install make and associated utilities.
-#	6/13/21.	wmk.
+#	7/5/21.	wmk.
 #
 # Exit.	build-essential repository installed.
 #		debhelper binaries installed.
@@ -10,6 +10,7 @@
 # 3/17/21.	wmk.	initial shell script.
 # 6/7/21.	wmk.	updated adding autotools-dev and autoconf tools.
 # 6/13/21.	wmk.	debhelper, dh-make utilities added to install.
+# 7/5/21.	wmk.	bug fix; err_code assignment fixed.
 #
 # build-essential supports Geany "make"/Build operations.
 # autotools-dev supports user install operations.
@@ -32,7 +33,7 @@ echo "  Installing debhelper from repository."
 sudo apt-get install debhelper
 echo "  Installing dh-make from repository."
 sudo apt-get install dh-make
-err_code = $?
+err_code=$?
 popd >>junk.txt
 jumpto EndProc
 EndProc:
